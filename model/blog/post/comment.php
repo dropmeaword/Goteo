@@ -159,7 +159,7 @@ namespace Goteo\Model\Blog\Post {
 
         public function validate (&$errors = array()) { 
             if (empty($this->text))
-                $errors[] = 'Falta texto';
+                $errors[] = Text::_('Falta texto');
                 //Text::get('mandatory-comment-text');
 
             if (empty($errors))
@@ -195,7 +195,7 @@ namespace Goteo\Model\Blog\Post {
 
                 return true;
             } catch(\PDOException $e) {
-                $errors[] = "No se ha guardado correctamente. " . $e->getMessage();
+                $errors[] = Text::_("No se ha guardado correctamente. ") . $e->getMessage();
                 return false;
             }
         }

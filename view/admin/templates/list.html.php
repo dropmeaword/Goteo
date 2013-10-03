@@ -29,25 +29,25 @@ $translator = ACL::check('/translate') ? true : false;
         <thead>
             <tr>
                 <th><!-- Editar --></th>
-                <th>Plantilla</th>
-                <th>Descripción</th>
+                <th><?php echo Text::_("Plantilla"); ?></th>
+                <th><?php echo Text::_("Descripción"); ?></th>
                 <th><!-- traducir --></th>
             </tr>
         </thead>
         <tbody>
             <?php foreach ($this['templates'] as $template) : ?>
             <tr>
-                <td><a href="/admin/templates/edit/<?php echo $template->id; ?>">[Editar]</a></td>
+                <td><a href="/admin/templates/edit/<?php echo $template->id; ?>">[<?php echo Text::_("Editar"); ?>]</a></td>
                 <td><?php echo $template->name; ?></td>
                 <td><?php echo $template->purpose; ?></td>
                 <?php if ($translator) : ?>
-                <td><a href="/translate/template/edit/<?php echo $template->id; ?>" >[Traducir]</a></td>
+                <td><a href="/translate/template/edit/<?php echo $template->id; ?>" >[<?php echo Text::_("Traducir"); ?>]</a></td>
                 <?php endif; ?>
             </tr>
             <?php endforeach; ?>
         </tbody>
     </table>
     <?php else : ?>
-    <p>No se han encontrado registros</p>
+    <p><?php echo Text::_("No se han encontrado registros"); ?></p>
     <?php endif; ?>
 </div>

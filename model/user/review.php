@@ -55,11 +55,11 @@ namespace Goteo\Model\User {
 		public function validate(&$errors = array()) {
             // Estos son errores que no permiten continuar
             if (empty($this->id))
-                $errors[] = 'No hay una revision para asignar';
+                $errors[] = Text::_('No hay una revision para asignar');
                 //Text::get('validate-review-noid');
 
             if (empty($this->user))
-                $errors[] = 'No hay ningun usuario al que asignar';
+                $errors[] = Text::_('No hay ningun usuario al que asignar');
                 //Text::get('validate-review-nouser');
 
             //cualquiera de estos errores hace fallar la validación
@@ -79,7 +79,7 @@ namespace Goteo\Model\User {
 				self::query($sql, $values);
 				return true;
 			} catch(\PDOException $e) {
-				$errors[] = "La revisión {$this->id} no se ha asignado correctamente. Por favor, revise el metodo User\Review->save." . $e->getMessage();
+				$errors[] = Text::_("La revisión {$this->id} no se ha asignado correctamente. Por favor, revise el metodo User\Review->save.") . $e->getMessage();
 				return false;
 			}
 
@@ -103,7 +103,7 @@ namespace Goteo\Model\User {
                 self::query("DELETE FROM user_review WHERE review = :review AND user = :user", $values);
 				return true;
 			} catch(\PDOException $e) {
-                $errors[] = 'No se ha podido desasignar la revision ' . $this->id . ' del usuario ' . $this->user . ' ' . $e->getMessage();
+                $errors[] = Text::_('No se ha podido desasignar la revision ') . $this->id . ' del usuario ' . $this->user . ' ' . $e->getMessage();
                 //Text::get('remove-review-fail');
                 return false;
 			}
@@ -126,7 +126,7 @@ namespace Goteo\Model\User {
 
 				return true;
 			} catch(\PDOException $e) {
-                $errors[] = 'No se ha podido marcar la revision ' . $this->id . ' del usuario ' . $this->user . ' como lista. ' . $e->getMessage();
+                $errors[] = Text::_('No se ha podido marcar la revision ') . $this->id . ' del usuario ' . $this->user . ' como lista. ' . $e->getMessage();
                 //Text::get('review-set_ready-fail');
                 return false;
 			}
@@ -149,7 +149,7 @@ namespace Goteo\Model\User {
 
 				return true;
 			} catch(\PDOException $e) {
-                $errors[] = 'No se ha podido reabrir la revision ' . $this->id . ' del usuario ' . $this->user . '. ' . $e->getMessage();
+                $errors[] = Text::_('No se ha podido reabrir la revision ') . $this->id . ' del usuario ' . $this->user . '. ' . $e->getMessage();
                 //Text::get('review-set_unready-fail');
                 return false;
 			}
@@ -321,7 +321,7 @@ namespace Goteo\Model\User {
                 return $query->fetchObject();
 
             } catch(\PDOException $e) {
-                $errors[] = "No se ha aplicado la puntuacion. " . $e->getMessage();
+                $errors[] = Text::_("No se ha aplicado la puntuacion. ") . $e->getMessage();
                 return false;
             }
         }

@@ -49,13 +49,13 @@ $sizes = array(
             <textarea id="<?php echo 'id'.$field ?>" name="<?php echo $field ?>" <?php echo $sizes[$field] ?>><?php echo $content->$field; ?></textarea>
         </p>
         <?php endforeach;  ?>
-        <input type="submit" name="save" value="Guardar" />
+        <input type="submit" name="save" value="<?php echo Text::_("Guardar"); ?>" />
 
     </form>
 </div>
 
 <div class="widget board">
-    <h3>Contenido original</h3>
+    <h3><?php echo Text::_("Contenido original"); ?></h3>
 
     <?php foreach (Content::$fields[$table] as $field=>$fieldName) :
         $campo = 'original_'.$field; ?>

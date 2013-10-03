@@ -27,11 +27,11 @@ array_walk($roles, function (&$role) { $role = $role->name; });
 ?>
 <div class="widget">
     <dl>
-        <dt>Nombre de usuario:</dt>
+        <dt><?php echo Text::_('Nombre de usuario:'); ?></dt>
         <dd><?php echo $user->name ?></dd>
     </dl>
     <dl>
-        <dt>Login de acceso:</dt>
+        <dt><?php echo Text::_('Login de acceso:'); ?></dt>
         <dd><strong><?php echo $user->id ?></strong></dd>
     </dl>
     <dl>
@@ -39,49 +39,49 @@ array_walk($roles, function (&$role) { $role = $role->name; });
         <dd><?php echo $user->email ?></dd>
     </dl>
     <dl>
-        <dt>Roles actuales:</dt>
+        <dt><?php echo Text::_('Roles actuales:'); ?></dt>
         <dd>
             <?php echo implode(', ', $roles); ?><br />
             <?php if (in_array('checker', array_keys($user->roles))) : ?>
-                <a href="<?php echo "/admin/users/manage/{$user->id}/nochecker"; ?>" class="button red">Quitarlo de revisor</a>
+                <a href="<?php echo "/admin/users/manage/{$user->id}/nochecker"; ?>" class="button red"><?php echo Text::_('Quitarlo de revisor'); ?></a>
             <?php else : ?>
-                <a href="<?php echo "/admin/users/manage/{$user->id}/checker"; ?>" class="button">Hacerlo revisor</a>
+                <a href="<?php echo "/admin/users/manage/{$user->id}/checker"; ?>" class="button"><?php echo Text::_('Hacerlo revisor'); ?></a>
             <?php endif; ?>
 
             <?php if (in_array('translator', array_keys($user->roles))) : ?>
-                <a href="<?php echo "/admin/users/manage/{$user->id}/notranslator"; ?>" class="button red">Quitarlo de traductor</a>
+                <a href="<?php echo "/admin/users/manage/{$user->id}/notranslator"; ?>" class="button red"><?php echo Text::_('Quitarlo de traductor'); ?></a>
             <?php else : ?>
-                <a href="<?php echo "/admin/users/manage/{$user->id}/translator"; ?>" class="button">Hacerlo traductor</a>
+                <a href="<?php echo "/admin/users/manage/{$user->id}/translator"; ?>" class="button"><?php echo Text::_('Hacerlo traductor'); ?></a>
             <?php endif; ?>
 
             <!--
             <?php # if (in_array('admin', array_keys($user->roles))) : ?>
-                <a href="<?php # echo "/admin/users/manage/{$user->id}/noadmin"; ?>" class="button weak">Quitarlo de admin</a>
+                <a href="<?php # echo "/admin/users/manage/{$user->id}/noadmin"; ?>" class="button weak"><?php echo Text::_('Quitarlo de admin'); ?></a>
             <?php # else : ?>
-                <a href="<?php # echo "/admin/users/manage/{$user->id}/admin"; ?>" class="button">Hacerlo admin</a>
+                <a href="<?php # echo "/admin/users/manage/{$user->id}/admin"; ?>" class="button"><?php echo Text::_('Hacerlo admin'); ?></a>
             <?php # endif; ?>
             -->
         </dd>
     </dl>
     <dl>
-        <dt>Estado de la cuenta:</dt>
+        <dt><?php echo Text::_('Estado de la cuenta:'); ?></dt>
         <dd>
             <strong><?php echo $user->active ? 'Activa' : 'Inactiva'; ?></strong>
             <?php if ($user->active) : ?>
-                <a href="<?php echo "/admin/users/manage/{$user->id}/ban"; ?>" class="button">Desactivar</a>
+                <a href="<?php echo "/admin/users/manage/{$user->id}/ban"; ?>" class="button"><?php echo Text::_('Desactivar'); ?></a>
             <?php else : ?>
-                <a href="<?php echo "/admin/users/manage/{$user->id}/unban"; ?>" class="button red">Activar</a>
+                <a href="<?php echo "/admin/users/manage/{$user->id}/unban"; ?>" class="button red"><?php echo Text::_('Activar'); ?></a>
             <?php endif; ?>
         </dd>
     </dl>
     <dl>
-        <dt>Visibilidad:</dt>
+        <dt><?php echo Text::_('Visibilidad:'); ?></dt>
         <dd>
             <strong><?php echo $user->hide ? 'Oculto' : 'Visible'; ?></strong>
             <?php if (!$user->hide) : ?>
-                <a href="<?php echo "/admin/users/manage/{$user->id}/hide"; ?>" class="button">Ocultar</a>
+                <a href="<?php echo "/admin/users/manage/{$user->id}/hide"; ?>" class="button"><?php echo Text::_('Ocultar'); ?></a>
             <?php else : ?>
-                <a href="<?php echo "/admin/users/manage/{$user->id}/show"; ?>" class="button red">Mostrar</a>
+                <a href="<?php echo "/admin/users/manage/{$user->id}/show"; ?>" class="button red"><?php echo Text::_('Mostrar'); ?></a>
             <?php endif; ?>
         </dd>
     </dl>

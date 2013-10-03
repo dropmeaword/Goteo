@@ -165,7 +165,7 @@ namespace Goteo\Model {
 
             $values = array(
                 ':id'   => md5($user.'-'.$num),
-                ':name' => "Mi proyecto $num",
+                ':name' => Text::_("Mi proyecto $num"),
                 ':lang' => 'es',
                 ':status'   => 1,
                 ':progress' => 0,
@@ -208,7 +208,7 @@ namespace Goteo\Model {
 
                 return $this->id;
             } catch (\PDOException $e) {
-                $errors[] = "ERROR al crear un nuevo proyecto<br />$sql<br /><pre>" . print_r($values, 1) . "</pre>";
+                $errors[] = "ERROR al crear un nuevo proyecto<br />$sql<br /><pre>" . print_r($values, 1) . "</pre>"; /*FIXME*/
                 \trace($this);
                 die($errors[0]);
                 return false;
@@ -514,7 +514,7 @@ namespace Goteo\Model {
 
             // Estos son errores que no permiten continuar
             if (empty($this->id))
-                $errors[] = 'El proyecto no tiene id';
+                $errors[] = Text::_('El proyecto no tiene id');
                 //Text::get('validate-project-noid');
 
             if (empty($this->lang))
@@ -527,7 +527,7 @@ namespace Goteo\Model {
                 $this->progress = 0;
 
             if (empty($this->owner))
-                $errors[] = 'El proyecto no tiene usuario creador';
+                $errors[] = Text::_('El proyecto no tiene usuario creador');
                 //Text::get('validate-project-noowner');
 
             if (empty($this->node))
@@ -780,7 +780,7 @@ namespace Goteo\Model {
                 //listo
                 return !$fail;
 			} catch(\PDOException $e) {
-                $errors[] = 'Error sql al grabar el proyecto.' . $e->getMessage();
+                $errors[] = Text::_('Error sql al grabar el proyecto.') . $e->getMessage();
                 //Text::get('save-project-fail');
                 return false;
 			}
@@ -824,7 +824,7 @@ namespace Goteo\Model {
                     return false;
                 }
 			} catch(\PDOException $e) {
-                $errors[] = 'Error sql al grabar el proyecto.' . $e->getMessage();
+                $errors[] = Text::_('Error sql al grabar el proyecto.') . $e->getMessage();
                 //Text::get('save-project-fail');
                 return false;
 			}
@@ -956,23 +956,14 @@ namespace Goteo\Model {
                  ++$score;
             }
 
-						if($config['vat_required']) {
-	            if (empty($this->contract_nif)) {
-	                $errors['userPersonal']['contract_nif'] = Text::get('mandatory-project-field-contract_nif');
-	            } else {
-								$valfunc = $config['locale']['function_validate_vat'];
-								$result = !call_user_func($valfunc, $this->entity_nif);
-								/* !Check::nif($this->contract_nif) && !Check::vat($this->contract_nif) */
-								if( $result ) {
-		                $errors['userPersonal']['contract_nif'] = Text::get('validate-project-value-contract_nif');
-		            } else {
-		                 $okeys['userPersonal']['contract_nif'] = 'ok';
-		                 ++$score;
-		            }
-							}
-						} else {
-							$okeys['userPersonal']['contract_nif'] = 'ok';
-						}
+            if (empty($this->contract_nif)) {
+                $errors['userPersonal']['contract_nif'] = Text::get('mandatory-project-field-contract_nif');
+            } elseif (!Check::nif($this->contract_nif) && !Check::vat($this->contract_nif)) {
+                $errors['userPersonal']['contract_nif'] = Text::get('validate-project-value-contract_nif');
+            } else {
+                 $okeys['userPersonal']['contract_nif'] = 'ok';
+                 ++$score;
+            }
 
             if (empty($this->contract_email)) {
                 $errors['userPersonal']['contract_email'] = Text::get('mandatory-project-field-contract_email');
@@ -996,22 +987,13 @@ namespace Goteo\Model {
                      $okeys['userPersonal']['entity_name'] = 'ok';
                 }
 
-								if($config['vat_required']) {
-	                if (empty($this->entity_cif)) {
-	                    $errors['userPersonal']['entity_cif'] = Text::get('mandatory-project-field-entity_cif');
-	                /*} elseif (!Check::nif($this->entity_cif)) { */
-	                } else {
-											$valfunc = $config['locale']['function_validate_vat'];
-											$result = !call_user_func($valfunc, $this->entity_cif);
-											if(!$result) {
-	                    	$errors['userPersonal']['entity_cif'] = Text::get('validate-project-value-entity_cif');
-	                		} else {
-	                     	$okeys['userPersonal']['entity_cif'] = 'ok';
-	                		}
-									}
-								} else {
-									$okeys['userPersonal']['contract_cif'] = 'ok';
-								}
+                if (empty($this->entity_cif)) {
+                    $errors['userPersonal']['entity_cif'] = Text::get('mandatory-project-field-entity_cif');
+                } elseif (!Check::nif($this->entity_cif)) {
+                    $errors['userPersonal']['entity_cif'] = Text::get('validate-project-value-entity_cif');
+                } else {
+                     $okeys['userPersonal']['entity_cif'] = 'ok';
+                }
 
             } else { // FISICA
                 if (empty($this->contract_birthdate)) {
@@ -1431,7 +1413,7 @@ namespace Goteo\Model {
                 return true;
                 
             } catch (\PDOException $e) {
-                $errors[] = 'Fallo al habilitar para revisión. ' . $e->getMessage();
+                $errors[] = Text::_('Fallo al habilitar para revisión. ') . $e->getMessage();
                 //Text::get('send-project-review-fail');
                 return false;
             }
@@ -1446,7 +1428,7 @@ namespace Goteo\Model {
 				self::query($sql, array(':status'=>1, ':id'=>$this->id));
                 return true;
             } catch (\PDOException $e) {
-                $errors[] = 'Fallo al habilitar para edición. ' . $e->getMessage();
+                $errors[] = Text::_('Fallo al habilitar para edición. ') . $e->getMessage();
                 //Text::get('send-project-reedit-fail');
                 return false;
             }
@@ -1482,7 +1464,7 @@ namespace Goteo\Model {
 
                 return true;
             } catch (\PDOException $e) {
-                $errors[] = 'Fallo al publicar el proyecto. ' . $e->getMessage();
+                $errors[] = Text::_('Fallo al publicar el proyecto. ') . $e->getMessage();
                 //Text::get('send-project-publish-fail');
                 return false;
             }
@@ -1497,7 +1479,7 @@ namespace Goteo\Model {
 				self::query($sql, array(':status'=>0, ':closed'=>date('Y-m-d'), ':id'=>$this->id));
                 return true;
             } catch (\PDOException $e) {
-                $errors[] = 'Fallo al cerrar el proyecto. ' . $e->getMessage();
+                $errors[] = Text::_('Fallo al cerrar el proyecto. ') . $e->getMessage();
                 //Text::get('send-projecct-close-fail');
                 return false;
             }
@@ -1512,7 +1494,7 @@ namespace Goteo\Model {
 				self::query($sql, array(':status'=>6, ':closed'=>date('Y-m-d'), ':id'=>$this->id));
                 return true;
             } catch (\PDOException $e) {
-                $errors[] = 'Fallo al cerrar el proyecto. ' . $e->getMessage();
+                $errors[] = Text::_('Fallo al cerrar el proyecto. ') . $e->getMessage();
                 //Text::get('send-projecct-close-fail');
                 return false;
             }
@@ -1527,7 +1509,7 @@ namespace Goteo\Model {
 				self::query($sql, array(':status'=>4, ':success'=>date('Y-m-d'), ':id'=>$this->id));
                 return true;
             } catch (\PDOException $e) {
-                $errors[] = 'Fallo al dar por financiado el proyecto. ' . $e->getMessage();
+                $errors[] = Text::_('Fallo al dar por financiado el proyecto. ') . $e->getMessage();
                 //Text::get('send-project-success-fail');
                 return false;
             }
@@ -1542,7 +1524,7 @@ namespace Goteo\Model {
 				self::query($sql, array(':passed'=>date('Y-m-d'), ':id'=>$this->id));
                 return true;
             } catch (\PDOException $e) {
-                $errors[] = 'Fallo SQL al marcar fecha de paso de ronda. ' . $e->getMessage();
+                $errors[] = Text::_('Fallo SQL al marcar fecha de paso de ronda. ') . $e->getMessage();
                 //Text::get('send-project-success-fail');
                 return false;
             }
@@ -1557,7 +1539,7 @@ namespace Goteo\Model {
 				self::query($sql, array(':status'=>5, ':id'=>$this->id));
                 return true;
             } catch (\PDOException $e) {
-                $errors[] = 'Fallo al dar el retorno por cunplido para el proyecto. ' . $e->getMessage();
+                $errors[] = Text::_('Fallo al dar el retorno por cunplido para el proyecto. ') . $e->getMessage();
                 //Text::get('send-project-fulfill-fail');
                 return false;
             }
@@ -1569,7 +1551,7 @@ namespace Goteo\Model {
         public function delete(&$errors = array()) {
 
             if ($this->status > 1) {
-                $errors[] = "El proyecto no esta descartado ni en edicion";
+                $errors[] = Text::_("El proyecto no esta descartado ni en edicion");
                 return false;
             }
 
@@ -1634,13 +1616,13 @@ namespace Goteo\Model {
                             return false;
                         }
                     } else {
-                        throw new \Goteo\Core\Exception('Fallo al iniciar transaccion rebase. ' . \trace($e));
+                        throw new \Goteo\Core\Exception('Fallo al iniciar transaccion rebase. ' . \trace($e)); /*FIXME*/
                     }
                 }
 
                 return true;
             } catch (\PDOException $e) {
-                throw new \Goteo\Core\Exception('Fallo rebase id temporal. ' . \trace($e));
+                throw new \Goteo\Core\Exception('Fallo rebase id temporal. ' . \trace($e));  /*FIXME*/
             }
 
         }
@@ -1666,7 +1648,7 @@ namespace Goteo\Model {
                 return $id;
             }
             catch (\PDOException $e) {
-                throw new \Goteo\Core\Exception('Fallo al verificar id única para el proyecto. ' . $e->getMessage());
+                throw new \Goteo\Core\Exception('Fallo al verificar id única para el proyecto. ' . $e->getMessage()); /*FIXME*/
             }
         }
 

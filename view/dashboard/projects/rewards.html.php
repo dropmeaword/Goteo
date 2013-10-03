@@ -80,9 +80,9 @@ switch ($order) {
 
 ?>
 <div class="widget gestrew">
-    <div class="message">
-        ESTO ES UNA VISUALIZACIÓN DE LAS OPCIONES DE RETORNO QUE ELIGEN TUS COFINANCIADORES.<br />
-        NO TIENES QUE GESTIONAR ESOS RETORNOS HASTA HABER LLEGADO AL MÍNIMO DE LA CANTIDAD DESEADA
+    <div class="message"><?php echo Text::_("
+        ESTO ES UNA VISUALIZACIÓN DE LAS OPCIONES DE RETORNO QUE ELIGEN TUS COFINANCIADORES.");?>"<br />
+<?php echo Text::_("NO TIENES QUE GESTIONAR ESOS RETORNOS HASTA HABER LLEGADO AL MÍNIMO DE LA CANTIDAD DESEADA");?>
     </div>
     <div class="rewards">
         <?php $num = 1; 
@@ -90,13 +90,13 @@ switch ($order) {
                 $who = Invest::choosed($rewardData->id); ?>
             <div class="reward <?php if(($num % 4)==0)echo " last"?>">
             	<div class="orden"><?php echo $num; ?></div>
-                <span class="aporte">Aportaciones de <span class="num"><?php echo $rewardData->amount; ?></span> <span class="euro">&nbsp;</span></span>
-                <span class="cofinanciadores">cofinanciadores <span class="num"><?php echo count($who); ?></span></span>
+<span class="aporte"><?php echo Text::_("Aportaciones de");?><span class="num"><?php echo $rewardData->amount; ?></span> <span class="euro">&nbsp;</span></span>
+<span class="cofinanciadores"><?php echo Text::_("cofinanciadores ");?><span class="num"><?php echo count($who); ?></span></span>
                 <div class="tiporec"><ul><li class="<?php echo $rewardData->icon; ?>"><?php echo Text::recorta($rewardData->reward, 40); ?></li></ul></div>
                 <div class="contenedorrecompensa">	
-                	<span class="recompensa"><strong style="color:#666;">Recompensa:</strong><br/> <?php echo Text::recorta($rewardData->description, 100); ?></span>
+<span class="recompensa"><strong style="color:#666;"><?php echo Text::_("Recompensa:");?></strong><br/> <?php echo Text::recorta($rewardData->description, 100); ?></span>
                 </div>
-                <a class="button green" onclick="msgto('<?php echo $rewardData->id; ?>')" >mensaje a ese grupo</a>
+<a class="button green" onclick="msgto('<?php echo $rewardData->id; ?>')" ><?php echo Text::_("mensaje a ese grupo");?></a>
             </div>
         <?php ++$num;
             endforeach; ?>
@@ -118,23 +118,23 @@ switch ($order) {
        <input type="hidden" id="invests-order" name="order" value="<?php echo $order; ?>" />
    </form>
     <div class="filters">
-        <label>Ver aportaciones: </label><br />
+<label><?php echo Text::_("Ver aportaciones: ");?></label><br />
         <ul>			 
-        	<li<?php if ($order == 'amount' || $order == '') echo ' class="current"'; ?>><a href="#" onclick="return set('order', 'amount');">Por importe</a></li>
+<li<?php if ($order == 'amount' || $order == '') echo ' class="current"'; ?>><a href="#" onclick="return set('order', 'amount');"><?php echo Text::_("Por importe");?></a></li>
             <li>|</li>
-        	<li<?php if ($order == 'date') echo ' class="current"'; ?>><a href="#" onclick="return set('order', 'date');">Por fecha</a></li>
+<li<?php if ($order == 'date') echo ' class="current"'; ?>><a href="#" onclick="return set('order', 'date');"><?php echo Text::_("Por fecha");?></a></li>
             <li>|</li>
-            <li<?php if ($order == 'user') echo ' class="current"'; ?>><a href="#" onclick="return set('order', 'user');">Por usuario</a></li>
+<li<?php if ($order == 'user') echo ' class="current"'; ?>><a href="#" onclick="return set('order', 'user');"><?php echo Text::_("Por usuario");?></a></li>
             <li>|</li>
-            <li<?php if ($order == 'reward') echo ' class="current"'; ?>><a href="#" onclick="return set('order', 'reward');">Por retorno</a></li>
+<li<?php if ($order == 'reward') echo ' class="current"'; ?>><a href="#" onclick="return set('order', 'reward');"><?php echo Text::_("Por retorno");?></a></li>
             <li>|</li>
-            <li<?php if ($filter == 'pending') echo ' class="current"'; ?>><a href="#" onclick="return set('filter', 'pending');">Pendientes</a></li>
+<li<?php if ($filter == 'pending') echo ' class="current"'; ?>><a href="#" onclick="return set('filter', 'pending');"><?php echo Text::_("Pendientes");?></a></li>
             <li>|</li>
-            <li<?php if ($filter == 'fulfilled') echo ' class="current"'; ?>><a href="#" onclick="return set('filter', 'fulfilled');">Cumplidas</a></li>
+<li<?php if ($filter == 'fulfilled') echo ' class="current"'; ?>><a href="#" onclick="return set('filter', 'fulfilled');"><?php echo Text::_("Cumplidas");?></a></li>
             <li>|</li>
-            <li<?php if ($filter == 'resign') echo ' class="current"'; ?>><a href="#" onclick="return set('filter', 'resign');">Donativos</a></li>
+<li<?php if ($filter == 'resign') echo ' class="current"'; ?>><a href="#" onclick="return set('filter', 'resign');"><?php echo Text::_("Donativos");?></a></li>
             <li>|</li>
-            <li<?php if ($filter == '') echo ' class="current"'; ?>><a href="#" onclick="return set('filter', '');">Todas</a></li>
+<li<?php if ($filter == '') echo ' class="current"'; ?>><a href="#" onclick="return set('filter', '');"><?php echo Text::_("Todas");?></a></li>
         </ul>
     </div>
     
@@ -168,13 +168,13 @@ switch ($order) {
                     
                     <div class="left" style="width:120px;">
 						<span class="username"><a href="/user/<?php echo $investData->user->id; ?>"><?php echo $investData->user->name; ?></a></span>
-                        <label class="amount">Aporte<?php if ($investData->anonymous) echo ' <strong>'.  Text::get('regular-anonymous').'</strong>'; ?></label>
+<label class="amount"><?php echo Text::_("Aporte");?><?php if ($investData->anonymous) echo ' <strong>'.  Text::get('regular-anonymous').'</strong>'; ?></label>
 						<span class="amount"><?php echo $investData->amount; ?> &euro;</span>
                         <span class="date"><?php echo date('d-m-Y', strtotime($investData->invested)); ?></span>
                     </div>
                    
                     <div class="left recompensas"  style="width:280px;">
-                     	<span style="margin-bottom:2px;" class="<?php echo $estilo;?>"><strong>Recompensas esperadas:</strong></span>
+<span style="margin-bottom:2px;" class="<?php echo $estilo;?>"><strong><?php echo Text::_("Recompensas esperadas:");?></strong></span>
                         <?php foreach ($investData->rewards as $reward) : ?>
                         <div style="width: 250px; overflow: hidden; height: 18px;" class="<?php echo $estilo;?>">
                         <input type="checkbox"  id="ful_reward-<?php echo $investId; ?>-<?php echo $reward->id; ?>" name="ful_reward-<?php echo $investId; ?>-<?php echo $reward->id; ?>" value="1" <?php if ($reward->fulfilled == 1) echo ' checked="checked" disabled';?>  />
@@ -185,7 +185,7 @@ switch ($order) {
                     </div>
                     
 					<div class="left" style="width:200px;padding-right:30px;">
-						<span style="margin-bottom:2px;" class="<?php echo $estilo;?>"><strong>Direcci&oacute;n de entrega: </strong></span>
+<span style="margin-bottom:2px;" class="<?php echo $estilo;?>"><strong><?php echo Text::_("Direcci&oacute;n de entrega: ");?></strong></span>
 						<span class="<?php echo $estilo;?>">
                     	<?php echo $address->address; ?>, <?php echo $address->location; ?>, <?php echo $address->zipcode; ?> <?php echo $address->country; ?>
                     	</span>
@@ -203,7 +203,8 @@ switch ($order) {
             <?php endforeach; ?>
 
             <?php if ($project->amount >= $project->mincost) : ?>
-            <input type="submit" name="process" value="Aplicar marcados" class="save" onclick="return confirm('Ojo! Al marcar como cumplida no se puede desmarcar. Continuamos?')"/>
+<input type="submit" name="process" value="<?php echo Text::_(
+'Aplicar marcados');?>" class="save" onclick="return confirm(<?php echo Text::_("'Ojo! Al marcar como cumplida no se puede desmarcar. Continuamos?'");?>)"/>
             <?php endif; ?>
         </form>
     </div>
@@ -212,7 +213,7 @@ switch ($order) {
 
 <div class="widget projects" id="colective-messages">
     <a name="message"></a>
-    <h2 class="title">Mensajes colectivos</h2>
+<h2 class="title"><?php echo Text::_("Mensajes colectivos");?></h2>
 
         <form name="message_form" method="post" action="<?php echo '/dashboard/'.$this['section'].'/'.$this['option'].'/message'; ?>">
         	<div id="checks">
@@ -221,11 +222,11 @@ switch ($order) {
 
                 <p>
                     <input type="checkbox" id="msg_all" name="msg_all" value="1" onclick="alert('a todos es a todos, no tiene en cuenta el resto de marcados');" />
-                    <label for="msg_all">A todos los cofinanciadores de este proyecto</label>
+<label for="msg_all"><?php echo Text::_("A todos los cofinanciadores de este proyecto");?></label>
                 </p>
 
                 <p>
-                    Por retornos: <br />
+<?php echo Text::_("Por retornos:");?><br />
                     <?php foreach ($rewards as $rewardId => $rewardData) : ?>
                         <input type="checkbox" id="msg_reward-<?php echo $rewardId; ?>" name="msg_reward-<?php echo $rewardId; ?>" value="1" />
                         <label for="msg_reward-<?php echo $rewardId; ?>"><?php echo $rewardData->amount; ?> &euro; (<?php echo Text::recorta($rewardData->reward, 40); ?>)</label>

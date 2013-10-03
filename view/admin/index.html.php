@@ -66,7 +66,7 @@ include 'view/prologue.html.php';
 
         <div id="sub-header">
             <div>
-                <h2><?= _("Panel principal de administración"); ?></h2>
+                <h2><?= _("Panel principal de administración"); /*FIXME*/ ?></h2>
                 <?php if (defined('ADMIN_BCPATH')) : ?>
                 <blockquote><?php echo ADMIN_BCPATH; ?></blockquote>
                 <?php endif; ?>
@@ -139,8 +139,8 @@ include 'view/prologue.html.php';
 
                     });
                     </script>
-                    <h3>actividad reciente</h3>
-                    Ver Feeds por:
+                    <h3><?php echo Text::_("actividad reciente"); ?></h3>
+                    <?php echo Text::_("Ver Feeds por:"); ?>
 
                     <p class="categories">
                         <?php foreach (Feed::$admin_types as $id=>$cat) : ?>
@@ -150,7 +150,7 @@ include 'view/prologue.html.php';
 
                     <?php echo new View('view/admin/feed/list.html.php', array('items' => $items)); ?>
 
-                    <a href="/admin/feed/<?php echo isset($_GET['feed']) ? '?feed='.$_GET['feed'] : ''; ?>" style="margin-top:10px;float:right;text-transform:uppercase">Ver más</a>
+                    <a href="/admin/feed/<?php echo isset($_GET['feed']) ? '?feed='.$_GET['feed'] : ''; ?>" style="margin-top:10px;float:right;text-transform:uppercase"><?php echo Text::_("Ver más"); ?></a>
                     
                 </div>
             </div>

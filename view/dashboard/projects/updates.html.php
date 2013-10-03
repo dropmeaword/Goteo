@@ -39,7 +39,7 @@ if ($this['action'] == 'none') return;
 <?php if ($this['action'] == 'list') : ?>
 <div class="widget">
     <?php if (!empty($blog->id) && $blog->active) : ?>
-        <a class="button" href="<?php echo $url; ?>/add">Publicar nueva entrada</a>
+<a class="button" href="<?php echo $url; ?>/add"><?php echo Text::_("Publicar nueva entrada");?></a>
     <?php endif; ?>
 
     <!-- lista -->
@@ -47,7 +47,7 @@ if ($this['action'] == 'none') return;
     <?php foreach ($posts as $post) : ?>
         <div class="post">
             <a class="button" href="<?php echo $url; ?>/edit/<?php echo $post->id; ?>"><?php echo Text::get('regular-edit') ?></a>&nbsp;&nbsp;&nbsp;
-            <a class="remove button weak" href="<?php echo $url; ?>/delete/<?php echo $post->id; ?>" onclick="return confirm('¿Seguro que deseas eliminar esta actualización?');">Eliminar</a>
+<a class="remove button weak" href="<?php echo $url; ?>/delete/<?php echo $post->id; ?>" onclick="return confirm('¿Seguro que deseas eliminar esta actualización?');"><?php echo Text::_("Eliminar");?></a>
             <span><?php echo $post->publish ? Text::get('regular-published_yes') : Text::get('regular-published_no'); ?></span>
             <strong><?php echo $post->title; ?></strong>
             <span><?php echo $post->date; ?></span>
@@ -134,7 +134,7 @@ if ($this['action'] == 'none') return;
                 'type'      => 'textbox',
                 'required'  => true,
                 'size'      => 20,
-                'title'     => 'Título',
+                'title'     => Text::_("Título"),
                 'hint'      => Text::get('tooltip-updates-title'),
                 'errors'    => !empty($errors['title']) ? array($errors['title']) : array(),
                 'value'     => $post->title,
@@ -144,7 +144,7 @@ if ($this['action'] == 'none') return;
                 'required'  => true,
                 'cols'      => 40,
                 'rows'      => 4,
-                'title'     => 'Texto de la entrada',
+                            'title'     => Text::_("Texto de la entrada"),
                 'hint'      => Text::get('tooltip-updates-text'),
                 'errors'    => !empty($errors['text']) ? array($errors['text']) : array(),
                 'value'     => $post->text
@@ -175,7 +175,7 @@ if ($this['action'] == 'none') return;
 
             'media' => array(
                 'type'      => 'textbox',
-                'title'     => 'Vídeo',
+                'title'     => Text::_("Vídeo"),
                 'class'     => 'media',
                 'hint'      => Text::get('tooltip-updates-media'),
                 'errors'    => !empty($errors['media']) ? array($errors['media']) : array(),
@@ -199,13 +199,13 @@ if ($this['action'] == 'none') return;
             "date" => array(
                 'type'      => 'datebox',
                 'required'  => true,
-                'title'     => 'Fecha de publicación',
+                'title'     => Text::_("Fecha de publicación"),
                 'hint'      => Text::get('tooltip-updates-date'),
                 'size'      => 8,
                 'value'     => $post->date
             ),
             'allow' => array(
-                'title'     => 'Permite comentarios',
+                'title'     => Text::_("Permite comentarios"),
                 'type'      => 'slider',
                 'options'   => $allow,
                 'class'     => 'currently cols_' . count($allow),

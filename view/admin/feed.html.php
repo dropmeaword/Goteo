@@ -60,8 +60,8 @@ include 'view/prologue.html.php';
 
                     });
                     </script>
-                    <h3 class="title">actividad reciente</h3>
-                    Ver Feeds por:
+                    <h3 class="title"><?php echo Text::_("actividad reciente"); ?></h3>
+                    <?php echo Text::_("Ver Feeds por:"); ?>
 
                     <p class="categories">
                         <?php foreach (Feed::$admin_types as $id=>$cat) : ?>

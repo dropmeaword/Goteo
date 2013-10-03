@@ -30,17 +30,17 @@ $status = Goteo\Model\Project::status();
 ?>
 <div class="widget board">
     <form id="filter-form" action="/admin/rewards" method="get">
-        <label for="status-filter">Mostrar por estado:</label>
+        <label for="status-filter"><?php echo Text::_("Mostrar por estado:"); ?></label>
         <select id="status-filter" name="status" onchange="document.getElementById('filter-form').submit();">
-            <option value="">Todos los estados</option>
+            <option value=""><?php echo Text::_("Todos los estados"); ?></option>
         <?php foreach ($this['status'] as $statusId=>$statusName) : ?>
             <option value="<?php echo $statusId; ?>"<?php if ($filters['status'] == $statusId) echo ' selected="selected"';?>><?php echo $statusName; ?></option>
         <?php endforeach; ?>
         </select>
 
-        <label for="icon-filter">Mostrar retornos del tipo:</label>
+        <label for="icon-filter"><?php echo Text::_("Mostrar retornos del tipo:"); ?></label>
         <select id="icon-filter" name="icon" onchange="document.getElementById('filter-form').submit();">
-            <option value="">Todos los tipos</option>
+            <option value=""><?php echo Text::_("Todos los tipos"); ?></option>
         <?php foreach ($this['icons'] as $iconId=>$iconName) : ?>
             <option value="<?php echo $iconId; ?>"<?php if ($filters['icon'] == $iconId) echo ' selected="selected"';?>><?php echo $iconName; ?></option>
         <?php endforeach; ?>
@@ -60,9 +60,9 @@ $status = Goteo\Model\Project::status();
         <table>
             <thead>
                 <tr>
-                    <th>Retorno</th>
-                    <th>Tipo</th>
-                    <th>Estado</th>
+                    <th><?php echo Text::_("Retorno"); ?></th>
+                    <th><?php echo Text::_("Tipo"); ?></th>
+                    <th><?php echo Text::_("Estado"); ?></th>
                     <th></th>
                 </tr>
             </thead>
@@ -72,11 +72,11 @@ $status = Goteo\Model\Project::status();
                 <tr>
                     <td><?php echo $reward->reward; ?></td>
                     <td><?php echo $this['icons'][$reward->icon]; ?></td>
-                    <td><?php echo $reward->fulsocial ? 'Cumplido' : 'Pendiente'; ?></td>
+                    <td><?php echo $reward->fulsocial ? Text::_("Cumplido") : Text::_("Pendiente"); ?></td>
                     <?php if (!$reward->fulsocial) : ?>
-                    <td><a href="<?php echo "/admin/rewards/fulfill/{$reward->id}{$filter}"; ?>">[Dar por cumplido]</a></td>
+                    <td><a href="<?php echo "/admin/rewards/fulfill/{$reward->id}{$filter}"; ?>">[<?php echo Text::_("Dar por cumplido"); ?>]</a></td>
                     <?php else : ?>
-                    <td><a href="<?php echo "/admin/rewards/unfill/{$reward->id}{$filter}"; ?>">[Dar por pendiente]</a></td>
+                    <td><a href="<?php echo "/admin/rewards/unfill/{$reward->id}{$filter}"; ?>">[<?php echo Text::_("Dar por pendiente"); ?>]</a></td>
                     <?php endif; ?>
                 </tr>
                 <?php endforeach; ?>
@@ -88,6 +88,6 @@ $status = Goteo\Model\Project::status();
 
         <?php endforeach; ?>
     <?php else : ?>
-    <p>No se han encontrado registros</p>
+    <p><?php echo Text::_("No se han encontrado registros"); ?></p>
     <?php endif; ?>
 </div>

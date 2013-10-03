@@ -23,12 +23,12 @@ use Goteo\Core\View,
 
 ?>
 <?php if (!empty($this['reviews'])) : ?>
-    <h2 class="title">Mis revisiones anteriores</h2>
+<h2 class="title"><?php echo Text::_("Mis revisiones anteriores");?></h2>
     <?php foreach ($this['reviews'] as $review) : ?>
         <div class="widget">
-            <p>El proyecto <strong><?php echo $review->name; ?></strong> de <strong><?php echo $review->owner_name; ?></strong></p>
-            <p>La edición del proyecto alcanzó el <strong><?php echo $review->progress; ?>%</strong>, la puntuación de la revisión fue de <strong><?php echo $review->score; ?>/<?php echo $review->max; ?></strong></p>
-            <p><a href="/review/history/details/<?php echo $review->id; ?>">Ver detalles de la revisión</a></p>
+<p><?php echo Text::_("El proyecto");?> <strong><?php echo $review->name; ?></strong> <?php echo Text::_("de");?> <strong><?php echo $review->owner_name; ?></strong></p>
+<p><?php echo Text::_("La edición del proyecto alcanzó el");?> <strong><?php echo $review->progress; ?>%</strong><?php echo Text::_(", la puntuación de la revisión fue de");?> <strong><?php echo $review->score; ?>/<?php echo $review->max; ?></strong></p>
+<p><a href="/review/history/details/<?php echo $review->id; ?>"><?php echo Text::_("Ver detalles de la revisión");?></a></p>
         </div>
     <?php endforeach; ?>
 <?php endif; ?>

@@ -22,8 +22,6 @@ use Goteo\Library\Text,
     Goteo\Library\SuperForm,
     Goteo\Core\View;
 
-require_once 'config.php';
-
 $project = $this['project'];
 $errors = $project->errors[$this['step']] ?: array();         
 $okeys  = $project->okeys[$this['step']] ?: array();
@@ -32,7 +30,8 @@ $okeys  = $project->okeys[$this['step']] ?: array();
 $secondary_address = empty($project->post_address) ? false : true;
 
 
-$form = array(
+echo new SuperForm(array(
+
     'level'         => $this['level'],
     'method'        => 'post',
     'title'         => Text::get('personal-main-header'),
@@ -87,7 +86,7 @@ $form = array(
                             'ok'        => !empty($okeys['entity_name']) ? array($okeys['entity_name']) : array(),
                             'value'     => $project->entity_name
                         ),
-                        /*
+                        
                         'entity_cif' => array(
                             'type'      => 'textbox',
                             'class'     => 'inline',
@@ -98,7 +97,7 @@ $form = array(
                             'errors'    => !empty($errors['entity_cif']) ? array($errors['entity_cif']) : array(),
                             'ok'        => !empty($okeys['entity_cif']) ? array($okeys['entity_cif']) : array(),
                             'value'     => $project->entity_cif
-                        ),*/
+                        ),
                         
                         'entity_office' => array(
                             'type'      => 'textbox',
@@ -133,7 +132,7 @@ $form = array(
                     'value'     => $project->contract_name
                 ),
 
-                /*'contract_nif' => array(
+                'contract_nif' => array(
                     'type'      => 'textbox',
                     'class'     => 'inline',
                     'required'  => true,
@@ -143,7 +142,7 @@ $form = array(
                     'errors'    => !empty($errors['contract_nif']) ? array($errors['contract_nif']) : array(),
                     'ok'        => !empty($okeys['contract_nif']) ? array($okeys['contract_nif']) : array(),
                     'value'     => $project->contract_nif
-                ),*/
+                ),
 
                 'phone' => array(
                     'type'      => 'textbox',
@@ -350,35 +349,4 @@ $form = array(
         
     )
 
-);
-
-/** include the VAT only if */
-global $config;
-if($config['locale']['vat_required']) {
-	$form['elements']['contract_entity-radioset']['children']['contract_entity-entity']['children']['contract_nif'] = array(
-      'type'      => 'textbox',
-      'class'     => 'inline',
-      'required'  => true,
-      'title'     => Text::get('personal-field-contract_nif'),
-      'size'      => 9,
-      'hint'      => Text::get('tooltip-project-contract_nif'),
-      'errors'    => !empty($errors['contract_nif']) ? array($errors['contract_nif']) : array(),
-      'ok'        => !empty($okeys['contract_nif']) ? array($okeys['contract_nif']) : array(),
-      'value'     => $project->contract_nif
-  );
-
-	$form['elements']['contract']['children']['contract_nif'] = array(
-      'type'      => 'textbox',
-      'class'     => 'inline',
-      'required'  => true,
-      'title'     => Text::get('personal-field-contract_nif'),
-      'size'      => 9,
-      'hint'      => Text::get('tooltip-project-contract_nif'),
-      'errors'    => !empty($errors['contract_nif']) ? array($errors['contract_nif']) : array(),
-      'ok'        => !empty($okeys['contract_nif']) ? array($okeys['contract_nif']) : array(),
-      'value'     => $project->contract_nif
-  );
-  
-}
-
-echo new SuperForm($form);
+));

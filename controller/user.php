@@ -114,7 +114,7 @@ namespace Goteo\Controller {
 
 				if(empty($errors)) {
 				  Message::Info(Text::get('user-register-success'));
-				  Message::Info('Tus datos de acceso son Usuario: <strong>'.$user->id.'</strong> Contraseña: <strong>'.$_POST['password'].'</strong>');
+				  Message::Info(Text::_('Tus datos de acceso son Usuario:').' <strong>'.$user->id.'</strong> Contraseña: <strong>'.$_POST['password'].'</strong>');
                   
                   throw new Redirection('/user/login');
 				} else {

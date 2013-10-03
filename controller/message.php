@@ -65,7 +65,7 @@ namespace Goteo\Controller {
 
                     if (empty($_POST['thread'])) {
                         // nuevo hilo
-                        $log_text = '%s ha creado un tema en %s del proyecto %s';
+                        $log_text = Text::_('%s ha creado un tema en %s del proyecto %s');
                         $log_items = array(
                             Feed::item('user', $_SESSION['user']->name, $_SESSION['user']->id),
                             Feed::item('message', Text::get('project-menu-messages'), $projectData->id.'/messages#message'.$message->id),
@@ -74,7 +74,7 @@ namespace Goteo\Controller {
                         $log->html = \vsprintf($log_text, $log_items);
                     } else {
                         // respuesta
-                        $log_text = '%s ha respondido en %s del proyecto %s';
+                        $log_text = Text::_('%s ha respondido en %s del proyecto %s');
                         $log_items = array(
                             Feed::item('user', $_SESSION['user']->name, $_SESSION['user']->id),
                             Feed::item('message', Text::get('project-menu-messages'), $projectData->id.'/messages#message'.$message->id),
@@ -344,7 +344,7 @@ namespace Goteo\Controller {
 
                     if (!empty($project)) {
                         $projectData = Model\Project::getMini($project);
-                        $log_text = '%s ha escrito un %s en la entrada "%s" en las %s del proyecto %s';
+                        $log_text = Text::_('%s ha escrito un %s en la entrada "%s" en las %s del proyecto %s');
                         $log_items = array(
                             Feed::item('user', $_SESSION['user']->name, $_SESSION['user']->id),
                             Feed::item('message', 'Comentario'),
@@ -353,7 +353,7 @@ namespace Goteo\Controller {
                             Feed::item('project', $projectData->name, $projectData->id)
                         );
                     } else {
-                        $log_text = '%s ha escrito un %s en la entrada "%s" del blog de %s';
+                        $log_text = Text::_('%s ha escrito un %s en la entrada "%s" del blog de %s');
                         $log_items = array(
                             Feed::item('user', $_SESSION['user']->name, $_SESSION['user']->id),
                             Feed::item('message', 'Comentario'),

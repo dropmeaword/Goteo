@@ -47,7 +47,7 @@ $filter = "?status={$filters['status']}&category={$filters['category']}";
         'level'         => 3,
         'method'        => 'post',
         'title'         => '',
-        'hint'          => 'Cambiar las fechas solamente si se conocen los efectos colaterales',
+        'hint'          => Text::_("Cambiar las fechas solamente si se conocen los efectos colaterales"),
         'class'         => 'aqua',
         'footer'        => array(
             'view-step-preview' => array(
@@ -65,38 +65,38 @@ $filter = "?status={$filters['status']}&category={$filters['category']}";
             'created' => array(
                 'type'      => 'datebox',
                 'required'  => true,
-                'title'     => 'Fecha de creación',
+                'title'     => Text::_("Fecha de creación"),
                 'size'      => 8,
                 'value'     => !empty($project->created) ? $project->created : null
             ),
             'updated' => array(
                 'type'      => 'datebox',
                 'required'  => true,
-                'title'     => 'Fecha de enviado a revisión',
+                'title'     => Text::_("Fecha de enviado a revisión"),
                 'size'      => 8,
                 'value'     => !empty($project->updated) ? $project->updated : null
             ),
             'published' => array(
                 'type'      => 'datebox',
-                'title'     => 'Fecha de inicio de campaña',
+                'title'     => Text::_("Fecha de inicio de campaña"),
                 'size'      => 8,
                 'value'     => !empty($project->published) ? $project->published : null
             ),
             'success' => array(
                 'type'      => 'datebox',
-                'title'     => 'Fecha de éxito',
+                'title'     => Text::_("Fecha de éxito"),
                 'size'      => 8,
                 'value'     => !empty($project->success) ? $project->success : null
             ),
             'closed' => array(
                 'type'      => 'datebox',
-                'title'     => 'Fecha de cierre',
+                'title'     => Text::_("Fecha de cierre"),
                 'size'      => 8,
                 'value'     => !empty($project->closed) ? $project->closed : null
             ),
             'passed' => array(
                 'type'      => 'datebox',
-                'title'     => 'Fecha de paso a segunda ronda',
+                'title'     => Text::_("Fecha de paso a segunda ronda"),
                 'size'      => 8,
                 'value'     => !empty($project->passed) ? $project->passed : null
             )

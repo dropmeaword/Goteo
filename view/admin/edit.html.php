@@ -44,7 +44,7 @@ use Goteo\Library\Text;
                         <?php if (!empty($this['data']->$name)) : ?>
                             <img src="<?php echo SRC_URL ?>/image/<?php echo $this['data']->$name; ?>/110/110" alt="<?php echo $field['name']; ?>" /><br />
                             <input type="hidden" name="<?php echo $field['name']; ?>" value="<?php echo $this['data']->$name; ?>" />
-                            <input type="submit" name="image-<?php echo $this['data']->$name; ?>-remove" value="Quitar" />
+                            <input type="submit" name="image-<?php echo $this['data']->$name; ?>-remove" value="<?php echo Text::_("Quitar"); ?>" />
                         <?php endif; ?>
                     <?php break;
                 } ?></dd>

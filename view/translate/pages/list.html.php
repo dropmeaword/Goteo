@@ -27,8 +27,8 @@ $pages = Page::getAll($_SESSION['translator_lang']);
         <thead>
             <tr>
                 <th><!-- Editar --></th>
-                <th>Página</th>
-                <th>Descripción</th>
+                <th><?php echo Text::_("Página"); ?></th>
+                <th><?php echo Text::_("Descripción"); ?></th>
                 <!-- <th>Previsualizar</th> -->
             </tr>
         </thead>

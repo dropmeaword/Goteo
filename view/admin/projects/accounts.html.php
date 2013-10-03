@@ -49,7 +49,7 @@ $filter = "?status={$filters['status']}&category={$filters['category']}";
         'level'         => 3,
         'method'        => 'post',
         'title'         => '',
-        'hint'          => 'Es necesario que un proyecto tenga una cuenta PayPal para ejecutar los cargos. La cuenta bancaria es solamente para tener toda la información en el mismo entorno pero no se utiliza en este sistema',
+        'hint'          => Text::_("Es necesario que un proyecto tenga una cuenta PayPal para ejecutar los cargos. La cuenta bancaria es solamente para tener toda la información en el mismo entorno pero no se utiliza en este sistema"),
         'class'         => 'aqua',
         'footer'        => array(
             'view-step-preview' => array(
@@ -66,13 +66,13 @@ $filter = "?status={$filters['status']}&category={$filters['category']}";
             ),
             'bank' => array(
                 'type'      => 'textbox',
-                'title'     => 'Cuenta bancaria',
+                'title'     => Text::_("Cuenta bancaria"),
                 'value'     => $accounts->bank
             ),
             'paypal' => array(
                 'type'      => 'textbox',
                 'required'  => true,
-                'title'     => 'Cuenta paypal',
+                'title'     => Text::_("Cuenta paypal"),
                 'value'     => $accounts->paypal
             )
 

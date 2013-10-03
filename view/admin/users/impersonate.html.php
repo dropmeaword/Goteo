@@ -27,19 +27,19 @@ array_walk($roles, function (&$role) { $role = $role->name; });
 ?>
 <div class="widget">
     <dl>
-        <dt>Nombre de usuario</dt>
+        <dt><?php echo Text::_("Nombre de usuario"); ?></dt>
         <dd><?php echo $user->name ?></dd>
     </dl>
     <dl>
-        <dt>Login de acceso</dt>
+        <dt><?php echo Text::_("Login de acceso"); ?></dt>
         <dd><strong><?php echo $user->id ?></strong></dd>
     </dl>
     <dl>
-        <dt>Email</dt>
+        <dt><?php echo Text::_("Email"); ?></dt>
         <dd><?php echo $user->email ?></dd>
     </dl>
     <dl>
-        <dt>Roles actuales</dt>
+        <dt><?php echo Text::_("Roles actuales"); ?></dt>
         <dd><?php echo implode(', ', $roles); ?></dd>
     </dl>
 
@@ -47,7 +47,7 @@ array_walk($roles, function (&$role) { $role = $role->name; });
         <input type="hidden" name="id" value="<?php echo $user->id ?>" />
 
         <input type="submit" class="red" name="impersonate" value="Suplantar a este usuario" onclick="return confirm('Estás completamente seguro de entender lo que esás haciendo?');" /><br />
-        <span style="font-style:italic;font-weight:bold;color:red;">Atención!! Con esto vas a dejar de estar logueado como el superadmin que eres y pasarás a estar logueado como este usuario con todos sus permisos y restricciones.</span>
+        <span style="font-style:italic;font-weight:bold;color:red;"><?php echo Text::_("Atención!! Con esto vas a dejar de estar logueado como el superadmin que eres y pasarás a estar logueado como este usuario con todos sus permisos y restricciones."); ?></span>
 
     </form>
 </div>

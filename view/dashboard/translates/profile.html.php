@@ -31,9 +31,9 @@ $sfid = 'sf-project-profile';
 ?>
 
 <?php if (isset($this['ownprofile'])) : ?>
-<div class="widget">Estas traduciendo tu perfil personal. <a href="/dashboard/translates/profile">Volver al perfil del autor del proyecto</a></div>
+<div class="widget"><?php echo Text::_("Estas traduciendo tu perfil personal.")?> <a href="/dashboard/translates/profile"><?php echo Text::_("Volver al perfil del autor del proyecto");?></a></div>
 <?php elseif (!isset($this['noowner']) && $user->id != $_SESSION['user']->id && $_SESSION['user']->roles['translator']->id == 'translator') : ?>
-<div class="widget">Estas traduciendo el perfil del autor del proyecto. <a href="/dashboard/translates/profile/own">Traducir mi perfil personal</a></div>
+<div class="widget"><?php echo Text::_("Estas traduciendo el perfil del autor del proyecto.");?> <a href="/dashboard/translates/profile/own"><?php echo Text::_("Traducir mi perfil personal");?></a></div>
 <?php endif; ?>
 
 <form method="post" action="<?php echo SITE_URL ?>/dashboard/translates/profile/save" class="project" enctype="multipart/form-data">

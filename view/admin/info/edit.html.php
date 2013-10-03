@@ -36,11 +36,11 @@ if (!$post instanceof Model\Info) {
     $allow = array(
         array(
             'value'     => 1,
-            'label'     => 'Sí'
+            'label'     => Text::_("Sí")
             ),
         array(
             'value'     => 0,
-            'label'     => 'No'
+            'label'     => Text::_("No")
             )
     );
 
@@ -51,7 +51,7 @@ if (!$post instanceof Model\Info) {
             'type'  => 'html',
             'class' => 'inline gallery-image',
             'html'  => is_object($image) ?
-                       $image . '<img src="'.SRC_URL.'/image/'.$image->id.'/128/128" alt="Imagen" /><button class="image-remove weak" type="submit" name="gallery-'.$image->id.'-remove" title="Quitar imagen" value="remove"></button>' :
+                       $image . '<img src="'.SRC_URL.'/image/'.$image->id.'/128/128" alt="'.Text::_("Imagen").'" /><button class="image-remove weak" type="submit" name="gallery-'.$image->id.'-remove" title="'.Text::_("Quitar imagen").'" value="remove"></button>' :
                        ''
         );
 
@@ -91,7 +91,7 @@ $(document).ready(function(){
         'level'         => 3,
         'method'        => 'post',
         'title'         => '',
-        'hint'          => 'Idea de about: descripción, imágenes y media (vimeo, youtube, presi, slideshare), publiar',
+        'hint'          => Text::_("Idea de about: descripción, imágenes y media (vimeo, youtube, presi, slideshare), publiar"),
         'class'         => 'aqua',
         'footer'        => array(
             'view-step-preview' => array(
@@ -118,7 +118,7 @@ $(document).ready(function(){
                 'type'      => 'textbox',
                 'required'  => true,
                 'size'      => 20,
-                'title'     => 'Idea',
+                'title'     => Text::_("Idea"),
                 'value'     => $post->title,
             ),
             'text' => array(
@@ -126,11 +126,11 @@ $(document).ready(function(){
                 'required'  => true,
                 'cols'      => 40,
                 'rows'      => 4,
-                'title'     => 'Explicación de la idea',
+                'title'     => Text::_("Explicación de la idea"),
                 'value'     => $post->text
             ),
             'image' => array(
-                'title'     => 'Imagen',
+                'title'     => Text::_("Imagen"),
                 'type'      => 'group',
                 'hint'      => Text::get('tooltip-updates-image'),
                 'errors'    => !empty($errors['image']) ? array($errors['image']) : array(),
@@ -139,7 +139,7 @@ $(document).ready(function(){
                     'image_upload'    => array(
                         'type'  => 'file',
                         'class' => 'inline image_upload',
-                        'title' => 'Subir una imagen',
+                        'title' => Text::_("Subir una imagen"),
                         'hint'  => Text::get('tooltip-updates-image_upload'),
                     )
                 )
@@ -154,14 +154,14 @@ $(document).ready(function(){
 
             'media' => array(
                 'type'      => 'textbox',
-                'title'     => 'Vídeo',
+                'title'     => Text::_("Vídeo"),
                 'class'     => 'media',
                 'hint'      => Text::get('tooltip-updates-media'),
                 'errors'    => !empty($errors['media']) ? array($errors['media']) : array(),
                 'value'     => (string) $post->media,
                 'children'  => array(
                     'media-preview' => array(
-                        'title' => 'Vista previa',
+                        'title' => Text::_("Vista previa"),
                         'class' => 'media-preview inline',
                         'type'  => 'html',
                         'html'  => !empty($post->media) ? $post->media->getEmbedCode() : ''
@@ -175,7 +175,7 @@ $(document).ready(function(){
             ),
 
             'publish' => array(
-                'title'     => 'Publicada',
+                'title'     => Text::_("Publicada"),
                 'type'      => 'slider',
                 'options'   => $allow,
                 'class'     => 'currently cols_' . count($allow),

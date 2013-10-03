@@ -22,17 +22,17 @@ use Goteo\Library\Text,
 
 $translator = ACL::check('/translate') ? true : false;
 ?>
-<a href="/admin/promote/add" class="button red">Nuevo destacado</a>
+<a href="/admin/promote/add" class="button red"><?php echo Text::_("Nuevo destacado"); ?></a>
 
 <div class="widget board">
     <?php if (!empty($this['promoted'])) : ?>
     <table>
         <thead>
             <tr>
-                <th>Proyecto</th> <!-- preview -->
-                <th>Título</th> <!-- title -->
-                <th>Estado</th> <!-- status -->
-                <th>Posición</th> <!-- order -->
+                <th><?php echo Text::_("Proyecto"); ?></th> <!-- preview -->
+                <th><?php echo Text::_("Título"); ?></th> <!-- title -->
+                <th><?php echo Text::_("Estado"); ?></th> <!-- status -->
+                <th><?php echo Text::_("Posición"); ?></th> <!-- order -->
                 <th><!-- Subir --></th>
                 <th><!-- Bajar --></th>
                 <th><!-- Editar--></th>
@@ -51,22 +51,22 @@ $translator = ACL::check('/translate') ? true : false;
                 <td><?php echo $promo->order; ?></td>
                 <td><a href="/admin/promote/up/<?php echo $promo->project; ?>">[&uarr;]</a></td>
                 <td><a href="/admin/promote/down/<?php echo $promo->project; ?>">[&darr;]</a></td>
-                <td><a href="/admin/promote/edit/<?php echo $promo->project; ?>">[Editar]</a></td>
+                <td><a href="/admin/promote/edit/<?php echo $promo->project; ?>">[<?php echo Text::_("Editar"); ?>]</a></td>
                 <td><?php if ($promo->active) : ?>
-                <a href="/admin/promote/active/<?php echo $promo->id; ?>/off">[Ocultar]</a>
+                <a href="/admin/promote/active/<?php echo $promo->id; ?>/off">[<?php echo Text::_("Ocultar"); ?>]</a>
                 <?php else : ?>
-                <a href="/admin/promote/active/<?php echo $promo->id; ?>/on">[Mostrar]</a>
+                <a href="/admin/promote/active/<?php echo $promo->id; ?>/on">[<?php echo Text::_("Mostrar"); ?>]</a>
                 <?php endif; ?></td>
                 <?php if ($translator) : ?>
-                <td><a href="/translate/promote/edit/<?php echo $promo->id; ?>" >[Traducir]</a></td>
+                <td><a href="/translate/promote/edit/<?php echo $promo->id; ?>" >[<?php echo Text::_("Traducir"); ?>]</a></td>
                 <?php endif; ?>
-                <td><a href="/admin/promote/remove/<?php echo $promo->project; ?>" onclick="return confirm('Seguro que deseas eliminar este registro?');">[Quitar]</a></td>
+                <td><a href="/admin/promote/remove/<?php echo $promo->project; ?>" onclick="return confirm(Text::_("Seguro que deseas eliminar este registro?"));">[<?php echo Text::_("Quitar"); ?>]]</a></td>
             </tr>
             <?php endforeach; ?>
         </tbody>
 
     </table>
     <?php else : ?>
-    <p>No se han encontrado registros</p>
+    <p><?php echo Text::_("No se han encontrado registros"); ?>]</p>
     <?php endif; ?>
 </div>

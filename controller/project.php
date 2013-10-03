@@ -55,12 +55,12 @@ namespace Goteo\Controller {
             $project = Model\Project::get($id);
             $errors = array();
             if ($project->delete($errors)) {
-                Message::Info("Has borrado los datos del proyecto '<strong>{$project->name}</strong>' correctamente");
+                Message::Info(Text::_("Has borrado los datos del proyecto '<strong>{$project->name}</strong>' correctamente"));
                 if ($_SESSION['project']->id == $id) {
                     unset($_SESSION['project']);
                 }
             } else {
-                Message::Info("No se han podido borrar los datos del proyecto '<strong>{$project->name}</strong>'. Error:" . implode(', ', $errors));
+                Message::Info(Text::_("No se han podido borrar los datos del proyecto '<strong>{$project->name}</strong>'. Error:") . implode(', ', $errors));
             }
             throw new Redirection("/dashboard/projects");
         }
@@ -165,9 +165,9 @@ namespace Goteo\Controller {
                         $mailHandler = new Mail();
 
                         $mailHandler->to = \GOTEO_MAIL;
-                        $mailHandler->toName = 'Revisor de proyectos';
-                        $mailHandler->subject = 'Proyecto ' . $project->name . ' enviado a valoración';
-                        $mailHandler->content = '<p>Han enviado un nuevo proyecto a revisión</p><p>El nombre del proyecto es: <span class="message-highlight-blue">'.$project->name.'</span> <br />y se puede ver en <span class="message-highlight-blue"><a href="'.SITE_URL.'/project/'.$project->id.'">'.SITE_URL.'/project/'.$project->id.'</a></span></p>';
+                        $mailHandler->toName = Text::_("Revisor de proyectos");
+                        $mailHandler->subject = Text::_("Proyecto ") . $project->name . Text::_(" enviado a valoración");
+                        $mailHandler->content = Text::_("<p>Han enviado un nuevo proyecto a revisión</p><p>El nombre del proyecto es:"). '<span class="message-highlight-blue">'.$project->name.'</span> <br />Text::_("y se puede ver en ")<span class="message-highlight-blue"><a href="'.SITE_URL.'/project/'.$project->id.'">'.SITE_URL.'/project/'.$project->id.'</a></span></p>';
                         $mailHandler->fromName = "{$project->user->name}";
                         $mailHandler->from = $project->user->email;
                         $mailHandler->html = true;
@@ -215,10 +215,11 @@ namespace Goteo\Controller {
                          * Evento Feed
                          */
                         $log = new Feed();
-                        $log->title = 'proyecto enviado a revision';
+                        $log->title = Text::_("proyecto enviado a revision");
                         $log->url = '/admin/projects';
                         $log->type = 'project';
-                        $log_text = '%s ha inscrito el proyecto %s para <span class="red">revisión</span>, el estado global de la información es del %s';
+                        /*FIXME*/
+                        $log_text = Text::_("%s ha inscrito el proyecto %s para").' <span class="red">'.Text::_("revisión").'</span>'.Text::_(", el estado global de la información es del %s");
                         $log_items = array(
                             Feed::item('user', $project->user->name, $project->user->id),
                             Feed::item('project', $project->name, $project->id),
@@ -426,10 +427,10 @@ namespace Goteo\Controller {
                      * Evento Feed
                      */
                     $log = new Feed();
-                    $log->title = 'usuario crea nuevo proyecto';
+                    $log->title = Text::_("usuario crea nuevo proyecto");
                     $log->url = 'admin/projects';
                     $log->type = 'project';
-                    $log_text = '%s ha creado un nuevo proyecto, %s';
+                    $log_text = Text::_("%s ha creado un nuevo proyecto, %s");
                     $log_items = array(
                         Feed::item('user', $_SESSION['user']->name, $_SESSION['user']->id),
                         Feed::item('project', $project->name, $project->id)
@@ -442,7 +443,7 @@ namespace Goteo\Controller {
                 throw new Redirection("/project/edit/{$project->id}");
             }
 
-            throw new \Goteo\Core\Exception('Fallo al crear un nuevo proyecto');
+            throw new \Goteo\Core\Exception(Text::_("Fallo al crear un nuevo proyecto")); /*FIXME*/
         }
 
         private function view ($id, $show, $post = null) {
@@ -801,7 +802,7 @@ namespace Goteo\Controller {
                 
                 $project->costs[] = new Model\Project\Cost(array(
                     'project' => $project->id,
-                    'cost'  => 'Nueva tarea',
+                    'cost'  => Text::_("Nueva tarea"),
                     'type'  => 'task',
                     'required' => 1,
                     'from' => date('Y-m-d'),
@@ -872,7 +873,7 @@ namespace Goteo\Controller {
                 $project->social_rewards[] = new Model\Project\Reward(array(
                     'type'      => 'social',
                     'project'   => $project->id,
-                    'reward'    => 'Nuevo retorno colectivo',
+                    'reward'    => Text::_("Nuevo retorno colectivo"),
                     'icon'      => '',
                     'license'   => ''
 
@@ -883,7 +884,7 @@ namespace Goteo\Controller {
                 $project->individual_rewards[] = new Model\Project\Reward(array(
                     'type'      => 'individual',
                     'project'   => $project->id,
-                    'reward'    => 'Nueva recompensa individual',
+                    'reward'    => Text::_("Nueva recompensa individual"),
                     'icon'      => '',
                     'amount'    => '',
                     'units'     => ''
@@ -946,7 +947,7 @@ namespace Goteo\Controller {
             if (!empty($_POST['support-add'])) {
                 $project->supports[] = new Model\Project\Support(array(
                     'project'       => $project->id,
-                    'support'       => 'Nueva colaboración',
+                    'support'       => Text::_("Nueva colaboración"),
                     'type'          => 'task',
                     'description'   => ''
                 ));

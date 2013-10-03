@@ -225,7 +225,7 @@ namespace Goteo\Controller {
                             if (Model\User::setPersonal($user->id, $personalData, true, $errors)) {
                                 Message::Info(Text::get('user-personal-saved'));
 
-                                $log_action = 'Modificado sus datos personales'; //feed admin
+                                $log_action = Text::_("Modificado sus datos personales"); //feed admin
                             }
                         }
                     break;
@@ -321,7 +321,7 @@ namespace Goteo\Controller {
                         if (!empty ($preferences)) {
                             if (Model\User::setPreferences($user->id, $preferences, $errors)) {
                                 Message::Info(Text::get('user-prefer-saved'));
-                                $log_action = 'Modificado las preferencias de notificación'; //feed admin
+                                $log_action = Text::_("Modificado las preferencias de notificación"); //feed admin
                             }
                         }
                     break;
@@ -333,10 +333,10 @@ namespace Goteo\Controller {
                          * Evento Feed
                          */
                         $log = new Feed();
-                        $log->title = 'usuario '.$log_action.' (dashboard)';
+                        $log->title = Text::_("usuario ").$log_action.' (dashboard)';
                         $log->url = '/admin/users';
                         $log->type = 'user';
-                        $log_text = '%s ha %s desde su dashboard';
+                        $log_text = Text::_("%s ha %s desde su dashboard");
                         $log_items = array(
                             Feed::item('user', $user->name, $user->id),
                             Feed::item('relevant', $log_action)
@@ -634,16 +634,16 @@ namespace Goteo\Controller {
                             $accounts->paypal = $_POST['paypal'];
                             if ($accounts->save($errors)) {
 
-                                $success[] = 'Cuentas actualizadas';
+                                $success[] = Text::_("Cuentas actualizadas");
 
                                 /*
                                  * Evento Feed
                                  */
                                 $log = new Feed();
-                                $log->title = 'usuario cambia las cuentas de su proyecto (dashboard)';
+                                $log->title = Text::_("usuario cambia las cuentas de su proyecto (dashboard)");
                                 $log->url = '/admin/projects';
                                 $log->type = 'user';
-                                $log_text = '%s ha modificado la cuenta bancaria/paypal del proyecto %s';
+                                $log_text = Text::_("%s ha modificado la cuenta bancaria/paypal del proyecto %s");
                                 $log_items = array(
                                     Feed::item('user', $_SESSION['user']->name, $_SESSION['user']->id),
                                     Feed::item('project', $project->name, $project->id)
@@ -697,10 +697,10 @@ namespace Goteo\Controller {
                                              * Evento Feed
                                              */
                                             $log = new Feed();
-                                            $log->title = 'usuario pone una nueva colaboracion en su proyecto (dashboard)';
+                                            $log->title = Text::_("usuario pone una nueva colaboracion en su proyecto (dashboard)");
                                             $log->url = '/admin/projects';
                                             $log->type = 'user';
-                                            $log_text = '%s ha publicado una nueva %s en el proyecto %s, con el título "%s"';
+                                            $log_text = Text::_("%s ha publicado una nueva %s en el proyecto %s, con el título '%s'");
                                             $log_items = array(
                                                 Feed::item('user', $_SESSION['user']->name, $_SESSION['user']->id),
                                                 Feed::item('message', 'Colaboración'),
@@ -737,7 +737,7 @@ namespace Goteo\Controller {
 
                                 $new_support = new Model\Project\Support(array(
                                     'project'       => $project->id,
-                                    'support'       => 'Nueva colaboración',
+                                    'support'       => Text::_("Nueva colaboración"),
                                     'type'          => 'task',
                                     'description'   => ''
                                 ));
@@ -750,7 +750,7 @@ namespace Goteo\Controller {
                                 } else {
                                     $project->supports[] = new Model\Project\Support(array(
                                         'project'       => $project->id,
-                                        'support'       => 'Nueva colaboración',
+                                        'support'       => Text::_("Nueva colaboración"),
                                         'type'          => 'task',
                                         'description'   => ''
                                     ));
@@ -834,10 +834,10 @@ namespace Goteo\Controller {
                                  * Evento Feed
                                  */
                                 $log = new Feed();
-                                $log->title = 'usuario publica una novedad en su proyecto (dashboard)';
+                                $log->title = Text::_("usuario publica una novedad en su proyecto (dashboard)");
                                 $log->url = '/admin/projects';
                                 $log->type = 'user';
-                                $log_text = '%s ha publicado un nuevo post en %s sobre el proyecto %s, con el título "%s"';
+                                $log_text = Text::_("%s ha publicado un nuevo post en %s sobre el proyecto %s, con el título '%s'");
                                 $log_items = array(
                                     Feed::item('user', $_SESSION['user']->name, $_SESSION['user']->id),
                                     Feed::item('blog', Text::get('project-menu-updates')),
@@ -1001,7 +1001,7 @@ namespace Goteo\Controller {
 
             $errors = array();
 
-            $langs = \Goteo\Library\Lang::getAll();
+            $langs = \Goteo\Library\i18n\Lang::getAll();
             
             if ($action == 'select' && !empty($_POST['lang'])) {
                 $_SESSION['translate_project_lang'] = $_POST['lang'];

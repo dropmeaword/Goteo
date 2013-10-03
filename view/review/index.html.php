@@ -40,7 +40,7 @@ include 'view/header.html.php';
         <div id="sub-header">
             <div>
                 <h2>
-                    <?php echo 'Mi panel de revisor / ' . $this['menu'][$this['section']]['label']; ?></h2>
+<?php echo Text::_("Mi panel de revisor / ") . $this['menu'][$this['section']]['label']; ?></h2>
             </div>
         </div>
 
@@ -54,7 +54,7 @@ include 'view/header.html.php';
             <?php if (!empty($this['message'])) : ?>
                 <div class="widget">
                     <?php if (empty($this['section']) && empty($this['option'])) : ?>
-                        <h2 class="title">Bienvenid@</h2>
+<h2 class="title"><?php echo Text::_("Bienvenid@");?></h2>
                     <?php endif; ?>
                     <p><?php echo $this['message']; ?></p>
                 </div>

@@ -36,8 +36,8 @@ if (!empty($filters)) {
 }
 
 $botones = array(
-    'edit' => '[Editar]',
-    'remove' => '[Quitar]',
+    'edit' => '['.Text::_("Editar").']',
+    'remove' => '['.Text::_("Quitar").']',
     'up' => '[&uarr;]',
     'down' => '[&darr;]'
 );
@@ -67,7 +67,7 @@ $per = 100 / $cols;
             <br />
             <label for="filter-<?php echo $id; ?>"><?php echo $fil['label']; ?></label>
             <input name="<?php echo $id; ?>" value="<?php echo (string) $fil['value']; ?>" />
-            <input type="submit" name="filter" value="Buscar">
+            <input type="submit" name="filter" value="<?php echo Text::_("Buscar"); ?>">
         <?php endif; ?>
         <?php endforeach; ?>
     </form>
@@ -80,26 +80,26 @@ $per = 100 / $cols;
     <table>
         <thead>
             <tr>
-                <th><!-- Editar --></th>
-                <th>Texto</th>
-                <th>Agrupación</th>
-                <th><!-- Traducir --></th>
+                <th><!-- <?php echo Text::_("Editar"); ?> --></th>
+                <th><?php echo Text::_("Texto"); ?></th>
+                <th><?php echo Text::_("Agrupación"); ?></th>
+                <th><!-- <?php echo Text::_("Traducir"); ?> --></th>
             </tr>
         </thead>
         <tbody>
             <?php foreach ($this['data'] as $item) : ?>
             <tr>
-                <td><a href="/admin/texts/edit/<?php echo $item->id; ?>/<?php echo $filter; ?>">[Editar]</a></td>
+                <td><a href="/admin/texts/edit/<?php echo $item->id; ?>/<?php echo $filter; ?>">[<?php echo Text::_("Editar"); ?>]</a></td>
                 <td><?php echo $item->text; ?></td>
                 <td><?php echo $item->group; ?></td>
                 <?php if ($translator) : ?>
-                <td><a href="/translate/texts/edit/<?php echo $item->id; ?>" >[Traducir]</a></td>
+                <td><a href="/translate/texts/edit/<?php echo $item->id; ?>" >[<?php echo Text::_("Traducir"); ?>]</a></td>
                 <?php endif; ?>
             </tr>
             <?php endforeach; ?>
         </tbody>
     </table>
     <?php else : ?>
-    <p>No se han encontrado registros</p>
+    <p><?php echo Text::_("No se han encontrado registros"); ?></p>
     <?php endif; ?>
 </div>

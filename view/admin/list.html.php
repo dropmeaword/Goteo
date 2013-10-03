@@ -36,11 +36,11 @@ if (!empty($filters)) {
 }
 
 $botones = array(
-    'edit' => '[Editar]',
-    'remove' => '[Quitar]',
-    'translate' => '[Traducir]',
-    'up' => '[&uarr;]',
-    'down' => '[&darr;]'
+    'edit' => Text::_('[Editar]'),
+    'remove' => Text::_('[Quitar]'),
+    'translate' => Text::_('[Traducir]'),
+    'up' => Text::_('[&uarr;]'),
+    'down' => Text::_('[&darr;]')
 );
 
 // ancho de los tds depende del numero de columnas
@@ -68,7 +68,7 @@ $per = 100 / $cols;
             <br />
             <label for="filter-<?php echo $id; ?>"><?php echo $fil['label']; ?></label>
             <input name="<?php echo $id; ?>" value="<?php echo (string) $fil['value']; ?>" />
-            <input type="submit" name="filter" value="Buscar">
+            <input type="submit" name="filter" value="<?php echo Text::_('Buscar'); ?>">
         <?php endif; ?>
         <?php endforeach; ?>
     </form>
@@ -92,14 +92,14 @@ $per = 100 / $cols;
             <tr>
             <?php foreach ($this['columns'] as $key=>$label) : ?>
                 <?php if ($key == 'translate') : ?>
-                    <td width="5%"><?php if ($translator) : ?><a href="/translate/<?php echo $this['model'].'/edit/'.$item->id; ?>" >[Traducir]</a><?php endif; ?>
+                    <td width="5%"><?php if ($translator) : ?><a href="/translate/<?php echo $this['model'].'/edit/'.$item->id; ?>" >[<?php echo Text::_("Traducir"); ?>]</a><?php endif; ?>
                     </td>
                 <?php elseif ($key == 'remove') : ?>
-                    <td width="5%"><a href="<?php echo $this['url']?>/remove/<?php echo (is_object($item)) ? $item->id : $item['id']; ?>" onclick="return confirm('Seguro que deseas eliminar este registro?');">[Quitar]</a></td>
+                    <td width="5%"><a href="<?php echo $this['url']?>/remove/<?php echo (is_object($item)) ? $item->id : $item['id']; ?>" onclick="return confirm('<?php echo Text::_("Seguro que deseas eliminar este registro?"); ?>');">[<?php echo Text::_("Quitar"); ?>]</a></td>
                 <?php elseif (in_array($key, array('edit', 'up', 'down'))) :
                     $id = (is_object($item)) ? $item->id : $item['id'];?>
                     <td width="5%">
-                        <a title="Registro <?php echo $id; ?>" href="<?php echo "{$this['url']}/{$key}/{$id}/{$filter}"; ?>"><?php echo $botones[$key]; ?></a>
+                        <a title="<?php echo Text::_("Registro"); ?>" <?php echo $id; ?>" href="<?php echo "{$this['url']}/{$key}/{$id}/{$filter}"; ?>"><?php echo $botones[$key]; ?></a>
                     </td>
                 <?php elseif ($key == 'image') : ?>
                     <td width="<?php echo round($per)-5; ?>%"><?php if (!empty($item->$key)) : ?><img src="<?php echo SRC_URL ?>/image/<?php echo (is_object($item)) ? $item->$key : $item[$key]; ?>/110/110" alt="image" /><?php endif; ?></td>
@@ -112,6 +112,6 @@ $per = 100 / $cols;
         </tbody>
     </table>
     <?php else : ?>
-    <p>No se han encontrado registros</p>
+    <p><?php echo Text::_("No se han encontrado registros"); ?></p>
     <?php endif; ?>
 </div>

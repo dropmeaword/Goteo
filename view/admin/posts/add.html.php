@@ -33,17 +33,17 @@ $posts = Model\Blog\Post::getAll(1);
         <input type="hidden" name="home" value="1" />
 
         <p>
-            <label for="home-post">Entrada:</label><br />
+            <label for="home-post"><?php echo Text::_("Entrada"); ?>:</label><br />
             <select id="home-post" name="post">
-                <option value="" >Seleccionar la entrada a publicar en portada</option>
+                <option value="" ><?php echo Text::_("Seleccionar la entrada a publicar en portada"); ?></option>
             <?php foreach ($posts as $post) : ?>
                 <option value="<?php echo $post->id; ?>"<?php if ($this['post']->post == $post->id) echo' selected="selected"';?>><?php echo $post->title . ' ['. $post->date . ']'; ?></option>
             <?php endforeach; ?>
             </select>
         </p>
 
-        <p>Solo se está asignando a la portada una entrada ya publicada. Para gestionar las entradas ir a la <a href="/admin/blog" target="_blank">gestión de blog</a></p>
+        <p><?php echo Text::_("Solo se está asignando a la portada una entrada ya publicada. Para gestionar las entradas ir a la"); ?> <a href="/admin/blog" target="_blank"><?php echo Text::_("gestión de blog"); ?></a></p>
 
-        <input type="submit" name="save" value="Guardar" />
+        <input type="submit" name="save" value="<?php echo Text::_("Guardar"); ?>" />
     </form>
 </div>

@@ -31,6 +31,6 @@
         <!-- un boton para seleccionar si no tiene javascript -->
         </form>
     <?php else : ?>
-    <p>No tienes ning&uacute;n proyecto, puedes crear uno <a href="/project/create">aqu&iacute;</a></p>
+<p><?php echo Text::_("No tienes ning&uacute;n proyecto, puedes crear uno");?> <a href="/project/create"><?php echo Text::_("aqu&iacute;");?></a></p>
     <?php endif; ?>
 </div>

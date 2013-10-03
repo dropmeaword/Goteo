@@ -117,7 +117,7 @@ EOD;
                     $text = $_POST['valor'];
 
                     if ($comment->setComment($section, $field, $text)) {
-                        $result = 'Grabado';
+                        $result = Text::_('Grabado');
                     } else {
                         $result = 'Error';
                     }

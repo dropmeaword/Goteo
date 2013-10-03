@@ -30,11 +30,11 @@ use Goteo\Library\Text;
     <table>
         <thead>
             <tr>
-                <th>Título</th> <!-- title -->
-                <th>Posición</th> <!-- order -->
-                <td><!-- Move up --></td>
-                <td><!-- Move down --></td>
-                <td><!-- Remove --></td>
+                <th><?php echo Text::_("Título"); ?></th> <!-- title -->
+                <th><?php echo Text::_("Posición"); ?></th> <!-- order -->
+                <td><!-- <?php echo Text::_("Move up"); ?> --></td>
+                <td><!-- <?php echo Text::_("Move down"); ?> --></td>
+                <td><!-- <?php echo Text::_("Remove"); ?> --></td>
             </tr>
         </thead>
 
@@ -45,13 +45,13 @@ use Goteo\Library\Text;
                 <td><?php echo $post->order; ?></td>
                 <td><a href="/admin/footer/up/<?php echo $post->id ?>/footer">[&uarr;]</a></td>
                 <td><a href="/admin/footer/down/<?php echo $post->id ?>/footer">[&darr;]</a></td>
-                <td><a href="/admin/footer/remove/<?php echo $post->id ?>/footer">[Quitar del footer]</a></td>
+                <td><a href="/admin/footer/remove/<?php echo $post->id ?>/footer">[<?php echo Text::_("Quitar del footer"); ?>]</a></td>
             </tr>
             <?php endforeach; ?>
         </tbody>
 
     </table>
     <?php else : ?>
-    <p>No se han encontrado registros</p>
+    <p><?php echo Text::_("No se han encontrado registros"); ?></p>
     <?php endif; ?>
 </div>

@@ -39,25 +39,25 @@ $idfilters = Text::filters();
 $groups    = Text::groups();
 
 // metemos el todos
-\array_unshift($idfilters, 'Todos los textos');
-\array_unshift($groups, 'Todas las agrupaciones');
+\array_unshift($idfilters, Text::_("Todos los textos"));
+\array_unshift($groups, Text::_("Todas las agrupaciones"));
 
 
 $filters = array(
             'idfilter' => array(
-                    'label'   => 'Filtrar por tipo:',
+                    'label'   => Text::_("Filtrar por tipo:"),
                     'type'    => 'select',
                     'options' => $idfilters,
                     'value'   => $this['filters']['idfilter']
                 ),
             'group' => array(
-                    'label'   => 'Filtrar por agrupación:',
+                    'label'   => Text::_("Filtrar por agrupación:"),
                     'type'    => 'select',
                     'options' => $groups,
                     'value'   => $this['filters']['group']
                 ),
             'text' => array(
-                    'label'   => 'Buscar texto:',
+                    'label'   => Text::_("Buscar texto:"),
                     'type'    => 'input',
                     'options' => null,
                     'value'   => $this['filters']['text']
@@ -96,8 +96,8 @@ $filters = array(
         <thead>
             <tr>
                 <th></th>
-                <th>Texto</th>
-                <th>Agrupación</th>
+                <th><?php echo Text::_("Texto"); ?></th>
+                <th><?php echo Text::_("Agrupación"); ?></th>
                 <th></th>
             </tr>
         </thead>
@@ -119,5 +119,5 @@ $filters = array(
                 echo $pagedResults->fetchPagedNavigation(str_replace('?', '&', $filter)); ?>
     </ul>
 <?php else : ?>
-<p>No se han encontrado registros</p>
+<p><?php echo Text::_("No se han encontrado registros"); ?></p>
 <?php endif; ?>

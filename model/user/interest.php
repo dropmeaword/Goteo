@@ -96,11 +96,11 @@ namespace Goteo\Model\User {
 		public function validate(&$errors = array()) {
             // Estos son errores que no permiten continuar
             if (empty($this->id))
-                $errors[] = 'No hay ningun interes para guardar';
+                $errors[] = Text::_('No hay ningun interes para guardar');
                 //Text::get('validate-interest-noid');
 
             if (empty($this->user))
-                $errors[] = 'No hay ningun usuario al que asignar';
+                $errors[] = Text::_('No hay ningun usuario al que asignar');
                 //Text::get('validate-interest-nouser');
 
             //cualquiera de estos errores hace fallar la validación
@@ -120,7 +120,7 @@ namespace Goteo\Model\User {
 				self::query($sql, $values);
 				return true;
 			} catch(\PDOException $e) {
-				$errors[] = "El interés {$this->id} no se ha asignado correctamente. Por favor, revise los datos." . $e->getMessage();
+				$errors[] = Text::_("El interés {$this->id} no se ha asignado correctamente. Por favor, revise los datos.") . $e->getMessage();
 				return false;
 			}
 
@@ -144,7 +144,7 @@ namespace Goteo\Model\User {
                 self::query("DELETE FROM user_interest WHERE interest = :interest AND user = :user", $values);
 				return true;
 			} catch(\PDOException $e) {
-                $errors[] = 'No se ha podido quitar el interes ' . $this->id . ' del usuario ' . $this->user . ' ' . $e->getMessage();
+                $errors[] = Text::_('No se ha podido quitar el interes ') . $this->id . ' del usuario ' . $this->user . ' ' . $e->getMessage();
                 //Text::get('remove-interest-fail');
                 return false;
 			}

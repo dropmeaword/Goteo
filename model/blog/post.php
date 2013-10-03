@@ -215,13 +215,13 @@ namespace Goteo\Model\Blog {
 
         public function validate (&$errors = array()) { 
             if (empty($this->title))
-                $errors['title'] = 'Falta título';
+                $errors['title'] = Text::_('Falta título');
 
             if (empty($this->text))
-                $errors['text'] = 'Falta texto';
+                $errors['text'] = Text::_('Falta texto');
 
             if (empty($this->date))
-                $errors['date'] = 'Falta fecha';
+                $errors['date'] = Text::_('Falta fecha');
 
             if (empty($errors))
                 return true;
@@ -295,7 +295,7 @@ namespace Goteo\Model\Blog {
 
                 return true;
             } catch(\PDOException $e) {
-                $errors[] = "No se ha guardado correctamente. " . $e->getMessage();
+                $errors[] = Text::_("No se ha guardado correctamente. ") . $e->getMessage();
                 return false;
             }
         }
@@ -325,7 +325,7 @@ namespace Goteo\Model\Blog {
                 
                 return true;
             } catch(\PDOException $e) {
-                $errors[] = "No se ha guardado correctamente. " . $e->getMessage();
+                $errors[] = Text::_("No se ha guardado correctamente. ") . $e->getMessage();
                 return false;
             }
         }

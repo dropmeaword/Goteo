@@ -138,7 +138,7 @@ namespace Goteo\Model {
                     if(empty($this->id)) $this->id = self::insertId();
                     return true;
             	} catch(\PDOException $e) {
-                    $errors[] = "No se ha podido guardar el archivo en la base de datos: " . $e->getMessage();
+                    $errors[] = Text::_("No se ha podido guardar el archivo en la base de datos: ") . $e->getMessage();
                     return false;
     			}
             }
@@ -323,7 +323,7 @@ namespace Goteo\Model {
                 fwrite($file, $this->content);
                 fclose($file);
                 if(!file_exists($tmp)) {
-                    throw \Goteo\Core\Exception("Error al cargar la imagen temporal.");
+                    throw \Goteo\Core\Exception("Error al cargar la imagen temporal.");  /*fixme*/
                 }
                 else {
                     $this->tmp = $tmp;
@@ -340,7 +340,7 @@ namespace Goteo\Model {
     	public function unload () {
     	    if(!empty($this->tmp)) {
                 if(!file_exists($this->tmp)) {
-                    throw \Goteo\Core\Exception("Error, la imagen temporal no ha sido encontrada.");
+                    throw \Goteo\Core\Exception("Error, la imagen temporal no ha sido encontrada."); /*fixme*/
                 }
                 else {
                     unlink($this->tmp);

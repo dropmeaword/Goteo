@@ -203,7 +203,7 @@ color:#20B3B2;
 <div class="descubre"><a href="<?php echo SITE_URL . '/discover' ?>"><?php echo Text::get('regular-discover'); ?></a></div>
 <div class="crea"><a href="<?php echo SITE_URL . '/project/create' ?>"><?php echo Text::get('regular-create'); ?></a></div>
 
-<div class="follow">Síguenos en:<br />
+<div class="follow"><?php echo Text::_('Síguenos en'); ?>:<br />
   <span class="facebook"><a href="<?php echo Text::get('social-account-facebook') ?>">facebook</a></span> |  <span class="twitter"><a href="<?php echo Text::get('social-account-twitter') ?>">twitter</a></span> |   <span class="rss"><a rel="alternate" type="application/rss+xml" title="RSS" href="<?php echo SITE_URL. '/rss' ?>">RSS</a></span></div>
 
 <div class="unsuscribe"><?php echo Text::html('mailer-baja', $this['baja']); ?></div>

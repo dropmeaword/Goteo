@@ -26,15 +26,15 @@ use Goteo\Library\Text;
 <div class="widget board">
     <form method="post" action="/admin/templates/edit/<?php echo $this['template']->id; ?>">
         <p>
-            <label for="tpltitle">Título:</label><br />
+            <label for="tpltitle"><?php echo Text::_("Título:"); ?></label><br />
             <input id="tpltitle" type="text" name="title" size="120" value="<?php echo $this['template']->title; ?>" />
         </p>
 
         <p>
-            <label for="tpltext">Contenido:</label><br />
+            <label for="tpltext"><?php echo Text::_("Contenido:"); ?></label><br />
             <textarea id="tpltext" name="text" cols="100" rows="20"><?php echo $this['template']->text; ?></textarea>
         </p>
 
-        <input type="submit" name="save" value="Guardar" />
+        <input type="submit" name="save" value="<?php echo Text::_("Guardar"); ?>" />
     </form>
 </div>

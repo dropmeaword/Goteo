@@ -23,11 +23,11 @@ use Goteo\Library\Text,
 
 $translator = ACL::check('/translate') ? true : false;
 ?>
-<a href="/admin/faq/add/?filter=<?php echo $this['filter']; ?>" class="button red">Añadir pregunta</a>
+<a href="/admin/faq/add/?filter=<?php echo $this['filter']; ?>" class="button red"><?php echo("Añadir pregunta");?></a>
 
 <div class="widget board">
     <form id="sectionfilter-form" action="/admin/faq" method="get">
-        <label for="section-filter">Mostrar las preguntas de:</label>
+        <label for="section-filter"><?php echo("Mostrar las preguntas de:");?></label>
         <select id="section-filter" name="filter" onchange="document.getElementById('sectionfilter-form').submit();">
         <?php foreach ($this['sections'] as $sectionId=>$sectionName) : ?>
             <option value="<?php echo $sectionId; ?>"<?php if ($this['filter'] == $sectionId) echo ' selected="selected"';?>><?php echo $sectionName; ?></option>
@@ -42,8 +42,8 @@ $translator = ACL::check('/translate') ? true : false;
         <thead>
             <tr>
                 <td><!-- Edit --></td>
-                <th>Título</th> <!-- title -->
-                <th>Posición</th> <!-- order -->
+                <th><?php echo("Título");?></th> <!-- title -->
+                <th><?php echo("Posición");?></th> <!-- order -->
                 <td><!-- Move up --></td>
                 <td><!-- Move down --></td>
                 <td><!-- Traducir--></td>
@@ -54,21 +54,21 @@ $translator = ACL::check('/translate') ? true : false;
         <tbody>
             <?php foreach ($this['faqs'] as $faq) : ?>
             <tr>
-                <td><a href="/admin/faq/edit/<?php echo $faq->id; ?>/?filter=<?php echo $this['filter']; ?>">[Editar]</a></td>
+                <td><a href="/admin/faq/edit/<?php echo $faq->id; ?>/?filter=<?php echo $this['filter']; ?>"><?php echo("[Editar]");?></a></td>
                 <td><?php echo $faq->title; ?></td>
                 <td><?php echo $faq->order; ?></td>
                 <td><a href="/admin/faq/up/<?php echo $faq->id; ?>/?filter=<?php echo $this['filter']; ?>">[&uarr;]</a></td>
                 <td><a href="/admin/faq/down/<?php echo $faq->id; ?>/?filter=<?php echo $this['filter']; ?>">[&darr;]</a></td>
                 <?php if ($translator) : ?>
-                <td><a href="/translate/faq/edit/<?php echo $faq->id; ?>" >[Traducir]</a></td>
+                <td><a href="/translate/faq/edit/<?php echo $faq->id; ?>" ><?php echo("[Traducir]");?></a></td>
                 <?php endif; ?>
-                <td><a href="/admin/faq/remove/<?php echo $faq->id; ?>/?filter=<?php echo $this['filter']; ?>" onclick="return confirm('Seguro que deseas eliminar este registro?');">[Quitar]</a></td>
+                <td><a href="/admin/faq/remove/<?php echo $faq->id; ?>/?filter=<?php echo $this['filter']; ?>" onclick="return confirm('<?php echo Text::_("Seguro que deseas eliminar este registro?");?>');"><?php echo Text::_("[Quitar]");?></a></td>
             </tr>
             <?php endforeach; ?>
         </tbody>
 
     </table>
     <?php else : ?>
-    <p>No se han encontrado registros</p>
+    <p><?php echo Text::_("No se han encontrado registros");?></p>
     <?php endif; ?>
 </div>

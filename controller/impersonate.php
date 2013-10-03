@@ -47,13 +47,13 @@ namespace Goteo\Controller {
                  * Evento Feed
                  */
                 $log = new Feed();
-                $log->title = 'Suplantación usuario (admin)';
+                $log->title = Text::_('Suplantación usuario (admin)');
                 $log->url = '/admin/users';
                 $log->type = 'user';
-                $log_text = 'El admin %s ha %s al usuario %s';
+                $log_text = Text::_('El admin %s ha %s al usuario %s');
                 $log_items = array(
                     Feed::item('user', $admin->name, $admin->id),
-                    Feed::item('relevant', 'Suplantado'),
+                    Feed::item('relevant', Text::_('Suplantado')),
                     Feed::item('user', $_SESSION['user']->name, $_SESSION['user']->id)
                 );
                 $log->html = \vsprintf($log_text, $log_items);
@@ -66,7 +66,7 @@ namespace Goteo\Controller {
                 
             }
             else {
-                Message::Error('Ha ocurrido un error');
+                Message::Error(Text::_('Ha ocurrido un error'));
                 throw new Redirection('/dashboard');
             }
 		}

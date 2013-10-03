@@ -57,7 +57,7 @@ $(document).ready(function(){
     <h3 class="title"><?php echo $page->name; ?></h3>
 
     <fieldset>
-        <legend>Descripción</legend>
+        <legend><?php echo Text::_("Descripción"); ?></legend>
         <blockquote><?php echo $page->description; ?></blockquote>
     </fieldset>
 
@@ -69,7 +69,7 @@ $(document).ready(function(){
 </div>
 
 <div class="widget board">
-    <h3>Contenido original</h3>
+    <h3><?php echo Text::_("Contenido original"); ?></h3>
 
     <?php echo $original->content; ?>
 </div>

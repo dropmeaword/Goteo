@@ -50,13 +50,13 @@ $(document).ready(function(){
 <div class="widget board">
     <form method="post" action="/admin/pages/edit/<?php echo $this['page']->id; ?>">
 
-        <label for="page-name">T&iacute;tulo:</label><br />
+        <label for="page-name"><?php echo Text::_("T&iacute;tulo:"); ?></label><br />
         <input type="text" name="name" id="page-name" value="<?php echo $this['page']->name; ?>" />
 <br />
-        <label for="page-description">Cabecera:</label><br />
+        <label for="page-description"><?php echo Text::_("Cabecera:"); ?></label><br />
         <textarea name="description" id="page-description" cols="60" rows="4"><?php echo $this['page']->description; ?></textarea>
 <br />
         <textarea id="richtext_content" name="content" cols="100" rows="20"><?php echo $this['page']->content; ?></textarea>
-        <input type="submit" name="save" value="Guardar" />
+        <input type="submit" name="save" value="<?php echo Text::_("Guardar"); ?> />
     </form>
 </div>

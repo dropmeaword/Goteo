@@ -90,10 +90,10 @@ namespace Goteo\Controller {
                         $mailHandler->html = true;
                         $mailHandler->template = $template->id;
                         if ($mailHandler->send($errors)) {
-                            $message = 'Mensaje de contacto enviado correctamente.';
+                            $message = Text::_('Mensaje de contacto enviado correctamente.');
                             $data = array();
                         } else {
-                            $errors[] = 'Ha habido alg�n error al enviar el mensaje.';
+                            $errors[] = Text::_('Ha habido alg�n error al enviar el mensaje.');
                         }
 
                         unset($mailHandler);

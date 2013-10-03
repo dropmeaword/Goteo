@@ -24,37 +24,37 @@ $wordcount = $this['wordcount'];
 /* Secciones */
 $sections = array(
     'texts' => array(
-        'label'  => 'Textos interficie',
+        'label'  => Text::_("Textos interficie"),
         'options' => Text::groups()
     ),
     'pages' => array(
-        'label' => 'Páginas institucionales',
+        'label' => Text::_("Páginas institucionales"),
         'options' => array(
-            'page' => 'Títulos',
-            'page_node' => 'Contenidos',
+            'page' => Text::_("Títulos"),
+            'page_node' => Text::_("Contenidos"),
         )
     ),
     'contents' => array(
-        'label'   => 'Gestión de Textos y Traducciones',
+        'label'   => Text::_("Gestión de Textos y Traducciones"),
         'options' => array (
-            'post' => 'Blog',
-            'faq' => 'FAQs',
-            'category' => 'Categorias e Intereses',
-            'license' => 'Licencias',
-            'icon' => 'Tipos de Retorno',
-            'tag' => 'Tags de blog',
-            'criteria' => 'Criterios de revisión',
-            'template' => 'Plantillas de email',
-            'glossary' => 'Glosario',
-            'info' => 'Ideas about',
-            'worthcracy' => 'Meritocracia'
+            'post' => Text::_("Blog"),
+            'faq' => Text::_("FAQs"),
+            'category' => Text::_("Categorias e Intereses"),
+            'license' => Text::_("Licencias"),
+            'icon' => Text::_("Tipos de Retorno"),
+            'tag' => Text::_("Tags de blog"),
+            'criteria' => Text::_("Criterios de revisión"),
+            'template' => Text::_("Plantillas de email"),
+            'glossary' => Text::_("Glosario"),
+            'info' => Text::_("Ideas about"),
+            'worthcracy' => Text::_("Meritocracia")
         )
     ),
     'home' => array(
-        'label'   => 'Portada',
+        'label'   => Text::_("Portada"),
         'options' => array (
-            'news' => 'Micronoticias',
-            'promote' => 'Proyectos destacados'
+            'news' => Text::_("Micronoticias"),
+            'promote' => Text::_("Proyectos destacados")
         )
     )
 );
@@ -82,15 +82,15 @@ $fields = array(
 $total = 0;
 ?>
 <div class="widget">
-    <h3 class="title">Conteo de palabras</h3>
+    <h3 class="title"><?php echo Text::_("Conteo de palabras"); ?></h3>
 <?php foreach ($sections as $sCode=>$section) : ?>
         <h4><?php echo $section['label'] ?></h4>
         <table>
             <thead>
                 <tr>
-                    <th>Palabras</th>
-                    <th>Seccion</th>
-                    <th>Codigo</th>
+                    <th><?php echo Text::_("Palabras"); ?></th>
+                    <th><?php echo Text::_("Seccion"); ?></th>
+                    <th><?php echo Text::_("Codigo"); ?></th>
                 </tr>
             </thead>
             <?php foreach ($section['options'] as $oCode=>$option) :
@@ -104,5 +104,5 @@ $total = 0;
         </table>
         <hr />
 <?php endforeach; ?>
-        <h4>Total: <?php echo $total ?> palabras</h4>
+        <h4><?php echo Text::_("Total:"); ?> <?php echo $total ?> <?php echo Text::_("palabras"); ?></h4>
 </div>

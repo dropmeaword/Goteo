@@ -85,13 +85,13 @@ namespace Goteo\Controller {
 
                             // Evento Feed
                             $log = new Feed();
-                            $log->populate('texto traducido (traductor)', '/translate/texts',
-                                \vsprintf('El traductor %s ha %s el texto %s al %s', array(
+                            $log->populate(Text::_('texto traducido (traductor)'), '/translate/texts',
+                                \vsprintf(Text::_('El traductor %s ha %s el texto %s al %s')), array(
                                     Feed::item('user', $_SESSION['user']->name, $_SESSION['user']->id),
-                                    Feed::item('relevant', 'Traducido'),
+                                    Feed::item('relevant', Text::_('Traducido')),
                                     Feed::item('blog', $id),
                                     Feed::item('relevant', Lang::get($_POST['lang'])->name)
-                            )));
+                            ));
                             $log->doAdmin('admin');
                             unset($log);
 
@@ -101,17 +101,17 @@ namespace Goteo\Controller {
                         } else {
                             // Evento Feed
                             $log = new Feed();
-                            $log->populate('texto traducido (traductor)', '/translate/texts',
-                                \vsprintf('Al traductor %s  le ha %s el texto %s al %s', array(
+                            $log->populate(Text::_('texto traducido (traductor)'), '/translate/texts',
+                                \vsprintf(Text::_('Al traductor %s  le ha %s el texto %s al %s')), array(
                                     Feed::item('user', $_SESSION['user']->name, $_SESSION['user']->id),
-                                    Feed::item('relevant', 'Fallado al traducir'),
+                                    Feed::item('relevant', Text::_('Fallado al traducir')),
                                     Feed::item('blog', $id),
                                     Feed::item('relevant', Lang::get($_POST['lang'])->name)
-                            )));
+                            ));
                             $log->doAdmin('admin');
                             unset($log);
 
-                            Message::Error('Ha habido algun ERROR al traducir el Texto <strong>'.$id.'</strong> al <strong>'.Lang::get($_POST['lang'])->name.'</strong><br />' . implode('<br />', $errors));
+                            Message::Error(Text::_('Ha habido algun ERROR al traducir el Texto').' <strong>'.$id.'</strong> al <strong>'.Lang::get($_POST['lang'])->name.'</strong><br />' . implode('<br />', $errors));
                         }
                     }
 
@@ -135,17 +135,17 @@ namespace Goteo\Controller {
 
                             // Evento Feed
                             $log = new Feed();
-                            $log->populate('pagina traducida (traductor)', '/translate/pages',
-                                \vsprintf('El traductor %s ha %s la página %s al %s', array(
+                            $log->populate(Text::_('pagina traducida (traductor)'), '/translate/pages',
+                                \vsprintf(Text::_('El traductor %s ha %s la página %s al %s'), array(
                                 Feed::item('user', $_SESSION['user']->name, $_SESSION['user']->id),
-                                Feed::item('relevant', 'Traducido'),
+                                Feed::item('relevant', Text::_('Traducido')),
                                 Feed::item('blog', $id),
                                 Feed::item('relevant', Lang::get($_POST['lang'])->name)
                             )));
                             $log->doAdmin('admin');
                             unset($log);
 
-                            Message::Info('Contenido de la Pagina <strong>'.$id.'</strong> traducido correctamente al <strong>'.Lang::get($_POST['lang'])->name.'</strong>');
+                            Message::Info(Text::_('Contenido de la Pagina ').'<strong>'.$id.'</strong>'.Text::_( 'traducido correctamente al ').'<strong>'.Lang::get($_POST['lang'])->name.'</strong>');
 
                             throw new Redirection("/translate/pages");
                         } else {
@@ -161,7 +161,7 @@ namespace Goteo\Controller {
                             $log->doAdmin('admin');
                             unset($log);
 
-                            Message::Error('Ha habido algun ERROR al traducir el contenido de la pagina <strong>'.$id.'</strong> al <strong>'.Lang::get($_POST['lang'])->name.'</strong><br />' . implode('<br />', $errors));
+                            Message::Error(Text::_('Ha habido algun ERROR al traducir el contenido de la pagina ').'<strong>'.$id.'</strong> al <strong>'.Lang::get($_POST['lang'])->name.'</strong><br />' . implode('<br />', $errors));
                         }
                     }
 
@@ -192,7 +192,7 @@ namespace Goteo\Controller {
                     if ($action == 'edit' && $_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['save'])) {
 
                         if (!in_array($table, \array_keys(Content::$tables))) {
-                            $errors[] = "Tabla $table desconocida";
+                            $errors[] = Text::_("Tabla $table desconocida");
                             break;
                         }
 
@@ -200,10 +200,10 @@ namespace Goteo\Controller {
 
                             // Evento Feed
                             $log = new Feed();
-                            $log->populate('contenido traducido (traductor)', '/translate/'.$table,
-                                \vsprintf('El traductor %s ha %s el contenido del registro %s de la tabla %s al %s', array(
+                            $log->populate(Text::_('contenido traducido (traductor)'), '/translate/'.$table,
+                                \vsprintf(Text::_('El traductor %s ha %s el contenido del registro %s de la tabla %s al %s'), array(
                                 Feed::item('user', $_SESSION['user']->name, $_SESSION['user']->id),
-                                Feed::item('relevant', 'Traducido'),
+                                Feed::item('relevant', Text::_('Traducido')),
                                 Feed::item('blog', $id),
                                 Feed::item('blog', $table),
                                 Feed::item('relevant', Lang::get($_SESSION['translator_lang'])->name)
@@ -211,16 +211,16 @@ namespace Goteo\Controller {
                             $log->doAdmin('admin');
                             unset($log);
 
-                            Message::Info('Contenido del registro <strong>'.$id.'</strong> de la tabla <strong>'.$table.'</strong> traducido correctamente al <strong>'.Lang::get($_POST['lang'])->name.'</strong>');
+                            Message::Info(Text::_('Contenido del registro').' <strong>'.$id.'</strong> '.Text::_('de la tabla').' <strong>'.$table.'</strong> '.Text::_('traducido correctamente al ').'<strong>'.Lang::get($_POST['lang'])->name.'</strong>');
 
                             throw new Redirection("/translate/$table/$filter&page=".$_GET['page']);
                         } else {
                             // Evento Feed
                             $log = new Feed();
-                            $log->populate('contenido traducido (traductor)', '/translate/'.$table,
-                                \vsprintf('El traductor %s le ha %s el contenido del registro %s de la tabla %s al %s', array(
+                            $log->populate(Text::_('contenido traducido (traductor)'), '/translate/'.$table,
+                                \vsprintf(Text::_('El traductor %s le ha %s el contenido del registro %s de la tabla %s al %s'), array(
                                 Feed::item('user', $_SESSION['user']->name, $_SESSION['user']->id),
-                                Feed::item('relevant', 'Fallado al traducir'),
+                                Feed::item('relevant', Text::_('Fallado al traducir')),
                                 Feed::item('blog', $id),
                                 Feed::item('blog', $table),
                                 Feed::item('relevant', Lang::get($_SESSION['translator_lang'])->name)
@@ -228,7 +228,7 @@ namespace Goteo\Controller {
                             $log->doAdmin('admin');
                             unset($log);
 
-                            Message::Error('Ha habido algun ERROR al traducir el contenido del registro <strong>'.$id.'</strong> de la tabla <strong>'.$table.'</strong> al <strong>'.Lang::get($_POST['lang'])->name.'</strong><br />' . implode('<br />', $errors));
+                            Message::Error(Text::_('Ha habido algun ERROR al traducir el contenido del registro').' <strong>'.$id.'</strong> ' .Text::_('de la tabla').' <strong>'.$table.'</strong> al <strong>'.Lang::get($_POST['lang'])->name.'</strong><br />' . implode('<br />', $errors));
                         }
                     }
 
@@ -323,123 +323,123 @@ namespace Goteo\Controller {
 
             $menu = array(
                 'contents' => array(
-                    'label'   => 'Gestión de Textos y Traducciones',
+                    'label'   => Text::_('Gestión de Textos y Traducciones'),
                     'options' => array (
                         'post' => array(
                             'label' => 'Blog',
                             'actions' => array(
-                                'list' => array('label' => 'Listando', 'item' => false),
-                                'edit' => array('label' => 'Traduciendo Entrada', 'item' => true)
+                                'list' => array('label' => Text::_('Listando'), 'item' => false),
+                                'edit' => array('label' => Text::_('Traduciendo Entrada'), 'item' => true)
                             )
                         ),
                         'texts' => array(
-                            'label' => 'Textos interficie',
+                            'label' => Text::_('Textos interficie'),
                             'actions' => array(
-                                'list' => array('label' => 'Listando', 'item' => false),
-                                'edit' => array('label' => 'Traduciendo Texto', 'item' => true)
+                                'list' => array('label' => Text::_('Listando'), 'item' => false),
+                                'edit' => array('label' => Text::_('Traduciendo Texto'), 'item' => true)
                             )
                         ),
                         'faq' => array(
                             'label' => 'FAQs',
                             'actions' => array(
-                                'list' => array('label' => 'Listando', 'item' => false),
-                                'edit' => array('label' => 'Traduciendo Pregunta', 'item' => true)
+                                'list' => array('label' => Text::_('Listando'), 'item' => false),
+                                'edit' => array('label' => Text::_('Traduciendo Pregunta'), 'item' => true)
                             )
                         ),
                         'pages' => array(
-                            'label' => 'Contenidos institucionales',
+                            'label' => Text::_('Contenidos institucionales'),
                             'actions' => array(
-                                'list' => array('label' => 'Listando', 'item' => false),
-                                'edit' => array('label' => 'Traduciendo contenido de Página', 'item' => true)
+                                'list' => array('label' => Text::_('Listando'), 'item' => false),
+                                'edit' => array('label' => Text::_('Traduciendo contenido de Página'), 'item' => true)
                             )
                         ),
                         'page' => array(
-                            'label' => 'Páginas',
+                            'label' => Text::_('Páginas'),
                             'actions' => array(
-                                'list' => array('label' => 'Listando', 'item' => false),
-                                'edit' => array('label' => 'Traduciendo Página', 'item' => true)
+                                'list' => array('label' => Text::_('Listando'), 'item' => false),
+                                'edit' => array('label' => Text::_('Traduciendo Página'), 'item' => true)
                             )
                         ),
                         'category' => array(
-                            'label' => 'Categorias e Intereses',
+                            'label' => Text::_('Categorias e Intereses'),
                             'actions' => array(
-                                'list' => array('label' => 'Listando', 'item' => false),
-                                'edit' => array('label' => 'Traduciendo Categoría', 'item' => true)
+                                'list' => array('label' => Text::_('Listando'), 'item' => false),
+                                'edit' => array('label' => Text::_('Traduciendo Categoría'), 'item' => true)
                             )
                         ),
                         'license' => array(
-                            'label' => 'Licencias',
+                            'label' => Text::_('Licencias'),
                             'actions' => array(
-                                'list' => array('label' => 'Listando', 'item' => false),
-                                'edit' => array('label' => 'Traduciendo Licencia', 'item' => true)
+                                'list' => array('label' => Text::_('Listando'), 'item' => false),
+                                'edit' => array('label' => Text::_('Traduciendo Licencia'), 'item' => true)
                             )
                         ),
                         'icon' => array(
-                            'label' => 'Tipos de Retorno',
+                            'label' => Text::_('Tipos de Retorno'),
                             'actions' => array(
-                                'list' => array('label' => 'Listando', 'item' => false),
-                                'edit' => array('label' => 'Traduciendo Tipo', 'item' => true)
+                                'list' => array('label' => Text::_('Listando'), 'item' => false),
+                                'edit' => array('label' => Text::_('Traduciendo Tipo'), 'item' => true)
                             )
                         ),
                         'tag' => array(
-                            'label' => 'Tags de blog',
+                            'label' => Text::_('Tags de blog'),
                             'actions' => array(
-                                'list' => array('label' => 'Listando', 'item' => false),
-                                'edit' => array('label' => 'Traduciendo Tag', 'item' => true)
+                                'list' => array('label' => Text::_('Listando'), 'item' => false),
+                                'edit' => array('label' => Text::_('Traduciendo Tag'), 'item' => true)
                             )
                         ),
                         'criteria' => array(
-                            'label' => 'Criterios de revisión',
+                            'label' => Text::_('Criterios de revisión'),
                             'actions' => array(
-                                'list' => array('label' => 'Listando', 'item' => false),
-                                'edit' => array('label' => 'Traduciendo Criterio', 'item' => true)
+                                'list' => array('label' => Text::_('Listando'), 'item' => false),
+                                'edit' => array('label' => Text::_('Traduciendo Criterio'), 'item' => true)
                             )
                         ),
                         'template' => array(
-                            'label' => 'Plantillas de email',
+                            'label' => Text::_('Plantillas de email'),
                             'actions' => array(
-                                'list' => array('label' => 'Listando', 'item' => false),
-                                'edit' => array('label' => 'Traduciendo Plantilla', 'item' => true)
+                                'list' => array('label' => Text::_('Listando'), 'item' => false),
+                                'edit' => array('label' => Text::_('Traduciendo Plantilla'), 'item' => true)
                             )
                         ),
                         'glossary' => array(
-                            'label' => 'Glosario',
+                            'label' => Text::_('Glosario'),
                             'actions' => array(
-                                'list' => array('label' => 'Listando', 'item' => false),
-                                'edit' => array('label' => 'Traduciendo Término', 'item' => true)
+                                'list' => array('label' => Text::_('Listando'), 'item' => false),
+                                'edit' => array('label' => Text::_('Traduciendo Término'), 'item' => true)
                             )
                         ),
                         'info' => array(
-                            'label' => 'Ideas about',
+                            'label' => Text::_('Ideas about'),
                             'actions' => array(
-                                'list' => array('label' => 'Listando', 'item' => false),
-                                'edit' => array('label' => 'Traduciendo Idea', 'item' => true)
+                                'list' => array('label' => Text::_('Listando'), 'item' => false),
+                                'edit' => array('label' => Text::_('Traduciendo Idea'), 'item' => true)
                             )
                         ),
                         'worthcracy' => array(
-                            'label' => 'Meritocracia',
+                            'label' => Text::_('Meritocracia'),
                             'actions' => array(
-                                'list' => array('label' => 'Listando', 'item' => false),
-                                'edit' => array('label' => 'Traduciendo Nivel', 'item' => true)
+                                'list' => array('label' => Text::_('Listando'), 'item' => false),
+                                'edit' => array('label' => Text::_('Traduciendo Nivel'), 'item' => true)
                             )
                         )
                     )
                 ),
                 'home' => array(
-                    'label'   => 'Portada',
+                    'label'   => Text::_('Portada'),
                     'options' => array (
                         'news' => array(
-                            'label' => 'Micronoticias',
+                            'label' => Text::_('Micronoticias'),
                             'actions' => array(
-                                'list' => array('label' => 'Listando', 'item' => false),
-                                'edit' => array('label' => 'Traduciendo Micronoticia', 'item' => true)
+                                'list' => array('label' => Text::_('Listando'), 'item' => false),
+                                'edit' => array('label' => Text::_('Traduciendo Micronoticia'), 'item' => true)
                             )
                         ),
                         'promote' => array(
-                            'label' => 'Proyectos destacados',
+                            'label' => Text::_('Proyectos destacados'),
                             'actions' => array(
-                                'list' => array('label' => 'Listando', 'item' => false),
-                                'edit' => array('label' => 'Traduciendo Destacado', 'item' => true)
+                                'list' => array('label' => Text::_('Listando'), 'item' => false),
+                                'edit' => array('label' => Text::_('Traduciendo Destacado'), 'item' => true)
                             )
                         )
                     )

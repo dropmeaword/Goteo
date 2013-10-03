@@ -95,13 +95,13 @@ namespace Goteo\Controller {
                              * Evento Feed
                              */
                             $log = new Feed();
-                            $log->title = 'modificacion de página institucional (admin)';
+                            $log->title = Text::_('modificacion de página institucional (admin)');
                             $log->url = '/admin/pages';
                             $log->type = 'admin';
-                            $log_text = "El admin %s ha %s la página institucional %s";
+                            $log_text = Text::_("El admin %s ha %s la página institucional %s");
                             $log_items = array(
                                 Feed::item('user', $_SESSION['user']->name, $_SESSION['user']->id),
-                                Feed::item('relevant', 'Modificado'),
+                                Feed::item('relevant', 'Modificado'),/*FIXME*/
                                 Feed::item('relevant', $page->name, $page->url)
                             );
                             $log->html = \vsprintf($log_text, $log_items);
@@ -171,8 +171,8 @@ namespace Goteo\Controller {
             $groups    = Text::groups();
 
             // metemos el todos
-            \array_unshift($idfilters, 'Todos los textos');
-            \array_unshift($groups, 'Todas las agrupaciones');
+            \array_unshift($idfilters, Text::_('Todos los textos'));
+            \array_unshift($groups, Text::_('Todas las agrupaciones'));
 
  //@fixme temporal hasta pasar las agrupaciones a tabal o arreglar en el list.html.php
             $data = Text::getAll($filters, 'original');
@@ -633,7 +633,7 @@ namespace Goteo\Controller {
                                     $log_text = Text::_('El admin %s ha %s la valoración de %s');
                                     $log_items = array(
                                         Feed::item('user', $_SESSION['user']->name, $_SESSION['user']->id),
-                                        Feed::item('relevant', 'Iniciado'),
+                                        Feed::item('relevant', Text::_('Iniciado')),
                                         Feed::item('project', $project->name, $project->id)
                                     );
                                     $log->html = \vsprintf($log_text, $log_items);
@@ -1325,7 +1325,7 @@ namespace Goteo\Controller {
                                     'folder' => 'banners',
                                     'file' => 'edit',
                                     'action' => 'edit',
-                                    'banenr' => $banner,
+                                    'banner' => $banner,
                                     'errors' => $errors
                                 )
                             );
@@ -2409,7 +2409,7 @@ namespace Goteo\Controller {
                     'columns' => array(
                         'edit' => '',
                         'name' => 'Tag',
-                        'used' => 'Entradas',
+                        'used' => Text::_('Entradas'),
                         'translate' => '',
                         'remove' => ''
                     ),
@@ -2497,7 +2497,7 @@ namespace Goteo\Controller {
                         }
                         if (!empty($_POST['password'])) {
                             $user->password = $_POST['password'];
-                            $tocado[] = 'la contraseña';
+                            $tocado[] = Text::_('la contraseña');
                         }
 
                         if(!empty($tocado) && $user->update($errors)) {
