@@ -69,7 +69,7 @@ foreach ($project->supports as $support) {
             'class'     => 'support editsupport',
             'children'  => array(
                 "support-{$support->id}-support" => array(
-                    'title'     => Text::get('supports-field-support'),
+                    'title'     => Text::_("Resumen"),
                     'type'      => 'textbox',
                     'required'  => true,
                     'size'      => 100,
@@ -77,10 +77,10 @@ foreach ($project->supports as $support) {
                     'value'     => $support->support,
                     'errors'    => !empty($errors["support-{$support->id}-support"]) ? array($errors["support-{$support->id}-support"]) : array(),
                     'ok'        => !empty($okeys["support-{$support->id}-support"]) ? array($okeys["support-{$support->id}-support"]) : array(),
-                    'hint'      => Text::get('tooltip-project-support-support'),
+                    'hint'      => Text::_("Título descriptivo sobre la colaboración necesaria."),
                 ),
                 "support-{$support->id}-type" => array(
-                    'title'     => Text::get('supports-field-type'),
+                    'title'     => Text::_("Tipo de ayuda"),
                     'required'  => true,
                         'class'     => 'inline',
                         'type'      => 'group',
@@ -88,19 +88,19 @@ foreach ($project->supports as $support) {
                         'children'  => $support_types,
                     'errors'    => !empty($errors["support-{$support->id}-type"]) ? array($errors["support-{$support->id}-type"]) : array(),
                     'ok'        => !empty($okeys["support-{$support->id}-type"]) ? array($okeys["support-{$support->id}-type"]) : array(),
-                    'hint'      => Text::get('tooltip-project-support-type'),
+                    'hint'      => Text::_("Selecciona si el proyecto necesita ayuda en tareas concretas  o bien préstamos (de material, infraestructura, etc).  "),
                 ),
                 "support-{$support->id}-description" => array(
                     'type'      => 'textarea',
                     'required'  => true,
-                    'title'     => Text::get('supports-field-description'),
+                    'title'     => Text::_("Descripción"),
                     'cols'      => 100,
                     'rows'      => 4,
                     'class'     => 'inline support-description',
                     'value'     => $support->description,
                     'errors'    => !empty($errors["support-{$support->id}-description"]) ? array($errors["support-{$support->id}-description"]) : array(),
                     'ok'        => !empty($okeys["support-{$support->id}-description"]) ? array($okeys["support-{$support->id}-description"]) : array(),
-                    'hint'      => Text::get('tooltip-project-support-description')
+                    'hint'      => Text::_("Explica brevemente en qué consiste la ayuda que necesita el proyecto, para facilitar que la gente la reconozca y se anime a colaborar. \r\n")
                 ),
                 "support-{$support->id}-buttons" => array(
                     'type' => 'group',
@@ -108,12 +108,12 @@ foreach ($project->supports as $support) {
                     'children' => array(
                         "support-{$support->id}-ok" => array(
                             'type'  => 'submit',
-                            'label' => Text::get('form-accept-button'),
+                            'label' => Text::_("Aceptar"),
                             'class' => 'inline ok'
                         ),
                         "support-{$support->id}-remove" => array(
                             'type'  => 'submit',
-                            'label' => Text::get('form-remove-button'),
+                            'label' => Text::_("Quitar"),
                                 'class' => 'inline remove red'
                             )
                         )
@@ -148,13 +148,13 @@ $sfid = 'sf-project-supports';
     'level'         => $this['level'],
     'method'        => 'post',
     'title'         => '',
-    'hint'          => Text::get('guide-project-supports'),
+    'hint'          => Text::_("<strong>En este apartado puedes especificar qué otras ayudas, aparte de financiación, se necesitan para llevar a cabo el proyecto.</strong><br><br> Pueden ser tareas o acciones a cargo de otras personas (traducciones, gestiones, difusión, etc), o bien préstamos específicos (de material, transporte, hardware, etc)."),
     'class'         => 'aqua',
     'footer'        => array(
         'view-step-preview' => array(
             'type'  => 'submit',
             'name'  => 'save-supports',
-            'label' => Text::get('regular-save'),
+            'label' => Text::_("Guardar"),
             'class' => 'next'
         )
     ),
@@ -165,12 +165,12 @@ $sfid = 'sf-project-supports';
         ),
         'supports' => array(
             'type'      => 'group',
-            'title'     => Text::get('supports-fields-support-title'),
-            'hint'      => Text::get('tooltip-project-supports'),
+            'title'     => Text::_("Colaboraciones"),
+            'hint'      => Text::_("En Goteo los proyectos pueden recibir otro tipo de ayudas además de aportaciones monetarias. Hay gente que a lo mejor no puede ayudar económicamente pero sí con su talento, tiempo, energía, etc."),
             'children'  => $supports + array(
                 'support-add' => array(
                     'type'  => 'submit',
-                    'label' => Text::get('form-add-button'),
+                    'label' => Text::_("Añadir"),
                     'class' => 'add support-add red',
                 )
             )

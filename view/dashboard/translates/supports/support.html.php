@@ -29,7 +29,7 @@ $support = $this['data']['support'] ?>
     
     <div class="description"><?php echo htmlspecialchars($support->description) ?></div>
     
-    <input type="submit" class="edit" name="support-<?php echo $support->id ?>-edit" value="<?php echo Text::get('regular-edit') ?>" />
+    <input type="submit" class="edit" name="support-<?php echo $support->id ?>-edit" value="<?php echo Text::_("Editar") ?>" />
 </div>
 
     

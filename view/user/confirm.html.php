@@ -63,18 +63,18 @@ jQuery(document).ready(function($) {
 
         <div class="register">
             <div>
-                <h2><?php echo Text::get('login-register-header'); ?></h2>
-                <p><?php echo Text::get('oauth-login-welcome-from'); ?></p>
+                <h2><?php echo Text::_("Nuevo usuario"); ?></h2>
+                <p><?php echo Text::_("Bienvenido/a a Goteo! Comprueba tu nombre de usuario y email para finalizar el proceso. En caso de que no se haya podido importar el email o lo cambies por otro, recibirás un correo electrónico con un link de activación para comprovar su validez."); ?></p>
                 <form action="/user/oauth_register" method="post">
 
                     <div class="userid">
-                        <label for="RegisterUserid"><?php echo Text::get('login-register-userid-field'); ?></label>
+                        <label for="RegisterUserid"><?php echo Text::_("Nombre de acceso"); ?></label>
                         <input type="text" id="RegisterUserid" name="userid" value="<?php echo htmlspecialchars($username) ?>"/>
                     <?php if(isset($errors['userid'])) { ?><em><?php echo $errors['userid']?></em><?php } ?>
                     </div>
 
                     <div class="email">
-                        <label for="RegisterEmail"><?php echo Text::get('login-register-email-field'); ?></label>
+                        <label for="RegisterEmail"><?php echo Text::_("Email"); ?></label>
                         <input type="text" id="RegisterEmail" name="email" value="<?php echo htmlspecialchars($email) ?>"/>
                     <?php if(isset($errors['email'])) { ?><em><?php echo $errors['email']?></em><?php } ?>
                     </div>
@@ -82,7 +82,7 @@ jQuery(document).ready(function($) {
                     <input class="checkbox" id="register_accept" name="confirm" type="checkbox" value="true" />
                     <label class="conditions" for="register_accept"><?php echo Text::html('login-register-conditions'); ?></label><br />
 
-                    <button class="disabled" disabled="disabled" id="register_continue" name="register" type="submit" value="register"><?php echo Text::get('login-register-button'); ?></button>
+                    <button class="disabled" disabled="disabled" id="register_continue" name="register" type="submit" value="register"><?php echo Text::_("Registrar"); ?></button>
 
 					<?php
 
@@ -106,7 +106,7 @@ jQuery(document).ready(function($) {
         </div>
 
 		<div style="width:500px;">
-			<p><?php echo Text::get('oauth-login-imported-data'); ?></p>
+			<p><?php echo Text::_("También van a importarse estos datos, puedes cambiarlos una vez autentificado:"); ?></p>
 			<?php
 			//print_r($_POST);
 			if($profile_image_url) echo '<img style="float:left;width:200px;max-height:200px;" src="'.$profile_image_url.'" alt="Imported profile image" />';

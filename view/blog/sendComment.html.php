@@ -40,20 +40,20 @@
 </script>
 <?php if (!empty($_SESSION['user'])) : ?>
 <div class="widget blog-comment">
-    <h<?php echo $level ?> class="title"><?php echo Text::get('blog-send_comment-header'); ?></h<?php echo $level ?>>
+    <h<?php echo $level ?> class="title"><?php echo Text::_("Escribe tu comentario"); ?></h<?php echo $level ?>>
     <form method="post" action="/message/post/<?php echo $this['post']; ?>/<?php echo $this['project']; ?>">
 	    <div id="bocadillo"></div>
         <textarea id="message" name="message" cols="50" rows="5"></textarea>
-        <a target="_blank" id="a-preview" href="#preview" class="preview">&middot;<?php echo Text::get('regular-preview'); ?></a>
+        <a target="_blank" id="a-preview" href="#preview" class="preview">&middot;<?php echo Text::_("Previsualizar"); ?></a>
         <div style="display:none">
         	<div id="preview" style="width:400px;height:300px;overflow:auto;">
                     
                 </div>
         </div>
-        <button class="green" type="submit"><?php echo Text::get('blog-send_comment-button'); ?></button>
+        <button class="green" type="submit"><?php echo Text::_("Enviar"); ?></button>
     </form>
 </div>
 <?php endif; ?>
 <?php else : ?>
-    <p><?php echo Text::get('blog-comments_no_allowed'); ?></p>
+    <p><?php echo Text::_("No se permiten comentarios en  esta entrada"); ?></p>
 <?php endif; ?>

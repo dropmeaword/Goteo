@@ -32,7 +32,7 @@ $steps  = new View('view/project/edit/steps.html.php', array('steps' => $this['s
 if (!empty($this['success'])) {
     Goteo\Library\Message::Info($this['success']);
 } else {
-    Goteo\Library\Message::Info(Text::get('form-ajax-info'));
+    Goteo\Library\Message::Info(Text::_("El formulario de proyecto se va grabando segun pases por cada campo"));
 }
 
 include 'view/prologue.html.php';

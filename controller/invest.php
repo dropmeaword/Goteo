@@ -58,7 +58,7 @@ namespace Goteo\Controller {
                 $los_datos = $_POST;
 
                 if (empty($_POST['amount'])) {
-                    Message::Error(Text::get('invest-amount-error'));
+                    Message::Error(Text::_("Tienes que indicar el importe"));
                     throw new Redirection("/project/$project/invest/?confirm=fail", Redirection::TEMPORARY);
                 }
 
@@ -74,7 +74,7 @@ namespace Goteo\Controller {
                 );
 
                 if ($projectData->owner == $_SESSION['user']->id) {
-                    Message::Error(Text::get('invest-owner-error'));
+                    Message::Error(Text::_("Eres el autor del proyecto, no puedes aportar personalmente a tu propio proyecto."));
                     throw new Redirection("/project/$project/invest/?confirm=fail", Redirection::TEMPORARY);
                 }
 
@@ -123,7 +123,7 @@ namespace Goteo\Controller {
                             if (Tpv::preapproval($invest, $errors)) {
                                 die;
                             } else {
-                                Message::Error(Text::get('invest-tpv-error_fatal'));
+                                Message::Error(Text::_("Ha ocurrido un error fatal al conectar con el TPV. Se ha reportado la incidencia, disculpa las molestias."));
                             }
                             break;
                         case 'paypal':
@@ -131,7 +131,7 @@ namespace Goteo\Controller {
                             if (Paypal::preapproval($invest, $errors)) {
                                 die;
                             } else {
-                                Message::Error(Text::get('invest-paypal-error_fatal'));
+                                Message::Error(Text::_("Ha ocurrido un error fatal al conectar con PayPal. Se ha reportado la incidencia, disculpa las molestias."));
                             }
                             break;
                         case 'cash':
@@ -141,10 +141,10 @@ namespace Goteo\Controller {
                             break;
                     }
                 } else {
-                    Message::Error(Text::get('invest-create-error'));
+                    Message::Error(Text::_("Ha habido algun problema al inicializar la transacción"));
                 }
 			} else {
-                Message::Error(Text::get('invest-data-error'));
+                Message::Error(Text::_("No se han recibido los datos necesarios"));
             }
 
             throw new Redirection("/project/$project/invest/?confirm=fail");
@@ -154,7 +154,7 @@ namespace Goteo\Controller {
 
         public function confirmed ($project = null, $invest = null) {
             if (empty($project) || empty($invest)) {
-                Message::Error(Text::get('invest-data-error'));
+                Message::Error(Text::_("No se han recibido los datos necesarios"));
                 throw new Redirection('/discover', Redirection::TEMPORARY);
             }
 
@@ -164,7 +164,7 @@ namespace Goteo\Controller {
             // email de agradecimiento al cofinanciador
             // primero monto el texto de recompensas
             if ($confirm->resign) {
-                $txt_rewards = Text::get('invest-resign');
+                $txt_rewards = Text::_("Renuncio a una recompensa individual, solo quiero ayudar al proyecto");
                 $template = Template::get(28); // plantilla de donativo
             } else {
                 $rewards = $confirm->rewards;
@@ -191,9 +191,9 @@ namespace Goteo\Controller {
             $mailHandler->html = true;
             $mailHandler->template = $template->id;
             if ($mailHandler->send($errors)) {
-                Message::Info(Text::get('project-invest-thanks_mail-success'));
+                Message::Info(Text::_("Mensaje de agradecimiento enviado correctamente"));
             } else {
-                Message::Error(Text::get('project-invest-thanks_mail-fail'));
+                Message::Error(Text::_("Ha habido algún error al enviar el mensaje de agradecimiento"));
                 Message::Error(implode('<br />', $errors));
             }
 
@@ -249,7 +249,7 @@ namespace Goteo\Controller {
 
                     // evento público
                 if ($confirm->anonymous) {
-                    $log->title = Text::get('regular-anonymous');
+                    $log->title = Text::_("Anónimo");
                     $log->url = '/user/profile/anonymous';
                     $log->image = 1;
                 } else {

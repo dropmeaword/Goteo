@@ -79,9 +79,9 @@ $minimum_ratio =  min(100, round(($minimum / $optimum) * 100));
 ?>        
     <div class="meter <?php echo $horizontal ? 'hor' : 'ver'; echo $big ? ' big' : ''; echo $activable ? ' activable' : ''; ?>">
         
-        <h<?php echo $level ?> class="title investment"><?php echo Text::get('project-view-metter-investment'); ?></h<?php echo $level ?>>
-        <?php if (!empty($project->round)) : ?><h<?php echo $level ?> class="title ronda"><?php echo $project->round . Text::get('regular-round'); ?></h<?php echo $level ?>><?php endif; ?>
-        <?php if ($activable) : ?><h<?php echo $level ?> class="title obtained"><?php echo Text::get('project-view-metter-got'); ?></h<?php echo $level ?>><?php endif; ?>
+        <h<?php echo $level ?> class="title investment"><?php echo Text::_("Cofinanciación"); ?></h<?php echo $level ?>>
+        <?php if (!empty($project->round)) : ?><h<?php echo $level ?> class="title ronda"><?php echo $project->round . Text::_("ª ronda"); ?></h<?php echo $level ?>><?php endif; ?>
+        <?php if ($activable) : ?><h<?php echo $level ?> class="title obtained"><?php echo Text::_("Obtenido"); ?></h<?php echo $level ?>><?php endif; ?>
         <div class="graph">
             <div class="optimum">
                  <div class="left" style="<?php echo $horizontal ? 'width' : 'height' ?>: <?php echo number_format($optimum_left) ?>%"></div>
@@ -94,19 +94,19 @@ $minimum_ratio =  min(100, round(($minimum / $optimum) * 100));
         </div>
 
         <dl>
-            <dt class="optimum"><?php echo Text::get('project-view-metter-optimum'); ?></dt>
+            <dt class="optimum"><?php echo Text::_("Óptimo"); ?></dt>
             <dd class="optimum"><strong><?php echo \amount_format($optimum) ?></strong> <span class="euro">&euro;</span></dd>
 
-            <dt class="minimum" style="<?php echo $horizontal ? 'width' : 'height' ?>: <?php echo number_format($minimum_ratio) ?>%"><span><?php echo Text::get('project-view-metter-minimum'); ?></span></dt>
+            <dt class="minimum" style="<?php echo $horizontal ? 'width' : 'height' ?>: <?php echo number_format($minimum_ratio) ?>%"><span><?php echo Text::_("Mínimo"); ?></span></dt>
             <dd class="minimum" style="<?php echo $horizontal ? 'width' : 'height' ?>: <?php echo number_format($minimum_ratio) ?>%"><strong><?php echo \amount_format($minimum) ?> <span class="euro">&euro;</span></strong> </dd>
 
-            <dt class="reached"><span><?php echo Text::get('project-view-metter-got'); ?></span></dt>
+            <dt class="reached"><span><?php echo Text::_("Obtenido"); ?></span></dt>
             <dd class="reached"><strong><?php echo \amount_format($reached) ?> <span class="euro">&euro;</span></strong></dd>
 
-            <dt class="days"><span><?php echo Text::get('project-view-metter-days'); ?></span></dt>
-            <dd class="days"><strong><?php echo number_format($days) ?></strong> <?php echo Text::get('regular-days'); ?></dd>
+            <dt class="days"><span><?php echo Text::_("Quedan"); ?></span></dt>
+            <dd class="days"><strong><?php echo number_format($days) ?></strong> <?php echo Text::_("días"); ?></dd>
 
-            <dt class="supporters"><span><?php echo Text::get('project-view-metter-investors'); ?></span></dt>
+            <dt class="supporters"><span><?php echo Text::_("Cofinanciadores"); ?></span></dt>
             <dd class="supporters"><strong><?php echo number_format($supporters) ?></strong></dd>                
 
         </dl>
@@ -121,7 +121,7 @@ $minimum_ratio =  min(100, round(($minimum / $optimum) * 100));
     <?php /*
     // si en estado 3 ha alcanzado el optimo o segunda ronda, "aun puedes seguir aportando" junto al quedan tantos días
     if ($project->status == 3 && ($project->round == 2  || $project->amount >= $project->maxcost || ($project->round == 1  && $project->amount >= $project->mincost) )) : ?>
-        <div class="keepiton"><?php echo Text::get('regular-keepiton') ?></div>
+        <div class="keepiton"><?php echo  ?></div>
     <?php endif; */ ?>
 
     </div> 

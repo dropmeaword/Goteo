@@ -69,7 +69,7 @@ $lsuf = (LANG != 'es') ? '?lang='.LANG : '';
 <!-- mis proyectos -->
 <?php if (!empty($this['lists']['my_projects'])) : ?>
     <div class="widget projects">
-        <h2 class="title"><?php echo Text::get('profile-my_projects-header'); ?></h2>
+        <h2 class="title"><?php echo Text::_("Mis proyectos"); ?></h2>
         <?php foreach ($this['lists']['my_projects'] as $group=>$projects) : ?>
             <div class="discover-group discover-group-my_projects" id="discover-group-my_projects-<?php echo $group ?>">
 
@@ -110,7 +110,7 @@ $lsuf = (LANG != 'es') ? '?lang='.LANG : '';
 <!-- Proyectos que cofinancio -->
 <?php if (!empty($this['lists']['invest_on'])) : ?>
     <div class="widget projects">
-        <h2 class="title"><?php echo Text::get('profile-invest_on-header'); ?></h2>
+        <h2 class="title"><?php echo Text::_("Proyectos que apoyo"); ?></h2>
         <?php foreach ($this['lists']['invest_on'] as $group=>$projects) : ?>
             <div class="discover-group discover-group-invest_on" id="discover-group-invest_on-<?php echo $group ?>">
 
@@ -132,12 +132,12 @@ $lsuf = (LANG != 'es') ? '?lang='.LANG : '';
                 <br clear="both"/>
                 <?php if ($project->status > 2) : ?>
                       <div id="widget-code" style="float:none;width:250px;margin-left:25px;">
-                          <div class="wc-embed" onclick="$('#widget_code').focus();$('#widget_code').select()"><?php echo Text::get('dashboard-embed_code'); ?></div>
+                          <div class="wc-embed" onclick="$('#widget_code').focus();$('#widget_code').select()"><?php echo Text::_("CÓDIGO DIFUSIÓN SIMPLE"); ?></div>
                         <textarea id="widget_code" style="width:230px;margin:0 0 10px;" onclick="this.focus();this.select()" readonly="readonly"><?php echo htmlentities($widget_code); ?></textarea>
                       </div>
 
                       <div id="widget-code" style="float:none;width:250px;margin-left:25px;">
-                        <div class="wc-embed" onclick="$('#investor_code').focus();$('#investor_code').select()"><?php echo Text::get('dashboard-embed_code_investor'); ?></div>
+                        <div class="wc-embed" onclick="$('#investor_code').focus();$('#investor_code').select()"><?php echo Text::_("CÓDIGO CON IMAGEN DE COFINANCIADOR"); ?></div>
                         <textarea id="investor_code" style="width:230px;margin:0 0 10px;" onclick="this.focus();this.select()" readonly="readonly"><?php echo htmlentities($widget_code_investor); ?></textarea>
                       </div>
                 <?php endif; ?>

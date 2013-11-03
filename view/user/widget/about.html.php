@@ -33,14 +33,14 @@ $interests = Interest::getAll();
     
     <?php if (!empty($user->about)): ?>    
     <div class="about">        
-        <h4><?php echo Text::get('profile-about-header'); ?></h4>
+        <h4><?php echo Text::_("Sobre mí"); ?></h4>
         <p><?php echo $user->about ?></p>
     </div>    
     <?php endif ?>
         
     <?php if (!empty($user->interests)): ?>    
     <div class="interests">        
-        <h4><?php echo Text::get('profile-interests-header'); ?></h4>
+        <h4><?php echo Text::_("Me interesan proyectos con fin..."); ?></h4>
         <p><?php
         $c = 0;
         foreach ($user->interests as $interest) {
@@ -53,14 +53,14 @@ $interests = Interest::getAll();
     
     <?php if (!empty($user->keywords)): ?>    
     <div class="keywords">        
-        <h4><?php echo Text::get('profile-keywords-header'); ?></h4>
+        <h4><?php echo Text::_("Mis palabras clave"); ?></h4>
         <p><?php echo $user->keywords; ?></p>        
     </div>
     <?php endif ?>
         
     <?php if (!empty($user->webs)): ?>
     <div class="webs">     
-        <h4><?php echo Text::get('profile-webs-header'); ?></h4>
+        <h4><?php echo Text::_("Mis webs"); ?></h4>
         <ul>
             <?php foreach ($user->webs as $link): ?>
             <li><a href="<?php echo htmlspecialchars($link->url) ?>" target="_blank"><?php echo htmlspecialchars($link->url) ?></a></li>
@@ -71,13 +71,13 @@ $interests = Interest::getAll();
     
     <?php if (!empty($user->location)): ?>
      <div class="location">    
-        <h4><?php echo Text::get('profile-location-header'); ?></h4>
+        <h4><?php echo Text::_("Mi ubicación"); ?></h4>
         <p><?php echo Text::GmapsLink($user->location); ?></p>
      </div>
     <?php endif ?>
 
      <div class="message">
-         <p><a href="/user/profile/<?php echo $user->id ?>/message"><?php echo Text::get('regular-send_message')?></a></p>
+         <p><a href="/user/profile/<?php echo $user->id ?>/message"><?php echo Text::_("Enviar mensaje")?></a></p>
      </div>
 
 </div>

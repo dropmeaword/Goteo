@@ -42,7 +42,7 @@ foreach ($project->supports as $item) {
 ?>
 <div class="widget project-needs">
         
-    <h<?php echo $level ?> class="title"><?php echo Text::get('project-collaborations-title'); ?></h<?php echo $level ?>>
+    <h<?php echo $level ?> class="title"><?php echo Text::_("Se busca"); ?></h<?php echo $level ?>>
            
     <table width="100%">
         
@@ -59,7 +59,7 @@ foreach ($project->supports as $item) {
             <tr class="noreq">
                 <th class="summary"><strong><?php echo htmlspecialchars($item->name) ?></strong>
                 <blockquote style="font-weight:normal;"><?php echo $item->description ?></blockquote>
-                <a class="button green" href="/project/<?php echo $project->id; ?>/messages"><?php echo Text::get('regular-collaborate'); ?></a>
+                <a class="button green" href="/project/<?php echo $project->id; ?>/messages"><?php echo Text::_("Colabora"); ?></a>
                 </th>
             </tr>            
             <?php endforeach ?>

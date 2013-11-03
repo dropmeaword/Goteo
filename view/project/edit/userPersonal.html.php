@@ -34,8 +34,8 @@ echo new SuperForm(array(
 
     'level'         => $this['level'],
     'method'        => 'post',
-    'title'         => Text::get('personal-main-header'),
-    'hint'          => Text::get('guide-project-contract-information'),    
+    'title'         => Text::_("Datos del promotor/a"),
+    'hint'          => Text::_("<strong>A partir de este paso sólo debes cumplimentar los datos si quieres que tu proyecto sea cofinanciado y apoyado mediante Goteo. </strong><br><br>La información de este apartado es necesaria para contactarte si obtienes la financiación requerida, y que así se pueda efectuar el ingreso. En el caso de entidades, se recomienda que quien represente a la organización pueda luego acreditarlo formalmente (por ejemplo a través de los estatutos o de un certificado del secretario con el visto bueno del presidente, en el caso de asociaciones)."),    
     'elements'      => array(
         'process_userPersonal' => array (
             'type' => 'hidden',
@@ -45,15 +45,15 @@ echo new SuperForm(array(
         /* Radio Tipo de persona */
         'contract_entity-radioset' => array(
             'type'      => 'group',
-            'title'     => Text::get('personal-field-contract_entity'),
-            'hint'      => Text::get('tooltip-project-contract_entity'),
+            'title'     => Text::_("Promotor/a del proyecto"),
+            'hint'      => Text::_("Selecciona "Persona física" en el caso de que tú seas el/la promotor/a del proyecto y te representes a ti mismo/a. Si el promotor es un grupo es necesario para elegir la segunda opción que tenga un CIF propio, en ese caso elige "Persona jurídica". "),
             'children'  => array(
                 'contract_entity-person' =>  array(
                     'name'  => 'contract_entity',
                     'value' => false,
                     'type'  => 'radio',
                     'class' => 'inline',
-                    'label' => Text::get('personal-field-contract_entity-person'),
+                    'label' => Text::_("Persona física"),
                     'id'    => 'contract_entity-person',
                     'checked' => !$project->contract_entity ? true : false,
                     'children' => array(
@@ -70,7 +70,7 @@ echo new SuperForm(array(
                     'value' => true,
                     'type'  => 'radio',
                     'class' => 'inline',
-                    'label' => Text::get('personal-field-contract_entity-entity'),
+                    'label' => Text::_("Persona jurídica (asociaciones, fundaciones, empresas)"),
                     'id'    => 'contract_entity-entity',
                     'checked' => $project->contract_entity ? true : false,
                     'children' => array(
@@ -80,8 +80,8 @@ echo new SuperForm(array(
                             'class'     => 'inline',
                             'required'  => true,
                             'size'      => 20,
-                            'title'     => Text::get('personal-field-entity_name'),
-                            'hint'      => Text::get('tooltip-project-entity_name'),
+                            'title'     => Text::_("Denominación social (nombre) de la entidad"),
+                            'hint'      => Text::_("Escribe el nombre de la organización tal como aparece en su CIF."),
                             'errors'    => !empty($errors['entity_name']) ? array($errors['entity_name']) : array(),
                             'ok'        => !empty($okeys['entity_name']) ? array($okeys['entity_name']) : array(),
                             'value'     => $project->entity_name
@@ -91,9 +91,9 @@ echo new SuperForm(array(
                             'type'      => 'textbox',
                             'class'     => 'inline',
                             'required'  => true,
-                            'title'     => Text::get('personal-field-entity_cif'),
+                            'title'     => Text::_("CIF de la entidad"),
                             'size'      => 15,
-                            'hint'      => Text::get('tooltip-project-entity_cif'),
+                            'hint'      => Text::_("Escribe el CIF (letra + número) de la organización."),
                             'errors'    => !empty($errors['entity_cif']) ? array($errors['entity_cif']) : array(),
                             'ok'        => !empty($okeys['entity_cif']) ? array($okeys['entity_cif']) : array(),
                             'value'     => $project->entity_cif
@@ -104,8 +104,8 @@ echo new SuperForm(array(
                             'class'     => 'inline',
                             'required'  => true,
                             'size'      => 20,
-                            'title'     => Text::get('personal-field-entity_office'),
-                            'hint'      => Text::get('tooltip-project-entity_office'),
+                            'title'     => Text::_("Cargo en la organización"),
+                            'hint'      => Text::_("Escribe el cargo con el que representas a la organización (secretario/a, presidente/a, vocal...). "),
                             'errors'    => !empty($errors['entity_office']) ? array($errors['entity_office']) : array(),
                             'ok'        => !empty($okeys['entity_office']) ? array($okeys['entity_office']) : array(),
                             'value'     => $project->entity_office
@@ -117,16 +117,16 @@ echo new SuperForm(array(
 
         'contract' => array(
             'type'      => 'group',
-            'title'     => Text::get('personal-field-contract_data'),
-            'hint'      => Text::get('tooltip-project-contract_data'),
+            'title'     => Text::_("Datos del/la responsable del proyecto"),
+            'hint'      => Text::_("Ya sea como persona física o bien jurídica, es necesario que alguien figure como promotor/a del proyecto, y también para la interlocución con el equipo de Goteo. No tiene que coincidir necesariamente con el perfil de usuario del apartado anterior."),
             'children'  => array(
                 'contract_name' => array(
                     'type'      => 'textbox',
                     'class'     => 'inline',
                     'required'  => true,
                     'size'      => 20,
-                    'title'     => Text::get('personal-field-contract_name'),
-                    'hint'      => Text::get('tooltip-project-contract_name'),
+                    'title'     => Text::_("Nombre y apellidos"),
+                    'hint'      => Text::_("Deben ser tu nombre y apellidos reales. Ten en cuenta que figurarás como responsable del proyecto."),
                     'errors'    => !empty($errors['contract_name']) ? array($errors['contract_name']) : array(),
                     'ok'        => !empty($okeys['contract_name']) ? array($okeys['contract_name']) : array(),
                     'value'     => $project->contract_name
@@ -136,9 +136,9 @@ echo new SuperForm(array(
                     'type'      => 'textbox',
                     'class'     => 'inline',
                     'required'  => true,
-                    'title'     => Text::get('personal-field-contract_nif'),
+                    'title'     => Text::_("Número de NIF / NIE / VAT"),
                     'size'      => 9,
-                    'hint'      => Text::get('tooltip-project-contract_nif'),
+                    'hint'      => Text::_("Tu número de NIF o NIE con cifras y letra."),
                     'errors'    => !empty($errors['contract_nif']) ? array($errors['contract_nif']) : array(),
                     'ok'        => !empty($okeys['contract_nif']) ? array($okeys['contract_nif']) : array(),
                     'value'     => $project->contract_nif
@@ -148,9 +148,9 @@ echo new SuperForm(array(
                     'type'      => 'textbox',
                     'class'     => 'inline',
                     'required'  => true,
-                    'title'     => Text::get('personal-field-phone'),
+                    'title'     => Text::_("Teléfono"),
                     'dize'      => 15,
-                    'hint'      => Text::get('tooltip-project-phone'),
+                    'hint'      => Text::_("Número de teléfono móvil o fijo, con su prefijo de marcado."),
                     'errors'    => !empty($errors['phone']) ? array($errors['phone']) : array(),
                     'ok'        => !empty($okeys['phone']) ? array($okeys['phone']) : array(),
                     'value'     => $project->phone
@@ -160,9 +160,9 @@ echo new SuperForm(array(
                     'type'      => 'textbox',
                     'class'     => 'inline',
                     'required'  => true,
-                    'title'     => Text::get('personal-field-contract_email'),
+                    'title'     => Text::_("Email vinculado al proyecto"),
                     'size'      => 9,
-                    'hint'      => Text::get('tooltip-project-contract_email'),
+                    'hint'      => Text::_("Dirección de correo electrónica principal asociada al proyecto. Aquí recibirás las notificaciones y mensajes del equipo de Goteo en relación al proyecto propuesto."),
                     'errors'    => !empty($errors['contract_email']) ? array($errors['contract_email']) : array(),
                     'ok'        => !empty($okeys['contract_email']) ? array($okeys['contract_email']) : array(),
                     'value'     => $project->contract_email
@@ -172,8 +172,8 @@ echo new SuperForm(array(
                     'type'      => 'datebox',
                     'required'  => true,
                     'size'      => 8,
-                    'title'     => Text::get('personal-field-contract_birthdate'),
-                    'hint'      => Text::get('tooltip-project-contract_birthdate'),
+                    'title'     => Text::_("Fecha de nacimiento"),
+                    'hint'      => Text::_("Indica la fecha de tu nacimiento. No se hará pública en ningún caso, nos interesa por temas estadísticos."),
                     'errors'    => !empty($errors['contract_birthdate']) ? array($errors['contract_birthdate']) : array(),
                     'ok'        => !empty($okeys['contract_birthdate']) ? array($okeys['contract_birthdate']) : array(),
                     'value'     => $project->contract_birthdate
@@ -185,17 +185,17 @@ echo new SuperForm(array(
         /* Domicilio */
         'main_address' => array(
             'type'      => 'group',
-            'title'     => Text::get('personal-field-main_address'),
-            'hint'      => Text::get('tooltip-project-main_address'),
+            'title'     => Text::_("Domicilio fiscal"),
+            'hint'      => Text::_("Dirección fiscal de la persona u organización (según proceda)."),
             'children'  => array(
                 'address' => array(
                     'type'      => 'textbox',
                     'class'     => 'inline',
                     'required'  => true,
-                    'title'     => Text::get('personal-field-address'),
+                    'title'     => Text::_("Dirección"),
                     'rows'      => 6,
                     'cols'      => 40,
-                    'hint'      => Text::get('tooltip-project-main_address'),
+                    'hint'      => Text::_("Dirección fiscal de la persona u organización (según proceda)."),
                     'errors'    => !empty($errors['address']) ? array($errors['address']) : array(),
                     'ok'        => !empty($okeys['address']) ? array($okeys['address']) : array(),
                     'value'     => $project->address
@@ -205,9 +205,9 @@ echo new SuperForm(array(
                     'type'      => 'textbox',
                     'class'     => 'inline',
                     'required'  => true,
-                    'title'     => Text::get('personal-field-zipcode'),
+                    'title'     => Text::_("Código postal"),
                     'size'      => 7,
-                    'hint'      => Text::get('tooltip-project-main_address'),
+                    'hint'      => Text::_("Dirección fiscal de la persona u organización (según proceda)."),
                     'errors'    => !empty($errors['zipcode']) ? array($errors['zipcode']) : array(),
                     'ok'        => !empty($okeys['zipcode']) ? array($okeys['zipcode']) : array(),
                     'value'     => $project->zipcode
@@ -217,9 +217,9 @@ echo new SuperForm(array(
                     'type'      => 'textbox',
                     'class'     => 'inline',
                     'required'  => true,
-                    'title'     => Text::get('personal-field-location'),
+                    'title'     => Text::_("Localidad"),
                     'size'      => 25,
-                    'hint'      => Text::get('tooltip-project-main_address'),
+                    'hint'      => Text::_("Dirección fiscal de la persona u organización (según proceda)."),
                     'errors'    => !empty($errors['location']) ? array($errors['location']) : array(),
                     'ok'        => !empty($okeys['location']) ? array($okeys['location']) : array(),
                     'value'     => $project->location
@@ -229,9 +229,9 @@ echo new SuperForm(array(
                     'type'      => 'textbox',
                     'class'     => 'inline',
                     'required'  => true,
-                    'title'     => Text::get('personal-field-country'),
+                    'title'     => Text::_("País"),
                     'size'      => 25,
-                    'hint'      => Text::get('tooltip-project-main_address'),
+                    'hint'      => Text::_("Dirección fiscal de la persona u organización (según proceda)."),
                     'errors'    => !empty($errors['country']) ? array($errors['country']) : array(),
                     'ok'        => !empty($okeys['country']) ? array($okeys['country']) : array(),
                     'value'     => $project->country
@@ -243,15 +243,15 @@ echo new SuperForm(array(
         'post_address-radioset' => array(
             'type'      => 'group',
             'class'     => 'inline',
-            'title'     => Text::get('personal-field-post_address'),
-            'hint'      => Text::get('tooltip-project-post_address'),
+            'title'     => Text::_("Domicilio postal"),
+            'hint'      => Text::_("Indica en caso necesario una dirección postal detallada."),
             'children'  => array(
                 'post_address-radio-same' =>  array(
                     'name'  => 'secondary_address',
                     'value' => false,
                     'type'  => 'radio',
                     'class' => 'inline',
-                    'label' => Text::get('personal-field-post_address-same'),
+                    'label' => Text::_("Igual"),
                     'id'    => 'post_address-radio-same',
                     'checked' => !$project->secondary_address ? true : false,
                     'children' => array(
@@ -268,7 +268,7 @@ echo new SuperForm(array(
                     'value' => true,
                     'type'  => 'radio',
                     'class' => 'inline',
-                    'label' => Text::get('personal-field-post_address-different'),
+                    'label' => Text::_("Diferente"),
                     'id'    => 'post_address-radio-different',
                     'checked' => $project->secondary_address ? true : false,
                     'children' => array(
@@ -276,10 +276,10 @@ echo new SuperForm(array(
                         'post_address' => array(
                             'type'      => 'textbox',
                             'class'     => 'inline',
-                            'title'     => Text::get('personal-field-address'),
+                            'title'     => Text::_("Dirección"),
                             'rows'      => 6,
                             'cols'      => 40,
-                            'hint'      => Text::get('tooltip-project-post_address'),
+                            'hint'      => Text::_("Indica en caso necesario una dirección postal detallada."),
                             'errors'    => !empty($errors['post_address']) ? array($errors['post_address']) : array(),
                             'ok'        => !empty($okeys['post_address']) ? array($okeys['post_address']) : array(),
                             'value'     => $project->post_address
@@ -288,9 +288,9 @@ echo new SuperForm(array(
                         'post_zipcode' => array(
                             'type'      => 'textbox',
                             'class'     => 'inline',
-                            'title'     => Text::get('personal-field-zipcode'),
+                            'title'     => Text::_("Código postal"),
                             'size'      => 7,
-                            'hint'      => Text::get('tooltip-project-post_address'),
+                            'hint'      => Text::_("Indica en caso necesario una dirección postal detallada."),
                             'errors'    => !empty($errors['post_zipcode']) ? array($errors['post_zipcode']) : array(),
                             'ok'        => !empty($okeys['post_zipcode']) ? array($okeys['post_zipcode']) : array(),
                             'value'     => $project->post_zipcode
@@ -299,9 +299,9 @@ echo new SuperForm(array(
                         'post_location' => array(
                             'type'      => 'textbox',
                             'class'     => 'inline',
-                            'title'     => Text::get('personal-field-location'),
+                            'title'     => Text::_("Localidad"),
                             'size'      => 25,
-                            'hint'      => Text::get('tooltip-project-post_address'),
+                            'hint'      => Text::_("Indica en caso necesario una dirección postal detallada."),
                             'errors'    => !empty($errors['post_location']) ? array($errors['post_location']) : array(),
                             'ok'        => !empty($okeys['post_location']) ? array($okeys['post_location']) : array(),
                             'value'     => $project->post_location
@@ -310,9 +310,9 @@ echo new SuperForm(array(
                         'post_country' => array(
                             'type'      => 'textbox',
                             'class'     => 'inline',
-                            'title'     => Text::get('personal-field-country'),
+                            'title'     => Text::_("País"),
                             'size'      => 25,
-                            'hint'      => Text::get('tooltip-project-post_address'),
+                            'hint'      => Text::_("Indica en caso necesario una dirección postal detallada."),
                             'errors'    => !empty($errors['post_country']) ? array($errors['post_country']) : array(),
                             'ok'        => !empty($okeys['post_country']) ? array($okeys['post_country']) : array(),
                             'value'     => $project->post_country
@@ -326,7 +326,7 @@ echo new SuperForm(array(
             'type'      => 'group',
             'children'  => array(
                 'errors' => array(
-                    'title' => Text::get('form-footer-errors_title'),
+                    'title' => Text::_("Errores"),
                     'view'  => new View('view/project/edit/errors.html.php', array(
                         'project'   => $project,
                         'step'      => $this['step']
@@ -338,7 +338,7 @@ echo new SuperForm(array(
                         'next' => array(
                             'type'  => 'submit',
                             'name'  => 'view-step-overview',
-                            'label' => Text::get('form-next-button'),
+                            'label' => Text::_("Siguiente"),
                             'class' => 'next'
                         )
                     )

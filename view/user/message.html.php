@@ -49,7 +49,7 @@ $worthcracy = Worth::getAll();
 
 <div id="sub-header">
     <div>
-        <h2><a href="/user/<?php echo $user->id; ?>"><img src="<?php echo $user->avatar->getLink(75, 75, true); ?>" /></a> <?php echo Text::get('profile-name-header'); ?> <br /><em><?php echo $user->name; ?></em></h2>
+        <h2><a href="/user/<?php echo $user->id; ?>"><img src="<?php echo $user->avatar->getLink(75, 75, true); ?>" /></a> <?php echo Text::_("Perfil de "); ?> <br /><em><?php echo $user->name; ?></em></h2>
     </div>
 </div>
 
@@ -60,13 +60,13 @@ $worthcracy = Worth::getAll();
     <?php if (!empty($_SESSION['user']->id)) : ?>
     <div class="widget user-message">
 
-        <h3 class="title"><?php echo Text::get('user-message-send_personal-header'); ?></h3>
+        <h3 class="title"><?php echo Text::_("Envia un mensaje al usuario"); ?></h3>
 
         <form method="post" action="/message/personal/<?php echo $user->id; ?>">
             <div id="bocadillo"></div>
             <textarea id="message" name="message" cols="50" rows="5"></textarea>
 
-            <a target="_blank" id="a-preview" href="#preview" class="preview">&middot;<?php echo Text::get('regular-preview'); ?></a>
+            <a target="_blank" id="a-preview" href="#preview" class="preview">&middot;<?php echo Text::_("Previsualizar"); ?></a>
             <div style="display:none">
                 <div id="preview" style="width:400px;height:300px;overflow:auto;">
 
@@ -75,7 +75,7 @@ $worthcracy = Worth::getAll();
 
 
 
-            <button class="green" type="submit"><?php echo Text::get('project-messages-send_message-button'); ?></button>
+            <button class="green" type="submit"><?php echo Text::_("Enviar"); ?></button>
         </form>
 
     </div>

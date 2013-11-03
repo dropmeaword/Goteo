@@ -44,7 +44,7 @@ if (!empty($project->costs)) {
                 'class'     => 'cost editcost '.$req_class,
                 'children'  => array(
                     "cost-{$cost->id}-cost-orig" => array(
-                        'title'     => Text::get('costs-field-cost'),
+                        'title'     => Text::_("Coste"),
                         'type'      => 'html',
                         'html'      => $original->cost
                     ),
@@ -59,7 +59,7 @@ if (!empty($project->costs)) {
                     ),
                     "cost-{$cost->id}-description-orig" => array(
                         'type'      => 'html',
-                        'title'     => Text::get('costs-field-description'),
+                        'title'     => Text::_("Descripción"),
                         'html'      => nl2br($original->description)
                     ),
                     "cost-{$cost->id}-description" => array(
@@ -68,7 +68,7 @@ if (!empty($project->costs)) {
                         'cols'      => 100,
                         'rows'      => 4,
                         'class'     => 'inline cost-description',
-                        'hint'      => Text::get('tooltip-project-cost-description'),
+                        'hint'      => Text::_("Explica brevemente en qué consiste este coste."),
                         'errors'    => array(),
                         'ok'        => array(),
                         'value'     => $cost->description
@@ -79,7 +79,7 @@ if (!empty($project->costs)) {
                         'children' => array(
                             "cost-{$cost->id}-ok" => array(
                                 'type'  => 'submit',
-                                'label' => Text::get('form-accept-button'),
+                                'label' => Text::_("Aceptar"),
                                 'class' => 'inline ok'
                             )
                         )
@@ -113,13 +113,13 @@ $sfid = 'sf-project-costs';
     'level'         => 3,
     'method'        => 'post',
     'title'         => '',
-    'hint'          => Text::get('guide-project-supports'),
+    'hint'          => Text::_("<strong>En este apartado puedes especificar qué otras ayudas, aparte de financiación, se necesitan para llevar a cabo el proyecto.</strong><br><br> Pueden ser tareas o acciones a cargo de otras personas (traducciones, gestiones, difusión, etc), o bien préstamos específicos (de material, transporte, hardware, etc)."),
     'class'         => 'aqua',
     'footer'        => array(
         'view-step-preview' => array(
             'type'  => 'submit',
             'name'  => 'save-costs',
-            'label' => Text::get('regular-save'),
+            'label' => Text::_("Guardar"),
             'class' => 'next'
         )
     ),
@@ -131,8 +131,8 @@ $sfid = 'sf-project-costs';
 
         'costs' => array(
             'type'      => 'group',
-            'title'     => Text::get('costs-fields-main-title'),
-            'hint'      => Text::get('tooltip-project-costs'),
+            'title'     => Text::_("Desglose de costes"),
+            'hint'      => Text::_("Cuanto más precisión en el desglose mejor valorará Goteo la información general del proyecto. "),
             'errors'    => array(),
             'ok'        => array(),
             'children'  => $costs

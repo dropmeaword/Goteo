@@ -67,11 +67,11 @@ include 'view/header.html.php';
 						<div class="widget blog-content-module">
 							<?php echo new View('view/blog/post.html.php', array('post'=>$post->id, 'show' => 'list')); ?>
                             <ul class="share-goteo">
-                                <li class="sharetext"><?php echo Text::get('regular-share_this'); ?></li>
-                                <li class="twitter"><a href="<?php echo htmlspecialchars($twitter_url) ?>" target="_blank"><?php echo Text::get('regular-twitter'); ?></a></li>
-                                <li class="facebook"><a href="<?php echo htmlspecialchars($facebook_url) ?>" target="_blank"><?php echo Text::get('regular-facebook'); ?></a></li>
+                                <li class="sharetext"><?php echo Text::_("Compartir en:"); ?></li>
+                                <li class="twitter"><a href="<?php echo htmlspecialchars($twitter_url) ?>" target="_blank"><?php echo Text::_("Twitter"); ?></a></li>
+                                <li class="facebook"><a href="<?php echo htmlspecialchars($facebook_url) ?>" target="_blank"><?php echo Text::_("Facebook"); ?></a></li>
                             </ul>
-                            <div class="comments-num"><a href="/blog/<?php echo $post->id; ?>"><?php echo $post->num_comments > 0 ? $post->num_comments . ' ' .Text::get('blog-comments') : Text::get('blog-no_comments'); ?></a></div>
+                            <div class="comments-num"><a href="/blog/<?php echo $post->id; ?>"><?php echo $post->num_comments > 0 ? $post->num_comments . ' ' .Text::_("Comentarios") : Text::_("Sin comentarios"); ?></a></div>
 						</div>
 					<?php endwhile; ?>
                     <ul id="pagination">
@@ -91,11 +91,11 @@ include 'view/header.html.php';
                         $twitter_url = 'http://twitter.com/home?status=' . rawurlencode($share_title . ': ' . $share_url . ' #Goteo');
                     ?>
 					<ul class="share-goteo">
-							<li class="sharetext"><?php echo Text::get('regular-share_this'); ?></li>
-							<li class="twitter"><a href="<?php echo htmlspecialchars($twitter_url) ?>" target="_blank"><?php echo Text::get('regular-twitter'); ?></a></li>
-							<li class="facebook"><a href="<?php echo htmlspecialchars($facebook_url) ?>" target="_blank"><?php echo Text::get('regular-facebook'); ?></a></li>
+							<li class="sharetext"><?php echo Text::_("Compartir en:"); ?></li>
+							<li class="twitter"><a href="<?php echo htmlspecialchars($twitter_url) ?>" target="_blank"><?php echo Text::_("Twitter"); ?></a></li>
+							<li class="facebook"><a href="<?php echo htmlspecialchars($facebook_url) ?>" target="_blank"><?php echo Text::_("Facebook"); ?></a></li>
 					</ul>
-					<div class="comments-num"><a href="/blog/<?php echo $post->id; ?>"><?php echo $post->num_comments > 0 ? $post->num_comments . ' ' .Text::get('blog-comments') : Text::get('blog-no_comments'); ?></a></div>
+					<div class="comments-num"><a href="/blog/<?php echo $post->id; ?>"><?php echo $post->num_comments > 0 ? $post->num_comments . ' ' .Text::_("Comentarios") : Text::_("Sin comentarios"); ?></a></div>
 				</div>
                 <?php echo new View('view/blog/comments.html.php', $this) ?>
                 <?php echo new View('view/blog/sendComment.html.php', $this) ?>

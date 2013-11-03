@@ -106,15 +106,15 @@ namespace Goteo\Model {
         public function validate (&$errors = array()) { 
             if (empty($this->node))
                 $errors[] = 'Falta nodo';
-                //Text::get('mandatory-faq-node');
+                //;
 
             if (empty($this->section))
                 $errors[] = 'Falta seccion';
-                //Text::get('mandatory-faq-section');
+                //;
 
             if (empty($this->title))
                 $errors[] = 'Falta título';
-                //Text::get('mandatory-faq-title');
+                //;
 
             if (empty($errors))
                 return true;
@@ -214,11 +214,11 @@ namespace Goteo\Model {
 
         public static function sections () {
             return array(
-                'node' => Text::get('faq-main-section-header'),
-                'project' => Text::get('faq-project-section-header'),
-                'sponsor' => Text::get('faq-sponsor-section-header'),
-                'investors' => Text::get('faq-investors-section-header'),
-                'nodes' => Text::get('faq-nodes-section-header')
+                'node' => Text::_("Una aproximación a Goteo"),
+                'project' => Text::_("Sobre los proyectos"),
+                'sponsor' => Text::_("Para impulsor@s"),
+                'investors' => Text::_("Para cofinanciador@s"),
+                'nodes' => Text::_("Sobre nodos locales")
             );
         }
 

@@ -34,7 +34,7 @@ $user->about = nl2br(Text::urlink($user->about));
 
 <div class="widget user collapsable">
 
-    <h<?php echo $level ?> class="supertitle"><?php echo Text::get('profile-widget-user-header'); ?></h<?php echo $level ?>>
+    <h<?php echo $level ?> class="supertitle"><?php echo Text::_("Usuario"); ?></h<?php echo $level ?>>
 
     <h<?php echo $level + 1 ?> class="title">
     <?php echo htmlspecialchars($user->name) ?></h<?php echo $level + 1 ?>>
@@ -52,12 +52,12 @@ $user->about = nl2br(Text::urlink($user->about));
     <dl>
 
         <?php if (isset($user->location)): ?>
-        <dt class="location"><?php echo Text::get('profile-location-header'); ?></dt>
+        <dt class="location"><?php echo Text::_("Mi ubicación"); ?></dt>
         <dd class="location"><?php echo Text::GmapsLink($user->location); ?></dd>
         <?php endif ?>
 
         <?php if (!empty($user->webs)): ?>
-        <dt class="links"><?php echo Text::get('profile-webs-header'); ?></dt>
+        <dt class="links"><?php echo Text::_("Mis webs"); ?></dt>
         <dd class="links">
             <ul>
                 <?php foreach ($user->webs as $link): ?>
@@ -67,13 +67,13 @@ $user->about = nl2br(Text::urlink($user->about));
         </dd>
         <?php endif ?>
 
-        <dt class="message"><?php echo Text::get('regular-send_message')?></dt>
-        <dd class="message"><a href="/user/profile/<?php echo htmlspecialchars($user->id) ?>/message"><?php echo Text::get('regular-send_message')?></a></dd>
+        <dt class="message"><?php echo Text::_("Enviar mensaje")?></dt>
+        <dd class="message"><a href="/user/profile/<?php echo htmlspecialchars($user->id) ?>/message"><?php echo Text::_("Enviar mensaje")?></a></dd>
 
 
     </dl>
 
-    <a class="button aqua profile" href="/user/<?php echo $user->id; ?>"><?php echo Text::get('profile-widget-button'); ?></a>
+    <a class="button aqua profile" href="/user/<?php echo $user->id; ?>"><?php echo Text::_("Ver perfil"); ?></a>
 
 </div>
 

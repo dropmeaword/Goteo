@@ -30,11 +30,11 @@ $preferences = $this['preferences'];
 $allow = array(
     array(
         'value'     => 1,
-        'label'     => Text::get('regular-yes')
+        'label'     => Text::_("Sí")
         ),
     array(
         'value'     => 0,
-        'label'     => Text::get('regular-no')
+        'label'     => Text::_("No")
         )
 );
 
@@ -47,11 +47,11 @@ echo new SuperForm(array(
 
     'level'         => 3,
     'method'        => 'post',
-    'hint'          => Text::get('guide-dashboard-user-preferences'),
+    'hint'          => Text::_("Marca ''Sí'' en las notificaciones automáticas que quieras bloquear"),
     'footer'        => array(
         'view-step-overview' => array(
             'type'  => 'submit',
-            'label' => Text::get('form-apply-button'),
+            'label' => Text::_("Aplicar"),
             'class' => 'next',
             'name'  => 'save-userPreferences'
         )
@@ -59,38 +59,38 @@ echo new SuperForm(array(
     'elements'      => array(
 
         'updates' => array(
-            'title'     => Text::get('user-preferences-updates'),
+            'title'     => Text::_("Bloquear notificaciones de novedades sobre los proyectos que apoyo"),
             'type'      => 'slider',
             'options'   => $allow,
             'class'     => 'currently cols_' . count($allow),
-            'hint'      => Text::get('tooltip-preferences-updates'),
+            'hint'      => ,
             'errors'    => array(),
             'value'     => (int) $preferences->updates
         ),
         'threads' => array(
-            'title'     => Text::get('user-preferences-threads'),
+            'title'     => Text::_("Bloquear notificaciones de respuestas en los mensajes que yo inicio"),
             'type'      => 'slider',
             'options'   => $allow,
             'class'     => 'currently cols_' . count($allow),
-            'hint'      => Text::get('tooltip-preferences-threads'),
+            'hint'      => ,
             'errors'    => array(),
             'value'     => (int) $preferences->threads
         ),
         'rounds' => array(
-            'title'     => Text::get('user-preferences-rounds'),
+            'title'     => Text::_("Bloquear notificaciones de progreso de los proyectos que apoyo"),
             'type'      => 'slider',
             'options'   => $allow,
             'class'     => 'currently cols_' . count($allow),
-            'hint'      => Text::get('tooltip-preferences-rounds'),
+            'hint'      => ,
             'errors'    => array(),
             'value'     => (int) $preferences->rounds
         ),
         'mailing' => array(
-            'title'     => Text::get('user-preferences-mailing'),
+            'title'     => Text::_("Bloquear el envio de newsletter"),
             'type'      => 'slider',
             'options'   => $allow,
             'class'     => 'currently cols_' . count($allow),
-            'hint'      => Text::get('tooltip-preferences-mailing'),
+            'hint'      => ,
             'errors'    => array(),
             'value'     => (int) $preferences->mailing
         )

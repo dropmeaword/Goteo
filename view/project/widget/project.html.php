@@ -51,23 +51,23 @@ if (isset($this['investor']) && is_object($this['investor'])) {
     <div class="image">
         <?php switch ($project->tagmark) {
             case 'onrun': // "en marcha"
-                echo '<div class="tagmark green">' . Text::get('regular-onrun_mark') . '</div>';
+                echo '<div class="tagmark green">' . Text::_("En marcha!") . '</div>';
                 break;
             case 'keepiton': // "aun puedes"
-                echo '<div class="tagmark green">' . Text::get('regular-keepiton_mark') . '</div>';
+                echo '<div class="tagmark green">' . Text::_("Mínimo conseguido") . '</div>';
                 break;
             case 'onrun-keepiton': // "en marcha" y "aun puedes"
-//                echo '<div class="tagmark green">' . Text::get('regular-onrun_mark') . '</div>';
-                  echo '<div class="tagmark green twolines"><span class="small"><strong>' . Text::get('regular-onrun_mark') . '</strong><br />' . Text::get('regular-keepiton_mark') . '</span></div>';
+//                echo '<div class="tagmark green">' . Text::_("En marcha!") . '</div>';
+                  echo '<div class="tagmark green twolines"><span class="small"><strong>' . Text::_("En marcha!") . '</strong><br />' . Text::_("Mínimo conseguido") . '</span></div>';
                 break;
             case 'gotit': // "financiado"
-                echo '<div class="tagmark violet">' . Text::get('regular-gotit_mark') . '</div>';
+                echo '<div class="tagmark violet">' . Text::_("Financiado!") . '</div>';
                 break;
             case 'success': // "exitoso"
-                echo '<div class="tagmark red">' . Text::get('regular-success_mark') . '</div>';
+                echo '<div class="tagmark red">' . Text::_("Exitoso!") . '</div>';
                 break;
             case 'fail': // "caducado"
-                echo '<div class="tagmark grey">' . Text::get('regular-fail_mark') . '</div>';
+                echo '<div class="tagmark grey">' . Text::_("Archivado...") . '</div>';
                 break;
         } ?>
 
@@ -89,14 +89,14 @@ if (isset($this['investor']) && is_object($this['investor'])) {
 
     <h<?php echo $level ?> class="title"><a href="<?php echo SITE_URL ?>/project/<?php echo $project->id ?>"<?php echo $blank; ?>><?php echo htmlspecialchars(Text::recorta($project->name,50)) ?></a></h<?php echo $level ?>>
 
-    <h<?php echo $level + 1 ?> class="author"><?php echo Text::get('regular-by')?> <a href="<?php echo SITE_URL ?>/user/profile/<?php echo htmlspecialchars($project->user->id) ?>"<?php echo $blank; ?>><?php echo htmlspecialchars(Text::recorta($project->user->name,40)) ?></a></h<?php echo $level + 1?>>
+    <h<?php echo $level + 1 ?> class="author"><?php echo Text::_("Por:")?> <a href="<?php echo SITE_URL ?>/user/profile/<?php echo htmlspecialchars($project->user->id) ?>"<?php echo $blank; ?>><?php echo htmlspecialchars(Text::recorta($project->user->name,40)) ?></a></h<?php echo $level + 1?>>
 
     <div class="description"><?php echo Text::recorta($project->description, 100); ?></div>
 
     <?php echo new View('view/project/meter_hor.html.php', array('project' => $project)) ?>
 
     <div class="rewards">
-        <h<?php echo $level + 1 ?>><?php echo Text::get('project-rewards-header'); ?></h<?php echo $level + 1?>>
+        <h<?php echo $level + 1 ?>><?php echo Text::_("Retorno"); ?></h<?php echo $level + 1?>>
 
         <ul>
            <?php $q = 1; foreach ($project->social_rewards as $social): ?>
@@ -123,18 +123,18 @@ if (isset($this['investor']) && is_object($this['investor'])) {
     if ($this['dashboard'] === true) : // si estamos en el dashboard no hay (apoyar y el ver se abre en una ventana nueva) ?>
     <div class="buttons">
         <?php if ($this['own'] === true) : // si es propio puede ir a editarlo ?>
-        <a class="button red suportit" href="<?php echo SITE_URL ?>/project/edit/<?php echo $project->id ?>"><?php echo Text::get('regular-edit'); ?></a>
+        <a class="button red suportit" href="<?php echo SITE_URL ?>/project/edit/<?php echo $project->id ?>"><?php echo Text::_("Editar"); ?></a>
         <?php endif; ?>
-        <a class="button view" href="<?php echo SITE_URL ?>/project/<?php echo $project->id ?>" target="_blank"><?php echo Text::get('regular-view_project'); ?></a>
+        <a class="button view" href="<?php echo SITE_URL ?>/project/<?php echo $project->id ?>" target="_blank"><?php echo Text::_("Ver proyecto"); ?></a>
     </div>
     <?php else : // normal ?>
     <div class="buttons">
         <?php if ($project->status == 3) : // si esta en campa�a se puede aportar ?>
-        <a class="button violet supportit" href="<?php echo SITE_URL ?>/project/<?php echo $project->id ?>/invest"<?php echo $blank; ?>><?php echo Text::get('regular-invest_it'); ?></a>
+        <a class="button violet supportit" href="<?php echo SITE_URL ?>/project/<?php echo $project->id ?>/invest"<?php echo $blank; ?>><?php echo Text::_("Cofinancia este proyecto"); ?></a>
         <?php else : ?>
-        <a class="button view" href="<?php echo SITE_URL ?>/project/<?php echo $project->id ?>/updates"<?php echo $blank; ?>><?php echo Text::get('regular-see_blog'); ?></a>
+        <a class="button view" href="<?php echo SITE_URL ?>/project/<?php echo $project->id ?>/updates"<?php echo $blank; ?>><?php echo Text::_("Blog"); ?></a>
         <?php endif; ?>
-        <a class="button view" href="<?php echo SITE_URL ?>/project/<?php echo $project->id ?>"<?php echo $blank; ?>><?php echo Text::get('regular-view_project'); ?></a>
+        <a class="button view" href="<?php echo SITE_URL ?>/project/<?php echo $project->id ?>"<?php echo $blank; ?>><?php echo Text::_("Ver proyecto"); ?></a>
     </div>
     <?php endif;
      *

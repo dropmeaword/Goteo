@@ -2217,7 +2217,7 @@ namespace Goteo\Controller {
                                 'action' => "$url/edit/$id",
                                 'submit' => array(
                                     'name' => 'update',
-                                    'label' => Text::get('regular-save')
+                                    'label' => Text::_("Guardar")
                                 ),
                                 'fields' => array (
                                     'id' => array(
@@ -2369,7 +2369,7 @@ namespace Goteo\Controller {
                                 'action' => "$url/edit/$id",
                                 'submit' => array(
                                     'name' => 'update',
-                                    'label' => Text::get('regular-save')
+                                    'label' => Text::_("Guardar")
                                 ),
                                 'fields' => array (
                                     'id' => array(
@@ -2461,7 +2461,7 @@ namespace Goteo\Controller {
 
                         if(empty($errors)) {
                           // mensaje de ok y volvemos a la lista de usuarios
-                          Message::Info(Text::get('user-register-success'));
+                          Message::Info(Text::_("El usuario se ha registrado correctamente. A continuación recibirás un mensaje de correo para activarlo."));
                           throw new Redirection('/admin/users');
                         } else {
                             // si hay algun error volvemos a poner los datos en el formulario
@@ -3480,10 +3480,10 @@ namespace Goteo\Controller {
                     if ($post->save($errors)) {
                         if ($action == 'edit') {
                             $success[] = Text::_('La entrada se ha actualizado correctamente');
-                            ////Text::get('dashboard-project-updates-saved');
+                            ////Text::_("La entrada se ha actualizado correctamente");
                         } else {
                             $success[] = Text::_('Se ha añadido una nueva entrada');
-                            ////Text::get('dashboard-project-updates-inserted');
+                            ////Text::_("Se ha añadido una nueva entrada");
                             $id = $post->id;
                         }
                         $action = $editing ? 'edit' : 'list';
@@ -3523,7 +3523,7 @@ namespace Goteo\Controller {
 
                     } else {
                         $errors[] = Text::_('Ha habido algun problema al guardar los datos');
-                        ////Text::get('dashboard-project-updates-fail');
+                        ////Text::_("Ha habido algun problema al guardar los datos");
                     }
             }
 
@@ -3614,7 +3614,7 @@ namespace Goteo\Controller {
                     if (empty($id)) {
                         throw new Redirection('/admin/blog');
 //                        $errors[] = 'No se ha encontrado la entrada';
-                        //Text::get('dashboard-project-updates-nopost');
+                        //Text::_("No se ha encontrado la entrada");
 //                        $action = 'list';
                         break;
                     } else {
@@ -3622,7 +3622,7 @@ namespace Goteo\Controller {
 
                         if (!$post instanceof Model\Blog\Post) {
                             $errors[] = Text::_('La entrada esta corrupta, contacte con nosotros.');
-                            //Text::get('dashboard-project-updates-postcorrupt');
+                            //Text::_("La entrada está corrupta, contacta con nosotros");
                             $action = 'list';
                             break;
                         }
@@ -3762,7 +3762,7 @@ namespace Goteo\Controller {
 
                         if (!$post instanceof Model\Glossary) {
                             $errors[] = Text::_('La entrada esta corrupta, contacte con nosotros.');
-                            //Text::get('dashboard-project-updates-postcorrupt');
+                            //Text::_("La entrada está corrupta, contacta con nosotros");
                             $action = 'list';
                             break;
                         }
@@ -3971,7 +3971,7 @@ namespace Goteo\Controller {
 
                         if (!$post instanceof Model\Info) {
                             $errors[] = Text::_('La entrada esta corrupta, contacte con nosotros.');
-                            //Text::get('dashboard-project-updates-postcorrupt');
+                            //Text::_("La entrada está corrupta, contacta con nosotros");
                             $action = 'list';
                             break;
                         }
@@ -4135,7 +4135,7 @@ namespace Goteo\Controller {
                                 'action' => "$url/edit/$id",
                                 'submit' => array(
                                     'name' => 'update',
-                                    'label' => Text::get('regular-save')
+                                    'label' => Text::_("Guardar")
                                 ),
                                 'fields' => array (
                                     'id' => array(
@@ -4345,7 +4345,7 @@ namespace Goteo\Controller {
                                 'action' => "$url/edit/$id",
                                 'submit' => array(
                                     'name' => 'update',
-                                    'label' => Text::get('regular-save')
+                                    'label' => Text::_("Guardar")
                                 ),
                                 'fields' => array (
                                     'id' => array(
@@ -4508,7 +4508,7 @@ namespace Goteo\Controller {
                                 'action' => "$url/edit/$id",
                                 'submit' => array(
                                     'name' => 'update',
-                                    'label' => Text::get('regular-save')
+                                    'label' => Text::_("Guardar")
                                 ),
                                 'fields' => array (
                                     'id' => array(
@@ -4651,7 +4651,7 @@ namespace Goteo\Controller {
                                 'action' => "$url/edit/$id",
                                 'submit' => array(
                                     'name' => 'update',
-                                    'label' => Text::get('regular-save')
+                                    'label' => Text::_("Guardar")
                                 ),
                                 'fields' => array (
                                     'id' => array(

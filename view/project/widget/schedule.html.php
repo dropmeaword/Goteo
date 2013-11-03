@@ -83,13 +83,13 @@ $until = mktime(0, 0, 0, date('m', $until) + 1, -1, date('Y', $until));
 ?>
 <div class="widget project-schedule">
     
-    <h<?php echo $level ?> class="title"><?php echo Text::get('costs-field-schedule'); ?></h<?php echo $level ?>>
+    <h<?php echo $level ?> class="title"><?php echo Text::_("Agenda de trabajo"); ?></h<?php echo $level ?>>
     
     <table>
                         
         <thead class="months">
             <tr>
-                <th><?php echo Text::get('regular-months'); ?></th>
+                <th><?php echo Text::_("meses"); ?></th>
                 <?php 
                 $d = $from;
                 while ( $d <= $until) {
@@ -120,7 +120,7 @@ $until = mktime(0, 0, 0, date('m', $until) + 1, -1, date('Y', $until));
         
         <thead class="days">
             <tr>
-                <th><?php echo Text::get('regular-days'); ?></th>
+                <th><?php echo Text::_("días"); ?></th>
                 <?php 
                 for ($d = $from; $d <= $until; $d = mktime(0, 0, 0, date('m', $d), date('d', $d) + 1, date('Y', $d))) {
                     $j = date('j', $d);
@@ -138,7 +138,7 @@ $until = mktime(0, 0, 0, date('m', $until) + 1, -1, date('Y', $until));
         
         <thead class="weeks">
             <tr>
-                <th><?php echo Text::get('regular-weeks'); ?></th>
+                <th><?php echo Text::_("semanas"); ?></th>
                 <?php for ($i = 0, $d = $from; $d <= $until; $d = mktime(0, 0, 0, date('m', $d), date('d', $d) + 7, date('Y', $d))): $i++; ?>
                 <th colspan="7"><span><?php echo $i ?></span></th>
                 <?php endfor ?>

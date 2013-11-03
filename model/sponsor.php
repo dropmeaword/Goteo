@@ -122,11 +122,11 @@ namespace Goteo\Model {
         public function validate (&$errors = array()) {
             if (empty($this->name))
                 $errors[] = Text::_('Falta nombre');
-                //Text::get('mandatory-sponsor-name');
+                //;
 
             if (empty($this->url))
                 $errors[] = Text::_('Falta url');
-                //Text::get('mandatory-sponsor-url');
+                //;
 
             if (empty($errors))
                 return true;

@@ -123,7 +123,7 @@ namespace Goteo\Model\User {
 				return true;
 			} catch(\PDOException $e) {
                 $errors[] = Text::_('No se ha podido desasignar la traduccion ') . $this->id . Text::_(' del usuario ') . $this->user . ' ' . $e->getMessage();
-                //Text::get('remove-review-fail');
+                //;
                 return false;
 			}
 		}
@@ -146,7 +146,7 @@ namespace Goteo\Model\User {
 				return true;
 			} catch(\PDOException $e) {
                 $errors[] = 'No se ha podido marcar la traduccion ' . $this->id . ' del usuario ' . $this->user . ' como lista. ' . $e->getMessage();
-                //Text::get('review-set_ready-fail');
+                //;
                 return false;
 			}
 		}
@@ -169,7 +169,7 @@ namespace Goteo\Model\User {
 				return true;
 			} catch(\PDOException $e) {
                 $errors[] = 'No se ha podido reabrir la revision ' . $this->id . ' del usuario ' . $this->user . '. ' . $e->getMessage();
-                //Text::get('review-set_unready-fail');
+                //;
                 return false;
 			}
 		}

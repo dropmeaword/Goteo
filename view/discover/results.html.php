@@ -29,7 +29,7 @@ include 'view/header.html.php' ?>
 
         <div id="sub-header">
             <div>
-                <h2 class="title"><?php echo Text::get('discover-results-header'); ?></h2>
+                <h2 class="title"><?php echo Text::_("Resultado de búsqueda"); ?></h2>
             </div>
 
         </div>
@@ -46,7 +46,7 @@ include 'view/header.html.php' ?>
                         )); 
                     endforeach;
                 else :
-                    echo Text::get('discover-results-empty');
+                    echo Text::_("No hemos encontrado ningún proyecto que cumpla los criterios de búsqueda");
                 endif; ?>
             </div>
         

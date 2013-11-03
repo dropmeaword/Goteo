@@ -28,26 +28,26 @@ $project = $this['project'];
 ?>
 <div class="widget project-support collapsable" id="project-support">
 
-    <h<?php echo $level + 1 ?> class="supertitle"><?php echo Text::get('project-support-supertitle'); ?></h<?php echo $level + 1 ?>>
+    <h<?php echo $level + 1 ?> class="supertitle"><?php echo Text::_("Necesidades económicas"); ?></h<?php echo $level + 1 ?>>
     
     <?php switch ($project->tagmark) {
         case 'onrun': // "en marcha"
-            echo '<div class="tagmark green">' . Text::get('regular-onrun_mark') . '</div>';
+            echo '<div class="tagmark green">' . Text::_("En marcha!") . '</div>';
             break;
         case 'keepiton': // "aun puedes"
-            echo '<div class="tagmark green">' . Text::get('regular-keepiton_mark') . '</div>';
+            echo '<div class="tagmark green">' . Text::_("Mínimo conseguido") . '</div>';
             break;
         case 'onrun-keepiton': // "en marcha" y "aun puedes"
-            echo '<div class="tagmark green twolines"><span class="small"><strong>' . Text::get('regular-onrun_mark') . '</strong><br />' . Text::get('regular-keepiton_mark') . '</span></div>';
+            echo '<div class="tagmark green twolines"><span class="small"><strong>' . Text::_("En marcha!") . '</strong><br />' . Text::_("Mínimo conseguido") . '</span></div>';
             break;
         case 'gotit': // "financiado"
-            echo '<div class="tagmark violet">' . Text::get('regular-gotit_mark') . '</div>';
+            echo '<div class="tagmark violet">' . Text::_("Financiado!") . '</div>';
             break;
         case 'success': // "exitoso"
-            echo '<div class="tagmark red">' . Text::get('regular-success_mark') . '</div>';
+            echo '<div class="tagmark red">' . Text::_("Exitoso!") . '</div>';
             break;
         case 'fail': // "caducado"
-            echo '<div class="tagmark grey">' . Text::get('regular-fail_mark') . '</div>';
+            echo '<div class="tagmark grey">' . Text::_("Archivado...") . '</div>';
             break;
     } ?>
 
@@ -55,11 +55,11 @@ $project = $this['project'];
     
     <div class="buttons">
         <?php if ($project->status == 3) : // boton apoyar solo si esta en campaña ?>
-        <a class="button violet supportit" href="/project/<?php echo $project->id; ?>/invest"><?php echo Text::get('regular-invest_it'); ?></a>
+        <a class="button violet supportit" href="/project/<?php echo $project->id; ?>/invest"><?php echo Text::_("Cofinancia este proyecto"); ?></a>
         <?php else : ?>
-        <a class="button view" href="/project/<?php echo $project->id ?>/updates"><?php echo Text::get('regular-see_blog'); ?></a>
+        <a class="button view" href="/project/<?php echo $project->id ?>/updates"><?php echo Text::_("Blog"); ?></a>
         <?php endif; ?>
-        <a class="more" href="/project/<?php echo $project->id; ?>/needs"><?php echo Text::get('regular-see_more'); ?></a>
+        <a class="more" href="/project/<?php echo $project->id; ?>/needs"><?php echo Text::_("Ver más"); ?></a>
     </div>
     
 </div>

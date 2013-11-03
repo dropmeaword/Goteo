@@ -39,19 +39,19 @@ $worthcracy = Worth::getAll();
 	    <?php endif; ?>
 	    <dl>
 	        <?php  if (isset($user->projects))  : ?>
-	        <dt class="projects"><?php echo Text::get('profile-invest_on-title'); ?></dt>
-	        <dd class="projects"><strong><?php echo $user->projects ?></strong> <?php echo Text::get('regular-projects'); ?></dd>
+	        <dt class="projects"><?php echo Text::_("Cofinancia"); ?></dt>
+	        <dd class="projects"><strong><?php echo $user->projects ?></strong> <?php echo Text::_("proyectos"); ?></dd>
 	        <?php endif; ?>
 	
-	        <dt class="worthcracy"><?php echo Text::get('profile-worthcracy-title'); ?></dt>
+	        <dt class="worthcracy"><?php echo Text::_("Posición"); ?></dt>
 	        <dd class="worthcracy">
 	            <?php if (isset($user->worth)) echo new View('view/worth/base.html.php', array('worthcracy' => $worthcracy, 'level' => $user->worth)) ?>
 	        </dd>
 	
-	        <dt class="amount"><?php echo Text::get('profile-worth-title'); ?></dt>
+	        <dt class="amount"><?php echo Text::_("Aporta aquí:"); ?></dt>
 	        <dd class="amount"><strong><?php echo \amount_format($user->amount) ?></strong> <span class="euro">&euro;</span></dd>
 	
-	        <dt class="date"><?php echo Text::get('profile-last_worth-title'); ?></dt>
+	        <dt class="date"><?php echo Text::_("Fecha"); ?></dt>
 	        <dd class="date"><?php echo $user->date; ?></dd>
 	    </dl>
 	</div>

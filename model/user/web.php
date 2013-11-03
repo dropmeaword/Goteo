@@ -84,7 +84,7 @@ namespace Goteo\Model\User {
 				return true;
 			} catch(\PDOException $e) {
                 $errors[] = Text::_('No se ha podido quitar la web ') . $this->id . Text::_(' del usuario ') . $this->user . ' ' . $e->getMessage();
-                //Text::get('remove-user_web-fail');
+                //;
                 return false;
 			}
 		}

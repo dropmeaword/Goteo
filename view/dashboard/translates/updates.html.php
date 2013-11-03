@@ -36,14 +36,14 @@ $errors = $this['errors'];
     <?php if (!empty($posts)) : ?>
     <?php foreach ($posts as $post) : ?>
         <div class="post">
-            <a class="button" href="/dashboard/translates/updates/edit/<?php echo $post->id; ?>"><?php echo Text::get('regular-edit') ?></a>&nbsp;&nbsp;&nbsp;
-            <span><?php echo $post->publish ? Text::get('regular-published_yes') : Text::get('regular-published_no'); ?></span>
+            <a class="button" href="/dashboard/translates/updates/edit/<?php echo $post->id; ?>"><?php echo Text::_("Editar") ?></a>&nbsp;&nbsp;&nbsp;
+            <span><?php echo $post->publish ? Text::_("Publicado") : Text::_("Borrador"); ?></span>
             <strong><?php echo $post->title; ?></strong>
             <span><?php echo $post->date; ?></span>
         </div>
     <?php endforeach; ?>
     <?php else : ?>
-        <p><?php echo Text::get('blog-no_posts') ?></p>
+        <p><?php echo Text::_("No se ha publicado ninguna entrada ") ?></p>
     <?php endif; ?>
 
 </div>
@@ -57,7 +57,7 @@ $errors = $this['errors'];
         if (!empty($post->media->url)) {
             $media = array(
                     'type'  => 'media',
-                    'title' => Text::get('overview-field-media_preview'),
+                    'title' => Text::_("Vista previa"),
                     'class' => 'inline media',
                     'type'  => 'html',
                     'html'  => !empty($post->media) ? $post->media->getEmbedCode() : ''
@@ -82,13 +82,13 @@ $errors = $this['errors'];
         'level'         => 3,
         'method'        => 'post',
         'title'         => '',
-        'hint'          => Text::get('guide-project-updates'),
+        'hint'          => Text::_("<b>Es muy importante que los proyectos mantengan informados a sus cofinanciadores y el resto de personas potencialmente interesadas sobre cómo avanza su campaña. Desde este apartado puedes publicar mensajes de actualización sobre el proyecto, como una especie de blog público.</b>\r\n\r\nEn Goteo además, una vez se han logrado los fondos mínimos, para la segunda ronda de cofinanciación es crítico explicar regularmente cómo ha arrancado la producción, avances, problemas, etc que permitan la mayor transparencia posible y saber cómo evoluciona el inicio del proyecto, para así tratar de generar más interés y comunidad en torno al mismo."),
         'class'         => 'aqua',
         'footer'        => array(
             'view-step-preview' => array(
                 'type'  => 'submit',
                 'name'  => 'save-post',
-                'label' => Text::get('regular-save'),
+                'label' => Text::_("Guardar"),
                 'class' => 'next'
             )
         ),
@@ -111,7 +111,7 @@ $errors = $this['errors'];
                 'size'      => 20,
                 'class'     => 'inline',
                 'title'     => '',
-                'hint'      => Text::get('tooltip-updates-title'),
+                'hint'      => Text::_("tooltip-updates-title"),
                 'errors'    => array(),
                 'value'     => $post->title,
             ),
@@ -126,7 +126,7 @@ $errors = $this['errors'];
                 'rows'      => 4,
                 'class'     => 'inline',
                 'title'     => '',
-                'hint'      => Text::get('tooltip-updates-text'),
+                'hint'      => Text::_("tooltip-updates-text"),
                 'errors'    => array(),
                 'value'     => $post->text
             ),
@@ -140,7 +140,7 @@ $errors = $this['errors'];
                 'type'      => 'textbox',
                 'title'     => '',
                 'class'     => 'inline media',
-                'hint'      => Text::get('tooltip-updates-media'),
+                'hint'      => Text::_("tooltip-updates-media"),
                 'errors'    => array(),
                 'value'     => (string) $post->media
             ),
@@ -148,7 +148,7 @@ $errors = $this['errors'];
             'media-upload' => array(
                 'name' => "upload",
                 'type'  => 'submit',
-                'label' => Text::get('form-upload-button'),
+                'label' => Text::_("Enviar"),
                 'class' => 'inline media-upload'
             ),
 
@@ -156,7 +156,7 @@ $errors = $this['errors'];
 
             'legend-orig' => array(
                 'type'      => 'html',
-                'title'     => Text::get('regular-media_legend'),
+                'title'     => Text::_("Leyenda"),
                 'html'     => nl2br($original->legend),
             ),
             'legend' => array(

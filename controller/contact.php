@@ -40,21 +40,21 @@ namespace Goteo\Controller {
 
                     // si falta mensaje, email o asunto, error
                     if(empty($_POST['email'])) {
-                        $errors['email'] = Text::get('error-contact-email-empty');
+                        $errors['email'] = Text::_("No has añadido tu email");
                     } elseif(!\Goteo\Library\Check::mail($_POST['email'])) {
-                        $errors['email'] = Text::get('error-contact-email-invalid');
+                        $errors['email'] = Text::_("El email que has escrito no es válido");
                     } else {
                         $email = $_POST['email'];
                     }
 
                     if(empty($_POST['subject'])) {
-                        $errors['subject'] = Text::get('error-contact-subject-empty');
+                        $errors['subject'] = Text::_("No has escrito el asunto");
                     } else {
                         $subject = $_POST['subject'];
                     }
 
                     if(empty($_POST['message'])) {
-                        $errors['message'] = Text::get('error-contact-message-empty');
+                        $errors['message'] = Text::_("No has escrito ningún mensaje");
                     } else {
                         $msg_content = \strip_tags($_POST['message']);
                         $msg_content = nl2br($msg_content);

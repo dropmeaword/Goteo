@@ -44,12 +44,12 @@ $sfid = 'sf-project-profile';
     'level'         => 3,
     'method'        => 'post',
     'title'         => '',
-    'hint'          => Text::get('guide-project-user-information'),
+    'hint'          => Text::_("<strong>En este apartado debes introducir los datos para la información pública de tu perfil de usuario. </strong><br><br>Tanto si quieres presentar un proyecto como incorporarte como cofinanciador/a, para formar parte de la comunidad de Goteo te recomendamos que pongas atención en tu texto de presentación, que añadas links relevantes sobre lo que haces y subas una imagen de perfil con la que te identifiques."),
     'footer'        => array(
         'view-step-preview' => array(
             'type'  => 'submit',
             'name'  => 'save-userProfile',
-            'label' => Text::get('regular-save'),
+            'label' => Text::_("Guardar"),
             'class' => 'next'
         )
     ),
@@ -64,7 +64,7 @@ $sfid = 'sf-project-profile';
         ),
         'about-orig' => array(
             'type'      => 'html',
-            'title'     => Text::get('profile-field-about'),
+            'title'     => Text::_("Cuéntanos algo sobre ti"),
             'html'     => nl2br($original->about)
         ),
         'about' => array(
@@ -73,14 +73,14 @@ $sfid = 'sf-project-profile';
             'rows'      => 4,
             'class'     => 'inline',
             'title'     => '',
-            'hint'      => Text::get('tooltip-user-about'),
+            'hint'      => Text::_("Como red social, Goteo pretende ayudar a difundir y financiar proyectos interesantes entre el máximo de gente posible. Para eso es importante la información que puedas compartir sobre tus habilidades o experiencia (profesional, académica, aficiones, etc).\r\n"),
             'errors'    => array(),
             'ok'        => array(),
             'value'     => $user->about
         ),
         'keywords-orig' => array(
             'type'      => 'html',
-            'title'     => Text::get('profile-field-keywords'),
+            'title'     => Text::_("Temas que te interesan"),
             'html'     => $original->keywords
         ),
         'keywords' => array(
@@ -88,14 +88,14 @@ $sfid = 'sf-project-profile';
             'size'      => 20,
             'class'     => 'inline',
             'title'     => '',
-            'hint'      => Text::get('tooltip-user-keywords'),
+            'hint'      => Text::_("A medida que introduzcas texto el sistema te sugerirá palabras clave que ya han escrito otros usuarios. Estas categorías ayudan a vincular tu perfil con otras personas y con proyectos concretos."),
             'errors'    => array(),
             'ok'        => array(),
             'value'     => $user->keywords
         ),
         'contribution-orig' => array(
             'type'      => 'html',
-            'title'     => Text::get('profile-field-contribution'),
+            'title'     => Text::_("Qué puedes aportar a Goteo"),
             'html'     => nl2br($original->contribution)
         ),
         'contribution' => array(
@@ -104,7 +104,7 @@ $sfid = 'sf-project-profile';
             'rows'      => 4,
             'class'     => 'inline',
             'title'     => '',
-            'hint'      => Text::get('tooltip-user-contribution'),
+            'hint'      => Text::_("Explica brevemente tus habilidades o los ámbitos en que podrías ayudar a un proyecto (traduciendo, difundiendo, testeando, programando, enseñando, etc)."),
             'errors'    => array(),
             'ok'        => array(),
             'value'     => $user->contribution

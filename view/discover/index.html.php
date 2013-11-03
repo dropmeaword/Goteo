@@ -104,7 +104,7 @@ include 'view/header.html.php' ?>
                     <li><a id="navi-discover-group-<?php echo $type.'-'.$group ?>" href="/discover/view/<?php echo $type; ?>" rev="<?php echo $type ?>" rel="<?php echo "{$type}-{$group}" ?>" class="navi-discover-group navi-discover-group-<?php echo $type ?>"><?php echo $group ?></a></li>
                     <?php endforeach ?>
                 </ul>
-                <a class="all" href="/discover/view/<?php echo $type; ?>"><?php echo Text::get('regular-see_all'); ?></a>
+                <a class="all" href="/discover/view/<?php echo $type; ?>"><?php echo Text::_("Ver todos"); ?></a>
             </div>
 
         </div>

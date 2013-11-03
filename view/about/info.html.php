@@ -28,7 +28,7 @@ include 'view/header.html.php';
 
 $bodyClass = 'about';
 
-$go_up = Text::get('regular-go_up');
+$go_up = Text::_("Subir");
 ?>
 
 	<div id="sub-header-secondary">
@@ -40,7 +40,7 @@ $go_up = Text::get('regular-go_up');
 
 	<div id="main" class="threecols">
 		<div id="about-content">
-            <h3 class="title"><?php echo Text::get('regular-header-about'); ?></h3>
+            <h3 class="title"><?php echo Text::_("Sobre Goteo"); ?></h3>
             <?php if (!empty($posts)) : ?>
                 <div class="about-page">
                 <?php foreach ($posts as $post) : ?>
@@ -104,7 +104,7 @@ $go_up = Text::get('regular-go_up');
 		</div>
 		<div id="about-sidebar">
             <div class="widget about-sidebar-module">
-                <h3 class="supertitle"><?php echo Text::get('header-about-side'); ?></h3>
+                <h3 class="supertitle"><?php echo Text::_("Lo que nos mueve"); ?></h3>
                 <ul>
                     <?php foreach ($posts as $post) : ?>
                     <li><a href="#info<?php echo $post->id; ?>"><?php echo $post->title; ?></a></li>

@@ -159,7 +159,7 @@ namespace Goteo\Model {
         public function validate (&$errors = array()) { 
             if (empty($this->title))
                 $errors[] = Text::_('Falta t�tulo');
-                //Text::get('mandatory-post-title');
+                //;
 
             if (empty($errors))
                 return true;

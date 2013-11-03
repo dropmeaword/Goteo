@@ -24,7 +24,7 @@ use Goteo\Library\Text,
 <div class="status">
 
     <div id="project-status">
-        <h3><?php echo Text::get('form-project-status-title'); ?></h3>
+        <h3><?php echo Text::_("Estado del proyecto"); ?></h3>
         <ul>
             <?php foreach (Project::status() as $i => $s): ?>
             <li><?php if ($i == $this['status']) echo '<strong>' ?><?php echo htmlspecialchars($s) ?><?php if ($i == $this['status']) echo '</strong>' ?></li>
@@ -33,8 +33,8 @@ use Goteo\Library\Text,
     </div>
 
     <div id="project-score">
-        <h3><?php echo Text::get('form-project-progress-title'); ?> <code><?php echo number_format($this['progress'], 0) ?>%</code></h3>
-        <p><?php echo Text::get('explain-project-progress') ?></p>
+        <h3><?php echo Text::_("Evaluación de datos"); ?> <code><?php echo number_format($this['progress'], 0) ?>%</code></h3>
+        <p><?php echo Text::_("Este gráfico explica de un modo visual el nivel de datos que has introducido junto con una evaluación básica que hace el sistema. Para poder enviar el proyecto tienes que superar el 80%. Los criterios que hacen subir este "termómetro"  tienen que ver con la información relevante que facilitas, los media, imágenes y links que introduces, si eliges una licencia más abierta que otra, la coherencia de tu presupuesto respecto a las tareas a desarrollar, etc. No pierdas de vista los consejos de la columna derecha, que guían durante todo el proceso.") ?></p>
 
         <script type="text/javascript">
         // Animated scoremeter

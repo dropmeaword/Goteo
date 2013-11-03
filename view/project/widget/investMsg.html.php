@@ -23,24 +23,24 @@ use Goteo\Library\Text;
 // aviso para el usuario, puede ser start->hola , ok->gracias o fail->lo sentimos
 
 $user = $this['user'];
-$name = $user->name ? $user->name : Text::get('project-invest-guest');
+$name = $user->name ? $user->name : Text::_("Invitado (no olvides registrarte)");
 
 switch ($this['message']) {
     case 'start':
-        $title   = Text::get('regular-hello') . " $name";
-        $message = Text::get('project-invest-start');
+        $title   = Text::_("Hola") . " $name";
+        $message = Text::_("Estás a un paso de ser cofinanciador/a de este proyecto");
         break;
     case 'continue':
-        $title   = Text::get('regular-hello') . " $name";
-        $message = Text::get('project-invest-continue');
+        $title   = Text::_("Hola") . " $name";
+        $message = Text::_("Elige el modo de pago");
         break;
     case 'ok':
-        $title   = Text::get('regular-thanks') . " {$name}!";
-        $message = Text::get('project-invest-ok');
+        $title   = Text::_("Gracias") . " {$name}!";
+        $message = Text::_("Se ha tramitado tu aportación para cofinanciar este proyecto :)");
         break;
     case 'fail':
-        $title   = Text::get('regular-sorry') . " {$name}";
-        $message = Text::get('project-invest-fail');
+        $title   = Text::_("Lo sentimos") . " {$name}";
+        $message = Text::_("Algo ha fallado, por favor inténtalo de nuevo");
         break;
 }
 

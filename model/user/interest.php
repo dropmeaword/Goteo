@@ -97,11 +97,11 @@ namespace Goteo\Model\User {
             // Estos son errores que no permiten continuar
             if (empty($this->id))
                 $errors[] = Text::_('No hay ningun interes para guardar');
-                //Text::get('validate-interest-noid');
+                //;
 
             if (empty($this->user))
                 $errors[] = Text::_('No hay ningun usuario al que asignar');
-                //Text::get('validate-interest-nouser');
+                //;
 
             //cualquiera de estos errores hace fallar la validación
             if (!empty($errors))
@@ -145,7 +145,7 @@ namespace Goteo\Model\User {
 				return true;
 			} catch(\PDOException $e) {
                 $errors[] = Text::_('No se ha podido quitar el interes ') . $this->id . ' del usuario ' . $this->user . ' ' . $e->getMessage();
-                //Text::get('remove-interest-fail');
+                //;
                 return false;
 			}
 		}

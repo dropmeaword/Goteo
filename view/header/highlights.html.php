@@ -23,12 +23,12 @@ use Goteo\Library\Text,
 
 $highlights = News::getAll(true);
 
-$see_more = Text::get('regular-see_more');
+$see_more = Text::_("Ver más");
 
 ?>
 <div id="highlights">
     
-    <h2><a href="/news"><?php echo Text::get('regular-news'); ?></a></h2>
+    <h2><a href="/news"><?php echo Text::_("Noticias:"); ?></a></h2>
     
     <ul>
         <?php foreach ($highlights as $i => $hl) : ?>

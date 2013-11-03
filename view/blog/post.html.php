@@ -93,5 +93,5 @@
 	<?php endif; ?>
 	<blockquote>
         <?php echo $post->text; ?>
-        <?php if ($this['show'] == 'list') : ?><div class="read_more"><a href="<?php echo $url.$post->id; ?>"><?php echo Text::get('regular-read_more') ?></a></div><?php endif ?>
+        <?php if ($this['show'] == 'list') : ?><div class="read_more"><a href="<?php echo $url.$post->id; ?>"><?php echo Text::_("Leer más") ?></a></div><?php endif ?>
     </blockquote>

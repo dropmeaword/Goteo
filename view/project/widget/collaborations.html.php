@@ -27,9 +27,9 @@ $project = $this['project'];
 ?>
 <div class="widget project-collaborations collapsable" id="project-collaborations">
     
-    <h<?php echo $level + 1?> class="supertitle"><?php echo Text::get('project-collaborations-supertitle'); ?></h<?php echo $level ?>>
+    <h<?php echo $level + 1?> class="supertitle"><?php echo Text::_("Necesidades no monetarias"); ?></h<?php echo $level ?>>
 
-    <h<?php echo $level ?> class="title"><?php echo Text::get('project-collaborations-title'); ?></h<?php echo $level ?>>
+    <h<?php echo $level ?> class="title"><?php echo Text::_("Se busca"); ?></h<?php echo $level ?>>
     
     <ul>
         <?php foreach ($project->supports as $support) : ?>
@@ -41,7 +41,7 @@ $project = $this['project'];
         <?php endforeach ?>
     </ul>
     
-    <a class="more" href="/project/<?php echo $project->id; ?>/needs-non"><?php echo Text::get('regular-see_more'); ?></a>
-    <a class="button green" href="/project/<?php echo $project->id; ?>/messages"><?php echo Text::get('regular-collaborate'); ?></a>
+    <a class="more" href="/project/<?php echo $project->id; ?>/needs-non"><?php echo Text::_("Ver más"); ?></a>
+    <a class="button green" href="/project/<?php echo $project->id; ?>/messages"><?php echo Text::_("Colabora"); ?></a>
     
 </div>

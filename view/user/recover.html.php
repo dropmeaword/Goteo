@@ -23,7 +23,7 @@ use Goteo\Core\View,
 
 $bodyClass = 'user-login';
 // para que el prologue ponga el c�digo js para bot�n facebook en el bannerside
-$fbCode = Text::widget(Text::get('social-account-facebook'), 'fb');
+$fbCode = Text::widget(Text::_("http://www.facebook.com/pages/Goteo/268491113192109"), 'fb');
 include 'view/prologue.html.php';
 include 'view/header.html.php';
 
@@ -45,7 +45,7 @@ extract($_POST);
 
             <div>
 
-                <h2><?php echo Text::get('login-recover-header'); ?></h2>
+                <h2><?php echo Text::_("Recuperar contraseña"); ?></h2>
 
                 <?php if (!empty($error)): ?>
                 <p class="error"><?php echo $error; ?></p>
@@ -56,16 +56,16 @@ extract($_POST);
 
                 <form action="/user/recover" method="post">
                     <div class="username">
-                        <label><?php echo Text::get('login-recover-username-field'); ?>
+                        <label><?php echo Text::_("Nombre de acceso"); ?>
                         <input type="text" name="username" value="<?php echo $username?>" /></label>
                     </div>
 
                     <div class="email">
-                        <label><?php echo Text::get('login-recover-email-field'); ?>
+                        <label><?php echo Text::_("Email de la cuenta"); ?>
                         <input type="text" name="email" value="<?php echo $email?>" /></label>
                     </div>
 
-                    <input type="submit" name="recover" value="<?php echo Text::get('login-recover-button'); ?>" />
+                    <input type="submit" name="recover" value="<?php echo Text::_("Recuperar"); ?>" />
 
                 </form>
 

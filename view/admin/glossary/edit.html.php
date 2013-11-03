@@ -85,7 +85,7 @@ $(document).ready(function(){
             'view-step-preview' => array(
                 'type'  => 'submit',
                 'name'  => 'save-post',
-                'label' => Text::get('regular-save'),
+                'label' => Text::_("Guardar"),
                 'class' => 'next'
             )
         ),
@@ -112,7 +112,7 @@ $(document).ready(function(){
             'image' => array(
                 'title'     => Text::_("Imagen"),
                 'type'      => 'group',
-                'hint'      => Text::get('tooltip-updates-image'),
+                'hint'      => Text::_("tooltip-updates-image"),
                 'errors'    => !empty($errors['image']) ? array($errors['image']) : array(),
                 'class'     => 'image',
                 'children'  => array(
@@ -120,14 +120,14 @@ $(document).ready(function(){
                         'type'  => 'file',
                         'class' => 'inline image_upload',
                         'title' => Text::_("Subir una imagen"),
-                        'hint'  => Text::get('tooltip-updates-image_upload'),
+                        'hint'  => Text::_("tooltip-updates-image_upload"),
                     )
                 )
             ),
 
             'gallery' => array(
                 'type'  => 'group',
-                'title' => Text::get('overview-field-image_gallery'),
+                'title' => Text::_("Imágenes actuales"),
                 'class' => 'inline',
                 'children'  => $images
             ),
@@ -136,7 +136,7 @@ $(document).ready(function(){
                 'type'      => 'textbox',
                 'title'     => Text::_("Vídeo"),
                 'class'     => 'media',
-                'hint'      => Text::get('tooltip-updates-media'),
+                'hint'      => Text::_("tooltip-updates-media"),
                 'errors'    => !empty($errors['media']) ? array($errors['media']) : array(),
                 'value'     => (string) $post->media,
                 'children'  => array(
@@ -150,7 +150,7 @@ $(document).ready(function(){
             ),
             'legend' => array(
                 'type'      => 'textarea',
-                'title'     => Text::get('regular-media_legend'),
+                'title'     => Text::_("Leyenda"),
                 'value'     => $post->legend,
             )
 

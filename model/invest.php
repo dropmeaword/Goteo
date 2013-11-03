@@ -270,19 +270,19 @@ namespace Goteo\Model {
         public function validate (&$errors = array()) { 
             if (!is_numeric($this->amount))
                 $errors[] = Text::_('La cantidad no es correcta');
-                //Text::get('validate-invest-amount');
+                //;
 
             if (empty($this->method))
                 $errors[] = Text::_('Falta metodo de pago');
-                //Text::get('mandatory-invest-method');
+                //;
 
             if (empty($this->user))
                 $errors[] = Text::_('Falta usuario');
-                //Text::get('mandatory-invest-user');
+                //;
 
             if (empty($this->project))
                 $errors[] = Text::_('Falta proyecto');
-                //Text::get('mandatory-invest-project');
+                //;
 
             if (empty($errors))
                 return true;
@@ -511,7 +511,7 @@ namespace Goteo\Model {
 
                     $investors[] = (object) array(
                         'user' => 'anonymous',
-                        'name' => Text::get('regular-anonymous'),
+                        'name' => Text::_("Anónimo"),
                         'projects' => null,
                         'avatar' => Image::get(1),
                         'worth' => null,

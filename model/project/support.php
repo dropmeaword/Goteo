@@ -74,19 +74,19 @@ namespace Goteo\Model\Project {
             // Estos son errores que no permiten continuar
             if (empty($this->project))
                 $errors[] = Text::_('No hay proyecto al que asignar la colaboración');
-                //Text::get('validate-collaboration-noproject');
+                //;
 /*
             if (empty($this->support))
                 $errors[] = 'No hay colaboración';
-                //Text::get('validate-collaboration-name');
+                //;
 
             if (!isset($this->description))
                 $errors[] = 'No hay descripción de la colaboración';
-                //Text::get('validate-collaboration-description');
+                //;
 
             if (empty($this->type))
                 $errors[] = 'No hay tipo de colaboración';
-                //Text::get('validate-collaboration-type');
+                //;
 */
             //cualquiera de estos errores hace fallar la validación
             if (!empty($errors))
@@ -179,15 +179,15 @@ namespace Goteo\Model\Project {
 				return true;
 			} catch (\PDOException $e) {
                 $errors[] = Text::_('No se ha podido quitar la colaboracion del proyecto ') . $this->project . ' ' . $e->getMessage();
-                //Text::get('remove-collaboration-fail');
+                //;
                 return false;
 			}
 		}
 
 		public static function types() {
 			return array(
-				'task'=>Text::get('cost-type-task'),
-				'lend'=>Text::get('cost-type-lend')
+				'task'=>Text::_("Tarea"),
+				'lend'=>Text::_("Préstamo")
 			);
 
 		}

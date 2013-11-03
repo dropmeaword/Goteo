@@ -55,7 +55,7 @@ namespace Goteo\Model\Project {
             // Estos son errores que no permiten continuar
             if (empty($this->project)) {
                 $errors[] = Text::_('No hay ningun proyecto al que asignar cuentas'); 
-                //Text::get('validate-account-noproject');
+                //;
                 return false;
             }
 

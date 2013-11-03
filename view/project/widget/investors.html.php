@@ -33,7 +33,7 @@ $worthcracy = Worth::getAll();
 ?>
 <div class="widget project-investors collapsable">
     
-    <h<?php echo $level+1 ?> class="supertitle"><?php echo Text::get('project-side-investors-header'); ?> (<?php echo $supporters; ?>)</h<?php echo $level+1 ?>>
+    <h<?php echo $level+1 ?> class="supertitle"><?php echo Text::_("Ya han aportado"); ?> (<?php echo $supporters; ?>)</h<?php echo $level+1 ?>>
 
         <div class="investors">
         <ul>
@@ -44,7 +44,7 @@ $worthcracy = Worth::getAll();
             endforeach ?>
         </ul>
 
-        <a class="more" href="/project/<?php echo $project->id; ?>/supporters"><?php echo Text::get('regular-see_more'); ?></a><br />
+        <a class="more" href="/project/<?php echo $project->id; ?>/supporters"><?php echo Text::_("Ver más"); ?></a><br />
 
         </div>
 

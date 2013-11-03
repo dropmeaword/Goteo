@@ -22,7 +22,7 @@
         Goteo\Library\Text;
 ?>
 <div class="widget projects">
-    <h2 class="widget-title title"><?php echo Text::get('project-spread-widget_title'); ?></h2>
+    <h2 class="widget-title title"><?php echo Text::_("publica el widget del proyecto"); ?></h2>
     <?php echo new View('view/project/widget/embed.html.php', array('project'=>$this['project'])) ?>
 </div>
 

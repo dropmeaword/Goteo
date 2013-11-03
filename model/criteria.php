@@ -81,11 +81,11 @@ namespace Goteo\Model {
         public function validate (&$errors = array()) { 
             if (empty($this->section))
                 $errors[] = 'Falta seccion';
-                //Text::get('mandatory-criteria-section');
+                //;
 
             if (empty($this->title))
                 $errors[] = 'Falta título';
-                //Text::get('mandatory-criteria-title');
+                //;
 
             if (empty($errors))
                 return true;
@@ -181,9 +181,9 @@ namespace Goteo\Model {
 
         public static function sections () {
             return array(
-                'project' => Text::get('criteria-project-section-header'),
-                'owner' => Text::get('criteria-owner-section-header'),
-                'reward' => Text::get('criteria-reward-section-header')
+                'project' => Text::_("Respecto al proyecto"),
+                'owner' => Text::_("Respecto al creador/equipo"),
+                'reward' => Text::_("Respecto al retorno")
             );
         }
 

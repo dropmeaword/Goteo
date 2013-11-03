@@ -49,7 +49,7 @@ $level = (int) $this['level'] ?: 3;
         
     <?php if (!empty($project->description)): ?>
     <div class="description">
-<!--        <h<?php echo $level + 1?>><?php # echo Text::get('overview-field-description'); ?></h<?php echo $level + 1?>>         -->
+<!--        <h<?php echo $level + 1?>><?php # echo Text::_("Breve descripción "); ?></h<?php echo $level + 1?>>         -->
         <?php echo $project->description; ?>
     </div>    
     <?php endif ?>
@@ -85,14 +85,14 @@ $level = (int) $this['level'] ?: 3;
 
     <?php if (!empty($project->about)): ?>
     <div class="about">
-        <h<?php echo $level + 1?>><?php echo Text::get('overview-field-about'); ?></h<?php echo $level + 1?>>
+        <h<?php echo $level + 1?>><?php echo Text::_("Características básicas"); ?></h<?php echo $level + 1?>>
         <?php echo $project->about; ?>
     </div>    
     <?php endif ?>
     
     <?php if (!empty($project->motivation)): ?>
     <div class="motivation">
-        <h<?php echo $level + 1?>><?php echo Text::get('overview-field-motivation'); ?></h<?php echo $level + 1?>>
+        <h<?php echo $level + 1?>><?php echo Text::_("Motivación y a quién va dirigido el proyecto"); ?></h<?php echo $level + 1?>>
         <?php echo $project->motivation; ?>
     </div>
     <?php endif ?>
@@ -106,14 +106,14 @@ $level = (int) $this['level'] ?: 3;
 
     <?php if (!empty($project->goal)): ?>
     <div class="goal">
-        <h<?php echo $level + 1?>><?php echo Text::get('overview-field-goal'); ?></h<?php echo $level + 1?>>
+        <h<?php echo $level + 1?>><?php echo Text::_("Objetivos de la campaña de crowdfunding"); ?></h<?php echo $level + 1?>>
         <?php echo $project->goal; ?>
     </div>    
     <?php endif ?>
     
     <?php if (!empty($project->related)): ?>
     <div class="related">
-        <h<?php echo $level + 1?>><?php echo Text::get('overview-field-related'); ?></h<?php echo $level + 1?>>
+        <h<?php echo $level + 1?>><?php echo Text::_("Experiencia previa y equipo"); ?></h<?php echo $level + 1?>>
         <?php echo $project->related ?>
     </div>
     <?php endif ?>

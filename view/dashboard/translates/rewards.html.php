@@ -42,7 +42,7 @@ if (!empty($project->social_rewards)) {
                     'class'     => 'reward social_reward editsocial_reward',
                     'children'  => array(
                         "social_reward-{$social_reward->id}-reward-orig" => array(
-                            'title'     => Text::get('rewards-field-social_reward-reward'),
+                            'title'     => Text::_("Retorno"),
                             'type'      => 'html',
                             'html'     => $original->reward
                         ),
@@ -53,11 +53,11 @@ if (!empty($project->social_rewards)) {
                             'value'     => $social_reward->reward,
                             'errors'    => array(),
                             'ok'        => array(),
-                            'hint'      => Text::get('tooltip-project-social_reward-reward')
+                            'hint'      => Text::_("Intenta que el título sea lo más descriptivo posible. Recuerda que puedes añadir más recompensas a continuación.")
                         ),
                         "social_reward-{$social_reward->id}-description-orig" => array(
                             'type'      => 'html',
-                            'title'     => Text::get('rewards-field-social_reward-description'),
+                            'title'     => Text::_("Descripción"),
                             'html'     => nl2br($original->description)
                         ),
                         "social_reward-{$social_reward->id}-description" => array(
@@ -69,7 +69,7 @@ if (!empty($project->social_rewards)) {
                             'value'     => $social_reward->description,
                             'errors'    => array(),
                             'ok'        => array(),
-                            'hint'      => Text::get('tooltip-project-social_reward-description')
+                            'hint'      => Text::_("Explica brevemente el tipo de retorno colectivo que ofrecerá o permitirá el proyecto.")
                         ),
                         "social_reward-{$social_reward->id}-buttons" => array(
                             'type' => 'group',
@@ -77,7 +77,7 @@ if (!empty($project->social_rewards)) {
                             'children' => array(
                                 "social_reward-{$social_reward->id}-ok" => array(
                                     'type'  => 'submit',
-                                    'label' => Text::get('form-accept-button'),
+                                    'label' => Text::_("Aceptar"),
                                     'class' => 'inline ok'
                                 )
                             )
@@ -112,7 +112,7 @@ if (!empty($project->individual_rewards)) {
                     'class'     => 'reward individual_reward editindividual_reward',
                     'children'  => array(
                         "individual_reward-{$individual_reward->id}-reward-orig" => array(
-                            'title'     => Text::get('rewards-field-individual_reward-reward'),
+                            'title'     => Text::_("Recompensa"),
                             'type'      => 'html',
                             'html'      => $original->reward
                         ),
@@ -124,11 +124,11 @@ if (!empty($project->individual_rewards)) {
                             'value'     => $individual_reward->reward,
                             'errors'    => array(),
                             'ok'        => array(),
-                            'hint'      => Text::get('tooltip-project-individual_reward-reward')
+                            'hint'      => Text::_("Intenta que el título sea lo más descriptivo posible. Recuerda que puedes añadir más recompensas a continuación.")
                         ),
                         "individual_reward-{$individual_reward->id}-description-orig" => array(
                             'type'      => 'html',
-                            'title'     => Text::get('rewards-field-individual_reward-description'),
+                            'title'     => Text::_("Descripción"),
                             'html'      => $original->description
                         ),
                         "individual_reward-{$individual_reward->id}-description" => array(
@@ -140,7 +140,7 @@ if (!empty($project->individual_rewards)) {
                             'value'     => $individual_reward->description,
                             'errors'    => array(),
                             'ok'        => array(),
-                            'hint'      => Text::get('tooltip-project-individual_reward-description')
+                            'hint'      => Text::_("Explica brevemente en qué consistirá la recompensa para quienes cofinancien con este importe el proyecto.")
                         ),
                         "individual_reward-{$individual_reward->id}-buttons" => array(
                             'type' => 'group',
@@ -148,7 +148,7 @@ if (!empty($project->individual_rewards)) {
                             'children' => array(
                                 "individual_reward-{$individual_reward->id}-ok" => array(
                                     'type'  => 'submit',
-                                    'label' => Text::get('form-accept-button'),
+                                    'label' => Text::_("Aceptar"),
                                     'class' => 'inline ok'
                                 )
                             )
@@ -182,13 +182,13 @@ $sfid = 'sf-project-rewards';
     'level'         => 3,
     'method'        => 'post',
     'title'         => '',
-    'hint'          => Text::get('guide-project-supports'),
+    'hint'          => Text::_("<strong>En este apartado puedes especificar qué otras ayudas, aparte de financiación, se necesitan para llevar a cabo el proyecto.</strong><br><br> Pueden ser tareas o acciones a cargo de otras personas (traducciones, gestiones, difusión, etc), o bien préstamos específicos (de material, transporte, hardware, etc)."),
     'class'         => 'aqua',
     'footer'        => array(
         'view-step-preview' => array(
             'type'  => 'submit',
             'name'  => 'save-rewards',
-            'label' => Text::get('regular-save'),
+            'label' => Text::_("Guardar"),
             'class' => 'next'
         )
     ),
@@ -200,8 +200,8 @@ $sfid = 'sf-project-rewards';
 
         'social_rewards' => array(
             'type'      => 'group',
-            'title'     => Text::get('rewards-fields-social_reward-title'),
-            'hint'      => Text::get('tooltip-project-social_rewards'),
+            'title'     => Text::_("Retornos colectivos"),
+            'hint'      => Text::_("Define el tipo de retorno o retornos del proyecto a los que se podrá acceder abiertamente, y la licencia que los debe regular. Si tienes dudas sobre qué opción escoger o lo que se adaptaría mejor a tu caso, <a href="http://www.goteo.org/contact" target="new">contáctanos</a> y te asesoraremos en este punto."),
             'class'     => 'rewards',
             'errors'    => array(),
             'ok'        => array(),
@@ -210,8 +210,8 @@ $sfid = 'sf-project-rewards';
 
         'individual_rewards' => array(
             'type'      => 'group',
-            'title'     => Text::get('rewards-fields-individual_reward-title'),
-            'hint'      => Text::get('tooltip-project-individual_rewards'),
+            'title'     => Text::_("Recompensas individuales"),
+            'hint'      => Text::_("Aquí debes especificar la recompensa para quien apoye el proyecto, vinculada a una cantidad de dinero concreta. Elige bien lo que ofreces, intenta que sean productos/servicios atractivos o ingeniosos pero que no generen gastos extra de producción. Si no hay más remedio que tener esos gastos extra, calcula lo que cuesta producir esa recompensa (tiempo, materiales, envíos, etc) y oferta un número limitado. Piensa que tendrás que cumplir con todos esos compromisos al final de la producción del proyecto. "),
             'class'     => 'rewards',
             'errors'    => array(),
             'ok'        => array(),

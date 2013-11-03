@@ -197,20 +197,20 @@ color:#20B3B2;
   <?php echo $this['content'] ?>
 </div>  
   
-<div class="disclaimer"><?php echo Text::get('mailer-disclaimer') ?></div>
+<div class="disclaimer"><?php echo Text::_("Goteo es una plataforma digital para la financiación colectiva, colaboración y distribución de recursos para el desarrollo de proyectos sociales, culturales, educativos, tecnológicos... que contribuyan al fortalecimiento del procomún, el código abierto y/o el conocimiento libre.") ?></div>
 
 <div class="goteo-url"><a href="<?php echo SITE_URL ?>">www.goteo.org</a></div>
-<div class="descubre"><a href="<?php echo SITE_URL . '/discover' ?>"><?php echo Text::get('regular-discover'); ?></a></div>
-<div class="crea"><a href="<?php echo SITE_URL . '/project/create' ?>"><?php echo Text::get('regular-create'); ?></a></div>
+<div class="descubre"><a href="<?php echo SITE_URL . '/discover' ?>"><?php echo Text::_("Descubre proyectos"); ?></a></div>
+<div class="crea"><a href="<?php echo SITE_URL . '/project/create' ?>"><?php echo Text::_("Crea un proyecto"); ?></a></div>
 
 <div class="follow"><?php echo Text::_('Síguenos en'); ?>:<br />
-  <span class="facebook"><a href="<?php echo Text::get('social-account-facebook') ?>">facebook</a></span> |  <span class="twitter"><a href="<?php echo Text::get('social-account-twitter') ?>">twitter</a></span> |   <span class="rss"><a rel="alternate" type="application/rss+xml" title="RSS" href="<?php echo SITE_URL. '/rss' ?>">RSS</a></span></div>
+  <span class="facebook"><a href="<?php echo Text::_("http://www.facebook.com/pages/Goteo/268491113192109") ?>">facebook</a></span> |  <span class="twitter"><a href="<?php echo Text::_("http://twitter.com/goteofunding") ?>">twitter</a></span> |   <span class="rss"><a rel="alternate" type="application/rss+xml" title="RSS" href="<?php echo SITE_URL. '/rss' ?>">RSS</a></span></div>
 
 <div class="unsuscribe"><?php echo Text::html('mailer-baja', $this['baja']); ?></div>
 
 </div>
 
-<div class="footer-bar"><span class="footer-element"><?php echo Text::get('footer-platoniq-iniciative') ?> <strong><a href="http://platoniq.net">Platoniq</a></strong></span></div>
+<div class="footer-bar"><span class="footer-element"><?php echo Text::_("Una iniciativa de:") ?> <strong><a href="http://platoniq.net">Platoniq</a></strong></span></div>
 
 </body>
 </html>

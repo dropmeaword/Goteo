@@ -126,15 +126,15 @@ namespace Goteo\Model {
             /*
             if (empty($this->node))
                 $errors[] = 'Falta nodo';
-                //Text::get('mandatory-banner-node');
+                //;
 */
             if (empty($this->project))
                 $errors[] = Text::_('Falta proyecto');
-                //Text::get('validate-banner-noproject');
+                //;
 
             if (empty($this->image))
                 $errors[] = Text::_('Falta imagen');
-                //Text::get('validate-banner-noproject');
+                //;
 
             if (empty($errors))
                 return true;

@@ -23,7 +23,7 @@ use Goteo\Core\View,
 
 $bodyClass = 'home';
 // para que el prologue ponga el código js para botón facebook en el bannerside
-$fbCode = Text::widget(Text::get('social-account-facebook'), 'fb');
+$fbCode = Text::widget(Text::_("http://www.facebook.com/pages/Goteo/268491113192109"), 'fb');
 include 'view/prologue.html.php';
 include 'view/header.html.php';
 ?>
@@ -67,7 +67,7 @@ include 'view/header.html.php';
         });
     </script>
     <div id="learn" class="widget learn">
-        <h2 class="title"><?php echo Text::get('home-posts-header'); ?></h2>
+        <h2 class="title"><?php echo Text::_("En nuestro blog"); ?></h2>
         <div class="slder_container"<?php if (count($this['posts'])==1) echo ' style="display:block;"'; ?>>
 
             <?php $i = 1; foreach ($this['posts'] as $post) : ?>
@@ -87,7 +87,7 @@ include 'view/header.html.php';
                 <?php echo Text::recorta($post->text, 600) ?>
                     </div>
 
-                    <div class="read_more"><a href="/blog/<?php echo $post->id; ?>"><?php echo Text::get('regular-read_more') ?></a></div>
+                    <div class="read_more"><a href="/blog/<?php echo $post->id; ?>"><?php echo Text::_("Leer más") ?></a></div>
                 </div>
             </div>
             <?php $i++; endforeach; ?>
@@ -109,7 +109,7 @@ include 'view/header.html.php';
     <?php if (!empty($this['promotes'])): ?>
     <div class="widget projects">
 
-        <h2 class="title"><?php echo Text::get('home-promotes-header'); ?></h2>
+        <h2 class="title"><?php echo Text::_("Destacados"); ?></h2>
 
         <?php foreach ($this['promotes'] as $promo) : ?>
 

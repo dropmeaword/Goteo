@@ -44,7 +44,7 @@ if (!empty($project->supports)) {
                 'class'     => 'support editsupport',
                 'children'  => array(
                     "support-{$support->id}-support-orig" => array(
-                        'title'     => Text::get('supports-field-support'),
+                        'title'     => Text::_("Resumen"),
                         'type'      => 'html',
                         'html'      => $original->support
                     ),
@@ -56,10 +56,10 @@ if (!empty($project->supports)) {
                         'value'     => $support->support,
                         'errors'    => !empty($errors["support-{$support->id}-support"]) ? array($errors["support-{$support->id}-support"]) : array(),
                         'ok'        => !empty($okeys["support-{$support->id}-support"]) ? array($okeys["support-{$support->id}-support"]) : array(),
-                        'hint'      => Text::get('tooltip-project-support-support')
+                        'hint'      => Text::_("Título descriptivo sobre la colaboración necesaria.")
                     ),
                     "support-{$support->id}-description-orig" => array(
-                        'title'     => Text::get('supports-field-description'),
+                        'title'     => Text::_("Descripción"),
                         'type'      => 'html',
                         'html'      => nl2br($original->description)
                     ),
@@ -72,7 +72,7 @@ if (!empty($project->supports)) {
                         'value'     => $support->description,
                         'errors'    => !empty($errors["support-{$support->id}-description"]) ? array($errors["support-{$support->id}-description"]) : array(),
                         'ok'        => !empty($okeys["support-{$support->id}-description"]) ? array($okeys["support-{$support->id}-description"]) : array(),
-                        'hint'      => Text::get('tooltip-project-support-description')
+                        'hint'      => Text::_("Explica brevemente en qué consiste la ayuda que necesita el proyecto, para facilitar que la gente la reconozca y se anime a colaborar. \r\n")
                     ),
                     "support-{$support->id}-buttons" => array(
                         'type' => 'group',
@@ -80,7 +80,7 @@ if (!empty($project->supports)) {
                         'children' => array(
                             "support-{$support->id}-ok" => array(
                                 'type'  => 'submit',
-                                'label' => Text::get('form-accept-button'),
+                                'label' => Text::_("Aceptar"),
                                 'class' => 'inline ok'
                             )
                         )
@@ -114,13 +114,13 @@ $sfid = 'sf-project-supports';
     'level'         => 3,
     'method'        => 'post',
     'title'         => '',
-    'hint'          => Text::get('guide-project-supports'),
+    'hint'          => Text::_("<strong>En este apartado puedes especificar qué otras ayudas, aparte de financiación, se necesitan para llevar a cabo el proyecto.</strong><br><br> Pueden ser tareas o acciones a cargo de otras personas (traducciones, gestiones, difusión, etc), o bien préstamos específicos (de material, transporte, hardware, etc)."),
     'class'         => Text::_("aqua"),
     'footer'        => array(
         'view-step-preview' => array(
             'type'  => 'submit',
             'name'  => 'save-supports',
-            'label' => Text::get('regular-save'),
+            'label' => Text::_("Guardar"),
             'class' => 'next'
         )
     ),
@@ -131,8 +131,8 @@ $sfid = 'sf-project-supports';
         ),
         'supports' => array(
             'type'      => 'group',
-            'title'     => Text::get('supports-fields-support-title'),
-            'hint'      => Text::get('tooltip-project-supports'),
+            'title'     => Text::_("Colaboraciones"),
+            'hint'      => Text::_("En Goteo los proyectos pueden recibir otro tipo de ayudas además de aportaciones monetarias. Hay gente que a lo mejor no puede ayudar económicamente pero sí con su talento, tiempo, energía, etc."),
             'children'  => $supports
         )
     )

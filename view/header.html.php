@@ -26,16 +26,16 @@ use Goteo\Library\Text,
 
 
 <div id="header">
-    <h1><?php echo Text::get('regular-main-header'); ?></h1>
+    <h1><?php echo Text::_("Goteo.org"); ?></h1>
     <div id="super-header">
 	   <?php include 'view/header/highlights.html.php' ?>
     
 	   <div id="rightside" style="float:right;">
            <div id="about">
                 <ul>
-                    <li><a href="/about"><?php echo Text::get('regular-header-about'); ?></a></li>
-                    <li><a href="/blog"><?php echo Text::get('regular-header-blog'); ?></a></li>
-                    <li><a href="/faq"><?php echo Text::get('regular-header-faq'); ?></a></li>  
+                    <li><a href="/about"><?php echo Text::_("Sobre Goteo"); ?></a></li>
+                    <li><a href="/blog"><?php echo Text::_("Blog"); ?></a></li>
+                    <li><a href="/faq"><?php echo Text::_("FAQ"); ?></a></li>  
                     <li id="lang"><a href="#" ><?php echo Lang::get(LANG)->short ?></a></li>
                     <script type="text/javascript">
                     jQuery(document).ready(function ($) {

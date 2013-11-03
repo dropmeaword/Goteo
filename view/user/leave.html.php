@@ -23,7 +23,7 @@ use Goteo\Core\View,
 
 $bodyClass = 'user-login';
 // para que el prologue ponga el c�digo js para bot�n facebook en el bannerside
-$fbCode = Text::widget(Text::get('social-account-facebook'), 'fb');
+$fbCode = Text::widget(Text::_("http://www.facebook.com/pages/Goteo/268491113192109"), 'fb');
 include 'view/prologue.html.php';
 include 'view/header.html.php';
 
@@ -48,7 +48,7 @@ if (!isset($_POST['email']) && isset($_GET['email'])) {
 
             <div>
 
-                <h2><?php echo Text::get('login-leave-header'); ?></h2>
+                <h2><?php echo Text::_("Cancelar la cuenta"); ?></h2>
 
                 <?php if (!empty($error)): ?>
                 <p class="error"><?php echo $error; ?></p>
@@ -59,16 +59,16 @@ if (!isset($_POST['email']) && isset($_GET['email'])) {
 
                 <form action="/user/leave" method="post">
                     <div class="email">
-                        <label><?php echo Text::get('login-recover-email-field'); ?>
+                        <label><?php echo Text::_("Email de la cuenta"); ?>
                         <input type="text" name="email" value="<?php echo $email?>" /></label>
                     </div>
 
                     <div class="message">
-                        <label for="leave-message"><?php echo Text::get('login-leave-message'); ?></label>
+                        <label for="leave-message"><?php echo Text::_("Déjanos un mensaje"); ?></label>
                         <textarea id="leave-message" name="reason" cols="50" rows="5"><?php echo $reason ?></textarea>
                     </div>
 
-                    <input type="submit" name="leaving" value="<?php echo Text::get('login-leave-button'); ?>" />
+                    <input type="submit" name="leaving" value="<?php echo Text::_("Dar de baja"); ?>" />
 
                 </form>
 

@@ -35,11 +35,11 @@ echo new SuperForm(array(
 
     'level'         => $this['level'],
     'method'        => 'post',
-    'hint'          => Text::get('guide-dashboard-user-personal'),
+    'hint'          => Text::_("Sólo debes cumplimentar estos datos si has creado un proyecto y quieres que sea cofinanciado y apoyado mediante Goteo.\r\n\r\nLa información de este apartado es necesaria para contactarte en caso de que obtengas la financiación requerida, y que así se pueda efectuar el ingreso."),
     'footer'        => array(
         'view-step-overview' => array(
             'type'  => 'submit',
-            'label' => Text::get('form-apply-button'),
+            'label' => Text::_("Aplicar"),
             'class' => 'next',
             'name'  => 'save-userPersonal'
         )
@@ -50,8 +50,8 @@ echo new SuperForm(array(
             'type'      => 'textbox',
             'required'  => true,
             'size'      => 20,
-            'title'     => Text::get('personal-field-contract_name'),
-            'hint'      => Text::get('tooltip-project-contract_name'),
+            'title'     => Text::_("Nombre y apellidos"),
+            'hint'      => Text::_("Deben ser tu nombre y apellidos reales. Ten en cuenta que figurarás como responsable del proyecto."),
             'errors'    => !empty($errors['contract_name']) ? array($errors['contract_name']) : array(),
             'value'     => $personal->contract_name
         ),
@@ -59,9 +59,9 @@ echo new SuperForm(array(
         'contract_nif' => array(
             'type'      => 'textbox',
             'required'  => true,
-            'title'     => Text::get('personal-field-contract_nif'),
+            'title'     => Text::_("Número de NIF / NIE / VAT"),
             'size'      => 15,
-            'hint'      => Text::get('tooltip-project-contract_nif'),
+            'hint'      => Text::_("Tu número de NIF o NIE con cifras y letra."),
             'errors'    => !empty($errors['contract_nif']) ? array($errors['contract_nif']) : array(),
             'value'     => $personal->contract_nif
         ),
@@ -69,9 +69,9 @@ echo new SuperForm(array(
         'phone' => array(
             'type'  => 'textbox',
             'required'  => true,
-            'title' => Text::get('personal-field-phone'),
+            'title' => Text::_("Teléfono"),
             'dize'  => 15,
-            'hint'  => Text::get('tooltip-project-phone'),
+            'hint'  => Text::_("Número de teléfono móvil o fijo, con su prefijo de marcado."),
             'errors'    => !empty($errors['phone']) ? array($errors['phone']) : array(),
             'value' => $personal->phone
         ),
@@ -79,10 +79,10 @@ echo new SuperForm(array(
         'address' => array(
             'type'  => 'textbox',
             'required'  => true,
-            'title' => Text::get('personal-field-address'),
+            'title' => Text::_("Dirección"),
             'rows'  => 6,
             'cols'  => 40,
-            'hint'  => Text::get('tooltip-project-address'),
+            'hint'  => ,
             'errors'    => !empty($errors['address']) ? array($errors['address']) : array(),
             'value' => $personal->address
         ),
@@ -90,9 +90,9 @@ echo new SuperForm(array(
         'zipcode' => array(
             'type'  => 'textbox',
             'required'  => true,
-            'title' => Text::get('personal-field-zipcode'),
+            'title' => Text::_("Código postal"),
             'size'  => 7,
-            'hint'  => Text::get('tooltip-project-zipcode'),
+            'hint'  => ,
             'errors'    => !empty($errors['zipcode']) ? array($errors['zipcode']) : array(),
             'value' => $personal->zipcode
         ),
@@ -100,9 +100,9 @@ echo new SuperForm(array(
         'location' => array(
             'type'  => 'textbox',
             'required'  => true,
-            'title' => Text::get('personal-field-location'),
+            'title' => Text::_("Localidad"),
             'size'  => 25,
-            'hint'  => Text::get('tooltip-project-location'),
+            'hint'  => ,
             'errors'    => !empty($errors['location']) ? array($errors['location']) : array(),
             'value' => $personal->location
         ),
@@ -110,9 +110,9 @@ echo new SuperForm(array(
         'country' => array(
             'type'  => 'textbox',
             'required'  => true,
-            'title' => Text::get('personal-field-country'),
+            'title' => Text::_("País"),
             'size'  => 25,
-            'hint'  => Text::get('tooltip-project-country'),
+            'hint'  => ,
             'errors'    => !empty($errors['country']) ? array($errors['country']) : array(),
             'value' => $personal->country
         ),

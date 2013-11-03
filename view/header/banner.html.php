@@ -22,15 +22,15 @@ use Goteo\Library\Text;
 
 $banner = $this['banner'];
 
-$metter_txt = Text::get('regular-banner-metter');
+$metter_txt = Text::_("obtenido-de-quedan");
 list($mreach, $mof, $mrest) = explode('-', $metter_txt);
 ?>
 <a href="/project/<?php echo $banner->project->id ?>" class="expand"></a>
 <div class="shb-info clearfix">
     <h2><?php echo $banner->project->name ?></h2>
-    <small><?php echo Text::get('regular-by') ?> <?php echo $banner->project->user->name ?></small>
+    <small><?php echo Text::_("Por:") ?> <?php echo $banner->project->user->name ?></small>
     <div class="col-return clearfix">
-        <h3><?php echo Text::get('project-rewards-social_reward-title') ?></h3>
+        <h3><?php echo Text::_("Retorno colectivo") ?></h3>
         <p><?php echo current($banner->project->social_rewards)->reward ?></p>
         <ul>
             <?php $c = 1; foreach ($banner->project->social_rewards as $id=>$reward) : ?>
@@ -50,7 +50,7 @@ list($mreach, $mof, $mrest) = explode('-', $metter_txt);
         <li class="optimun"><?php echo ($banner->project->amount >= $banner->project->mincost) ? \amount_format($banner->project->maxcost) : \amount_format($banner->project->mincost); ?> <img src="<?php echo SRC_URL ?>/view/css/euro/violet/s.png" alt="&euro;" /></li>
         <?php if ($banner->project->days > 0) : ?>
         <li><?php echo $mrest ?></li>
-        <li class="days"><?php echo $banner->project->days ?> <?php echo Text::get('regular-days') ?></li>
+        <li class="days"><?php echo $banner->project->days ?> <?php echo Text::_("días") ?></li>
         <?php endif; ?>
     </ul>
 </div>

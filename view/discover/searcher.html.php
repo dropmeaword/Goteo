@@ -32,15 +32,15 @@ $params = $this['params'];
 <div class="widget searcher">
     <form method="post" action="/discover/results">
         <div class="text-filter">
-            <label for="text-query"><?php echo Text::get('discover-searcher-bycontent-header'); ?></label>
+            <label for="text-query"><?php echo Text::_("Por contenido:"); ?></label>
             <input type="text" id="text-query" name="query" size="48" value="<?php echo \htmlspecialchars($params['query']); ?>" />
             <br clear="all" />
         </div>
 
         <div class="filter">
-            <label for="category"><?php echo Text::get('discover-searcher-bycategory-header'); ?></label>
+            <label for="category"><?php echo Text::_("Por categoría:"); ?></label>
                 <select id="category" name="category[]" multiple size="10">
-                    <option class="all" value="all"<?php if (empty($params['category'])) echo ' selected="selected"'; ?>><?php echo Text::get('discover-searcher-bycategory-all'); ?></option>
+                    <option class="all" value="all"<?php if (empty($params['category'])) echo ' selected="selected"'; ?>><?php echo Text::_("TODAS"); ?></option>
                 <?php foreach ($categories as $id=>$name) : ?>
                     <option value="<?php echo $id; ?>"<?php if (in_array("'{$id}'", $params['category'])) echo ' selected="selected"'; ?>><?php echo $name; ?></option>
                 <?php endforeach; ?>
@@ -48,9 +48,9 @@ $params = $this['params'];
         </div>
 
         <div class="filter">
-            <label for="location"><?php echo Text::get('discover-searcher-bylocation-header'); ?></label>
+            <label for="location"><?php echo Text::_("Por lugar:"); ?></label>
                 <select id="location" name="location[]" multiple size="10">
-                    <option class="all" value="all"<?php if (empty($params['location'])) echo ' selected="selected"'; ?>><?php echo Text::get('discover-searcher-bylocation-all'); ?></option>
+                    <option class="all" value="all"<?php if (empty($params['location'])) echo ' selected="selected"'; ?>><?php echo Text::_("TODOS"); ?></option>
                 <?php foreach ($locations as $id=>$name) : ?>
                     <option value="<?php echo $id; ?>"<?php if (in_array("'{$id}'", $params['location'])) echo ' selected="selected"'; ?>><?php echo $name; ?></option>
                 <?php endforeach; ?>
@@ -58,9 +58,9 @@ $params = $this['params'];
         </div>
 
         <div class="filter">
-            <label for="reward"><?php echo Text::get('discover-searcher-byreward-header'); ?> </label>
+            <label for="reward"><?php echo Text::_("Por retorno:"); ?> </label>
                 <select id="reward" name="reward[]" multiple size="10">
-                    <option class="all" value="all"<?php if (empty($params['reward'])) echo ' selected="selected"'; ?>><?php echo Text::get('discover-searcher-byreward-all'); ?></option>
+                    <option class="all" value="all"<?php if (empty($params['reward'])) echo ' selected="selected"'; ?>><?php echo Text::_("TODOS"); ?></option>
                 <?php foreach ($rewards as $id=>$reward) : ?>
                     <option value="<?php echo $id; ?>"<?php if (in_array("'{$id}'", $params['reward'])) echo ' selected="selected"'; ?>><?php echo $reward->name; ?></option>
                 <?php endforeach; ?>
@@ -68,7 +68,7 @@ $params = $this['params'];
         </div>
 
         <div style="float:left">
-            <button type="submit" id="searcher" name="searcher"><?php echo Text::get('discover-searcher-button'); ?></button>
+            <button type="submit" id="searcher" name="searcher"><?php echo Text::_("Buscar"); ?></button>
         </div>
         
         <br clear="all" />

@@ -82,15 +82,15 @@ namespace Goteo\Model\Project {
             // Estos son errores que no permiten continuar
             if (empty($this->project))
                 $errors[] = Text::_('No hay proyecto al que asignar el coste');
-                //Text::get('validate-cost-noproject');
+                //;
 /*
             if (empty($this->cost))
                 $errors[] = 'No hay descripción de coste';
-                //Text::get('mandatory-cost-name');
+                //;
 
             if (empty($this->type))
                 $errors[] = 'No hay tipo de coste';
-                //Text::get('mandatory-cost-description');
+                //;
 */
             if (empty($this->from) || $this->from == '0000-00-00') {
                 $this->from = date('Y-m-d');
@@ -189,16 +189,16 @@ namespace Goteo\Model\Project {
 				return true;
 			} catch (\PDOException $e) {
                 $errors[] = Text::_('No se ha podido quitar el coste del proyecto ') . $this->project . ' ' . $e->getMessage();
-                //Text::get('remove-cost-fail');
+                //;
                 return false;
 			}
 		}
 
 		public static function types() {
 			return array (
-				'task'=>Text::get('cost-type-task'),
-				'structure'=>Text::get('cost-type-structure'),
-				'material'=>Text::get('cost-type-material')
+				'task'=>Text::_("Tarea"),
+				'structure'=>Text::_("Infraestructura"),
+				'material'=>Text::_("Material")
 			);
 		}
 

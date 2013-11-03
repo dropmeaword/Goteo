@@ -47,13 +47,13 @@ $pagedResults = new \Paginated($investors, 20, isset($_GET['page']) ? $_GET['pag
 ?>
 <div class="widget project-supporters">
     
-    <h<?php echo $level ?> class="title"><?php echo Text::get('project-menu-supporters'); ?></h<?php echo $level ?>>
+    <h<?php echo $level ?> class="title"><?php echo Text::_("Cofinanciadores"); ?></h<?php echo $level ?>>
     
     <dl class="summary">
-        <dt class="supporters"><?php echo Text::get('project-menu-supporters'); ?></dt>
+        <dt class="supporters"><?php echo Text::_("Cofinanciadores"); ?></dt>
         <dd class="supporters"><?php echo $supporters ?></dd>
         
-        <dt class="reached"><?php echo Text::get('project-invest-total'); ?></dt>
+        <dt class="reached"><?php echo Text::_("Total de aportaciones"); ?></dt>
         <dd class="reached"><?php echo $reached ?> <span class="euro">&euro;</span></dd>
         
     </dl>   

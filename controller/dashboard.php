@@ -192,7 +192,7 @@ namespace Goteo\Controller {
 
                         /// este es el único save que se lanza desde un metodo process_
                         if ($user->save($errors)) {
-                            Message::Info(Text::get('user-profile-saved'));
+                            Message::Info(Text::_("Información de perfil actualizada"));
                             $user = Model\User::flush();
 
 //                            $log_action = 'Modificado su información de perfil'; //feed admin
@@ -223,7 +223,7 @@ namespace Goteo\Controller {
                         // actualizamos estos datos en los personales del usuario
                         if (!empty ($personalData)) {
                             if (Model\User::setPersonal($user->id, $personalData, true, $errors)) {
-                                Message::Info(Text::get('user-personal-saved'));
+                                Message::Info(Text::_("Datos personales actualizados"));
 
                                 $log_action = Text::_("Modificado sus datos personales"); //feed admin
                             }
@@ -235,22 +235,22 @@ namespace Goteo\Controller {
                         // E-mail
                         if(!empty($_POST['user_nemail']) || !empty($_POST['user_remail'])) {
                             if(empty($_POST['user_nemail'])) {
-                                $errors['email'] = Text::get('error-user-email-empty');
+                                $errors['email'] = Text::_("No puedes dejar el campo de email vacío");
                             }
                             elseif(!\Goteo\Library\Check::mail($_POST['user_nemail'])) {
-                                $errors['email'] = Text::get('error-user-email-invalid');
+                                $errors['email'] = Text::_("El email que has puesto no es válido");
                             }
                             elseif(empty($_POST['user_remail'])) {
-                                $errors['email_retry'] = Text::get('error-user-email-empty');
+                                $errors['email_retry'] = Text::_("No puedes dejar el campo de email vacío");
                             }
                             elseif (strcmp($_POST['user_nemail'], $_POST['user_remail']) !== 0) {
-                                $errors['email_retry'] = Text::get('error-user-email-confirm');
+                                $errors['email_retry'] = Text::_("La confirmación de correo electrónico no coincide");
                             }
                             else {
                                 $user->email = $_POST['user_nemail'];
                                 unset($_POST['user_nemail']);
                                 unset($_POST['user_remail']);
-                                $success[] = Text::get('user-email-change-sended');
+                                $success[] = Text::_("Te hemos enviado un email para que confirmes el cambio de dirección electrónica");
 
                                 $log_action = 'Cambiado su email'; //feed admin
                             }
@@ -261,31 +261,31 @@ namespace Goteo\Controller {
                     // porque los usuarios que acceden mediante servicio no tienen contraseña
                             /*
                             if(!isset($_SESSION['recovering']) && empty($_POST['user_password'])) {
-                                $errors['password'] = Text::get('error-user-password-empty');
+                                $errors['password'] = Text::_("No has puesto la contraseña");
                             }
                             elseif(!isset($_SESSION['recovering']) && !Model\User::login($user->id, $_POST['user_password'])) {
-                                $errors['password'] = Text::get('error-user-wrong-password');
+                                $errors['password'] = Text::_("La contraseña no es correcta");
                             }
                             else
                             */
                             if(empty($_POST['user_npassword'])) {
-                                $errors['password_new'] = Text::get('error-user-password-empty');
+                                $errors['password_new'] = Text::_("No has puesto la contraseña");
                             }
                             elseif(!\Goteo\Library\Check::password($_POST['user_npassword'])) {
-                                $errors['password_new'] = Text::get('error-user-password-invalid');
+                                $errors['password_new'] = Text::_("La contraseña es demasiado corta");
                             }
                             elseif(empty($_POST['user_rpassword'])) {
-                                $errors['password_retry'] = Text::get('error-user-password-empty');
+                                $errors['password_retry'] = Text::_("No has puesto la contraseña");
                             }
                             elseif(strcmp($_POST['user_npassword'], $_POST['user_rpassword']) !== 0) {
-                                $errors['password_retry'] = Text::get('error-user-password-confirm');
+                                $errors['password_retry'] = Text::_("La confirmación de contraseña no coincide");
                             }
                             else {
                                 $user->password = $_POST['user_npassword'];
                                 unset($_POST['user_password']);
                                 unset($_POST['user_npassword']);
                                 unset($_POST['user_rpassword']);
-                                $success[] = Text::get('user-password-changed');
+                                $success[] = Text::_("Has cambiado tu contraseña");
 
                                 $log_action = 'Cambiado su contraseña'; //feed admin
                             }
@@ -295,7 +295,7 @@ namespace Goteo\Controller {
                             $user = Model\User::flush();
                             if (isset($_SESSION['recovering'])) unset($_SESSION['recovering']);
                         } else {
-                            $errors[] = Text::get('user-save-fail');
+                            $errors[] = Text::_("Ha habido algun problema al guardar los datos");
                         }
                     break;
 
@@ -320,7 +320,7 @@ namespace Goteo\Controller {
                         // actualizamos estos datos en los personales del usuario
                         if (!empty ($preferences)) {
                             if (Model\User::setPreferences($user->id, $preferences, $errors)) {
-                                Message::Info(Text::get('user-prefer-saved'));
+                                Message::Info(Text::_("Tus preferencias de notificación se han guardado correctamente"));
                                 $log_action = Text::_("Modificado las preferencias de notificación"); //feed admin
                             }
                         }
@@ -388,7 +388,7 @@ namespace Goteo\Controller {
                     case 'access':
                         // si es recover, en contraseña actual tendran que poner el username
                         if ($action == 'recover') {
-                            $viewData['message'] = Text::get('dashboard-password-recover-advice');
+                            $viewData['message'] = Text::_("Asegúrate de reestablecer tu contraseña");
                         }
                         break;
                 }
@@ -462,7 +462,7 @@ namespace Goteo\Controller {
 
             // tenemos proyecto de trabajo, comprobar si el proyecto esta en estado de tener blog
             if ($option == 'updates' && $project->status < 3) {
-                $errors[] = Text::get('dashboard-project-blog-wrongstatus');
+                $errors[] = Text::_("Lo sentimos, aún no se pueden publicar novedades en este proyecto...");
                 $action = 'none';
             } elseif ($option == 'updates') {
                 // solo cargamos el blog en la gestion de updates
@@ -479,18 +479,18 @@ namespace Goteo\Controller {
                             )
                         );
                     if (!$blog->save($errors)) {
-                        $errors[] = Text::get('dashboard-project-blog-fail');
+                        $errors[] = Text::_("Contacta con nosotr*s");
                         $option = 'summary';
                         $action = 'none';
                     }
                 } elseif (!$blog->active) {
-                        $errors[] = Text::get('dashboard-project-blog-inactive');
+                        $errors[] = Text::_("Lo sentimos, la publicación de novedades en este proyecto está desactivada");
                         $action = 'none';
                     }
 
                 // primero comprobar que tenemos blog
                 if (!$blog instanceof Model\Blog) {
-                    $errors[] = Text::get('dashboard-project-updates-noblog');
+                    $errors[] = Text::_("No se ha encontrado ningún blog para este proyecto");
                     $option = 'summary';
                     $action = 'none';
                     break;
@@ -537,7 +537,7 @@ namespace Goteo\Controller {
                                 $order  = $_POST['order'];
 
                                 if (empty($_POST['message'])) {
-                                    $errors[] = Text::get('dashboard-investors-mail-text-required');
+                                    $errors[] = Text::_("Escribe el mensaje");
                                     break;
                                 } else {
                                     $msg_content = \strip_tags($_POST['message']);
@@ -574,13 +574,13 @@ namespace Goteo\Controller {
                                 }
 
                                 if (count($who) == 0) {
-                                    $errors[] = Text::get('dashboard-investors-mail-nowho');
+                                    $errors[] = Text::_("No se han encontrado destinatarios");
                                     break;
                                 }
 
                                 // obtener contenido
                                 // segun destinatarios
-                                $allsome = explode('/', Text::get('regular-allsome'));
+                                $allsome = explode('/', Text::_("todos/algunos de"));
                                 $enviandoa = !empty($_POST['msg_all']) ? $allsome[0] : $allsome[1];
                                 Message::Info(Text::get('dashboard-investors-mail-sendto', $enviandoa)) ;
 
@@ -822,9 +822,9 @@ namespace Goteo\Controller {
                         if ($post->save($errors)) {
                             $id = $post->id;
                             if ($action == 'edit') {
-                                $success[] = Text::get('dashboard-project-updates-saved');
+                                $success[] = Text::_("La entrada se ha actualizado correctamente");
                             } else {
-                                $success[] = Text::get('dashboard-project-updates-inserted');
+                                $success[] = Text::_("Se ha añadido una nueva entrada");
                             }
                             $action = $editing ? 'edit' : 'list';
 
@@ -840,7 +840,7 @@ namespace Goteo\Controller {
                                 $log_text = Text::_("%s ha publicado un nuevo post en %s sobre el proyecto %s, con el título '%s'");
                                 $log_items = array(
                                     Feed::item('user', $_SESSION['user']->name, $_SESSION['user']->id),
-                                    Feed::item('blog', Text::get('project-menu-updates')),
+                                    Feed::item('blog', Text::_("Novedades")),
                                     Feed::item('project', $project->name, $project->id),
                                     Feed::item('update', $post->title, $project->id.'/updates/'.$post->id)
                                 );
@@ -856,7 +856,7 @@ namespace Goteo\Controller {
                                 $log->type = 'projects';
                                 $log->html = Text::html('feed-new_update',
                                                 Feed::item('user', $_SESSION['user']->name, $_SESSION['user']->id),
-                                                Feed::item('blog', Text::get('project-menu-updates')),
+                                                Feed::item('blog', Text::_("Novedades")),
                                                 Feed::item('project', $project->name, $project->id)
                                                 );
                                 $log->add($errors);
@@ -865,7 +865,7 @@ namespace Goteo\Controller {
                             }
 
                         } else {
-                            $errors[] = Text::get('dashboard-project-updates-fail');
+                            $errors[] = Text::_("Ha habido algun problema al guardar los datos");
                         }
                         break;
                 }
@@ -889,14 +889,14 @@ namespace Goteo\Controller {
                         break;
                     case 'edit':
                         if (empty($id)) {
-                            $errors[] = Text::get('dashboard-project-updates-nopost');
+                            $errors[] = Text::_("No se ha encontrado la entrada");
                             $action = 'list';
                             break;
                         } else {
                             $post = Model\Blog\Post::get($id);
 
                             if (!$post instanceof Model\Blog\Post) {
-                                $errors[] = Text::get('dashboard-project-updates-postcorrupt');
+                                $errors[] = Text::_("La entrada está corrupta, contacta con nosotros");
                                 $action = 'list';
                                 break;
                             }
@@ -906,9 +906,9 @@ namespace Goteo\Controller {
                     case 'delete':
                         $post = Model\Blog\Post::get($id);
                         if ($post->delete($id)) {
-                            $success[] = Text::get('dashboard-project-updates-deleted');
+                            $success[] = Text::_("Entrada eliminada");
                         } else {
-                            $errors[] = Text::get('dashboard-project-updates-delete_fail');
+                            $errors[] = Text::_("Error al eliminar la entrada");
                         }
                         $posts = Model\Blog\Post::getAll($blog->id, null, false);
                         $action = 'list';
@@ -1277,30 +1277,30 @@ namespace Goteo\Controller {
             // todos los textos del menu dashboard
             $menu = array(
                 'activity' => array(
-                    'label'   => Text::get('dashboard-menu-activity'),
+                    'label'   => Text::_("Mi actividad"),
                     'options' => array (
-                        'summary' => Text::get('dashboard-menu-activity-summary')
+                        'summary' => Text::_("Resumen")
                     )
                 ),
                 'profile' => array(
-                    'label'   => Text::get('dashboard-menu-profile'),
+                    'label'   => Text::_("Mi perfil"),
                     'options' => array (
-                        'profile'  => Text::get('dashboard-menu-profile-profile'),
-                        'personal' => Text::get('dashboard-menu-profile-personal'),
-                        'access'   => Text::get('dashboard-menu-profile-access'),
-                        'preferences' => Text::get('dashboard-menu-profile-preferences'),
-                        'public'   => Text::get('dashboard-menu-profile-public')
+                        'profile'  => Text::_("Editar perfil"),
+                        'personal' => Text::_("Datos personales"),
+                        'access'   => Text::_("Datos de acceso"),
+                        'preferences' => Text::_("Preferencias"),
+                        'public'   => Text::_("Perfil público")
                     )
                 ),
                 'projects' => array(
-                    'label' => Text::get('dashboard-menu-projects'),
+                    'label' => Text::_("Mis proyectos"),
                     'options' => array (
-                        'summary'  => Text::get('dashboard-menu-projects-summary'),
-                        'updates'  => Text::get('dashboard-menu-projects-updates'),
-                        'widgets'  => Text::get('dashboard-menu-projects-widgets'),
-                        'contract' => Text::get('dashboard-menu-projects-contract'), 
-                        'rewards'  => Text::get('dashboard-menu-projects-rewards'),
-                        'supports' => Text::get('dashboard-menu-projects-supports')
+                        'summary'  => Text::_("Resumen"),
+                        'updates'  => Text::_("Novedades"),
+                        'widgets'  => Text::_("Widget"),
+                        'contract' => Text::_("Cuenta bancaria"), 
+                        'rewards'  => Text::_("Gestión cofinanciadores"),
+                        'supports' => Text::_("Colaboraciones")
                     )
                 )
             );
@@ -1309,21 +1309,21 @@ namespace Goteo\Controller {
             $translates = Model\User\Translate::query("SELECT COUNT(project) FROM user_translate WHERE user = ?", array($_SESSION['user']->id));
             if ($translates->fetchColumn(0) > 0) {
                 $menu['translates'] = array(
-                    'label' => Text::get('dashboard-menu-translates'),
+                    'label' => Text::_("Mis Traducciones"),
                     'options' => array (
-                        'profile'  => Text::get('step-1'),
-                        'overview' => Text::get('step-3'),
-                        'costs'    => Text::get('step-4'),
-                        'rewards'  => Text::get('step-5'),
-                        'supports' => Text::get('step-6'),
-                        'updates'  => Text::get('project-menu-updates')
+                        'profile'  => Text::_("Perfil"),
+                        'overview' => Text::_("Descripción"),
+                        'costs'    => Text::_("Costes"),
+                        'rewards'  => Text::_("Retorno"),
+                        'supports' => Text::_("Colaboraciones"),
+                        'updates'  => Text::_("Novedades")
                     )
                 );
             } else {
                 $menu['translates'] = array(
-                    'label' => Text::get('dashboard-menu-translates'),
+                    'label' => Text::_("Mis Traducciones"),
                     'options' => array (
-                        'profile'  => Text::get('step-1')
+                        'profile'  => Text::_("Perfil")
                     )
                 );
             }
@@ -1331,9 +1331,9 @@ namespace Goteo\Controller {
             // si tiene permiso para ir al admin
             if (ACL::check('/admin')) {
                 $menu['admin'] = array(
-                    'label'   => Text::get('dashboard-menu-admin_board'),
+                    'label'   => Text::_("Administración"),
                     'options' => array(
-                        'board' => Text::get('dashboard-menu-admin_board')
+                        'board' => Text::_("Administración")
                     )
                 );
             }
@@ -1341,9 +1341,9 @@ namespace Goteo\Controller {
             // si tiene permiso para ir a las revisiones
             if (ACL::check('/review')) {
                 $menu['review'] = array(
-                    'label'   => Text::get('dashboard-menu-review_board'),
+                    'label'   => Text::_("Revisión"),
                     'options' => array(
-                        'board' => Text::get('dashboard-menu-review_board')
+                        'board' => Text::_("Revisión")
                     )
                 );
             }
@@ -1351,9 +1351,9 @@ namespace Goteo\Controller {
             // si tiene permiso para ir a las traducciones
             if (ACL::check('/translate')) {
                 $menu['translate'] = array(
-                    'label'   => Text::get('dashboard-menu-translate_board'),
+                    'label'   => Text::_("Traducción"),
                     'options' => array(
-                        'board' => Text::get('dashboard-menu-translate_board')
+                        'board' => Text::_("Traducción")
                     )
                 );
             }

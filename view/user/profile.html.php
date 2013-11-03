@@ -69,7 +69,7 @@ $worthcracy = Worth::getAll();
 
 <div id="sub-header">
     <div>
-        <h2><a href="/user/<?php echo $user->id; ?>"><img src="<?php echo $user->avatar->getLink(75, 75, true); ?>" /></a> <?php echo Text::get('profile-name-header'); ?> <br /><em><?php echo $user->name; ?></em></h2>
+        <h2><a href="/user/<?php echo $user->id; ?>"><img src="<?php echo $user->avatar->getLink(75, 75, true); ?>" /></a> <?php echo Text::_("Perfil de "); ?> <br /><em><?php echo $user->name; ?></em></h2>
     </div>
 </div>
 
@@ -91,7 +91,7 @@ $worthcracy = Worth::getAll();
                 continue;
             ?>
             <div class="widget projects">
-                <h2 class="title"><?php echo Text::get('profile-'.$type.'-header'); ?></h2>
+                <h2 class="title"><?php echo ; ?></h2>
                 <?php foreach ($list as $group=>$projects) : ?>
                     <div class="discover-group discover-group-<?php echo $type ?>" id="discover-group-<?php echo $type ?>-<?php echo $group ?>">
 

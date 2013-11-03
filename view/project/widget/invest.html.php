@@ -45,26 +45,26 @@ $action = '/invest/' . $project->id;
 
 ?>
 <div class="widget project-invest project-invest-amount">
-    <h<?php echo $level ?> class="title"><?php echo Text::get('invest-amount') ?></h<?php echo $level ?>>
+    <h<?php echo $level ?> class="title"><?php echo Text::_("Cantidad") ?></h<?php echo $level ?>>
     
     <form method="post" action="<?php echo $action; ?>">
 
-    <label><input type="text" id="amount" name="amount" class="amount" value="<?php echo $amount ?>" /><?php echo Text::get('invest-amount-tooltip') ?></label>
+    <label><input type="text" id="amount" name="amount" class="amount" value="<?php echo $amount ?>" /><?php echo Text::_("Introduce la cantidad con la que apoyarás al proyecto") ?></label>
 </div>
 
     
 <div class="widget project-invest project-invest-individual_rewards">
-    <h<?php echo $level ?> class="beak"><?php echo Text::get('invest-individual-header') ?></h<?php echo $level ?>>
+    <h<?php echo $level ?> class="beak"><?php echo Text::_("Puedes renunciar a recibir recompensas por tu aportación, o seleccionar las que igualen o estén por debajo del importe que hayas introducido.") ?></h<?php echo $level ?>>
     
     <div class="individual">
-        <h<?php echo $level+1 ?> class="title"><?php echo Text::get('project-rewards-individual_reward-title'); ?></h<?php echo $level+1 ?>>
+        <h<?php echo $level+1 ?> class="title"><?php echo Text::_("Recompensas individuales"); ?></h<?php echo $level+1 ?>>
         <ul>
-            <li><label class="resign"><input class="resign" type="checkbox" name="resign" value="1" /><span class="chkbox"></span><?php echo Text::get('invest-resign') ?></label></li>
+            <li><label class="resign"><input class="resign" type="checkbox" name="resign" value="1" /><span class="chkbox"></span><?php echo Text::_("Renuncio a una recompensa individual, solo quiero ayudar al proyecto") ?></label></li>
         <?php foreach ($project->individual_rewards as $individual) : ?>
         <li class="<?php echo $individual->icon ?><?php if ($individual->none) echo ' disabled' ?>">
         <?php if ($individual->none) : ?>
             <label class="amount">
-                <span style="color:red;"><?php echo Text::get('invest-reward-none') ?></span>
+                <span style="color:red;"><?php echo Text::_("Ya no se puede elegir") ?></span>
                 <h<?php echo $level + 2 ?> class="name"><?php echo htmlspecialchars($individual->reward) ?></h<?php echo $level + 2 ?>>
                 <p><?php echo htmlspecialchars($individual->description)?></p>
             </label>
@@ -85,37 +85,37 @@ $action = '/invest/' . $project->id;
 </div>
 
 <div class="widget project-invest address">
-    <h<?php echo $level ?> class="beak" id="address-header"><?php echo Text::get('invest-address-header') ?></h<?php echo $level ?>>
+    <h<?php echo $level ?> class="beak" id="address-header"><?php echo Text::_("Dónde quieres recibir la recompensa (sólo en caso de envíos postales)") ?></h<?php echo $level ?>>
     <table>
         <tr id="donation-data" style="display:none;">
-            <td><label for="fullname"><?php echo Text::get('invest-address-name-field') ?></label></td>
+            <td><label for="fullname"><?php echo Text::_("Nombre:") ?></label></td>
             <td colspan="3"><input type="text" id="fullname" name="fullname" value="<?php echo $personal->contract_name; ?>" /></td>
-            <td><label for="nif"><?php echo Text::get('invest-address-nif-field') ?></label></td>
+            <td><label for="nif"><?php echo Text::_("Número de NIF / NIE / VAT:") ?></label></td>
             <td><input type="text" id="nif" name="nif" value="<?php echo $personal->contract_nif; ?>" /></td>
         </tr>
         <tr>
-            <td><label for="address"><?php echo Text::get('invest-address-address-field') ?></label></td>
+            <td><label for="address"><?php echo Text::_("Dirección:") ?></label></td>
             <td colspan="3"><input type="text" id="address" name="address" value="<?php echo $personal->address; ?>" /></td>
-            <td><label for="zipcode"><?php echo Text::get('invest-address-zipcode-field') ?></label></td>
+            <td><label for="zipcode"><?php echo Text::_("Código postal:") ?></label></td>
             <td><input type="text" id="zipcode" name="zipcode" value="<?php echo $personal->zipcode; ?>" /></td>
         </tr>
         <tr>
-            <td><label for="location"><?php echo Text::get('invest-address-location-field') ?></label></td>
+            <td><label for="location"><?php echo Text::_("Ciudad:") ?></label></td>
             <td><input type="text" id="location" name="location" value="<?php echo $personal->location; ?>" /></td>
-            <td><label for="country"><?php echo Text::get('invest-address-country-field') ?></label></td>
+            <td><label for="country"><?php echo Text::_("País:") ?></label></td>
             <td><input type="text" id="country" name="country" value="<?php echo $personal->country; ?>" /></td>
             <td colspan="2"></td>
         </tr>
     </table>
 
     <p>
-        <label><input type="checkbox" name="anonymous" value="1" /><span class="chkbox"></span><?php echo Text::get('invest-anonymous') ?></label>
+        <label><input type="checkbox" name="anonymous" value="1" /><span class="chkbox"></span><?php echo Text::_("Quiero que mi aportación sea anónima") ?></label>
     </p>
 </div>
 
 
 <div class="widget project-invest">
-    <h<?php echo $level ?> class="beak"><?php echo Text::get('project-invest-continue') ?></h<?php echo $level ?>>
+    <h<?php echo $level ?> class="beak"><?php echo Text::_("Elige el modo de pago") ?></h<?php echo $level ?>>
             
 <input type="hidden" id="paymethod"  />
 
@@ -130,10 +130,10 @@ $action = '/invest/' . $project->id;
 
 
 <div class="widget project-invest">
-    <h<?php echo $level ?> class="beak"><?php echo Text::get('invest-social-header') ?></h<?php echo $level ?>>
+    <h<?php echo $level ?> class="beak"><?php echo Text::_("Con los retornos colectivos ganamos tod@s") ?></h<?php echo $level ?>>
 
     <div class="social">
-        <h<?php echo $level + 1 ?> class="title"><?php echo Text::get('project-rewards-social_reward-title'); ?></h<?php echo $level + 1 ?>>
+        <h<?php echo $level + 1 ?> class="title"><?php echo Text::_("Retorno colectivo"); ?></h<?php echo $level + 1 ?>>
         <ul>
         <?php foreach ($project->social_rewards as $social) : ?>
             <li class="<?php echo $social->icon ?>">
@@ -141,7 +141,7 @@ $action = '/invest/' . $project->id;
                 <p><?php echo htmlspecialchars($social->description)?></p>
                 <?php if (!empty($social->license) && array_key_exists($social->license, $licenses)): ?>
                 <div class="license <?php echo htmlspecialchars($social->license) ?>">
-                    <h<?php echo $level + 3 ?>><?php echo Text::get('regular-license'); ?></h<?php echo $level + 3 ?>>
+                    <h<?php echo $level + 3 ?>><?php echo Text::_("Licencia"); ?></h<?php echo $level + 3 ?>>
                     <a href="<?php echo htmlspecialchars($licenses[$social->license]->url) ?>" target="_blank">
                         <strong><?php echo htmlspecialchars($licenses[$social->license]->name) ?></strong>
 
@@ -211,10 +211,10 @@ $action = '/invest/' . $project->id;
             update();
             var resign = $('div.widget.project-invest-individual_rewards input.resign:checked').length > 0;
             if (!resign) {
-                $("#address-header").html('<?php echo Text::get('invest-address-header') ?>');
+                $("#address-header").html('<?php echo Text::_("Dónde quieres recibir la recompensa (sólo en caso de envíos postales)") ?>');
                 $("#donation-data").hide();
             } else {
-                $("#address-header").html('<?php echo Text::get('invest-donation-header') ?>');
+                $("#address-header").html('<?php echo Text::_("Introduce los datos fiscales para el donativo") ?>');
                 $("#donation-data").show();
             }
         });
@@ -247,14 +247,14 @@ $action = '/invest/' . $project->id;
             var amount = input.val();
 
             if (amount <= 0) {
-                alert('<?php echo Text::get('invest-amount-error') ?>');
+                alert('<?php echo Text::_("Tienes que indicar el importe") ?>');
                 input.focus();
                 return false;
             }
 
             /* Renuncias pero no has puesto tu NIF para desgravar el donativo */
             if ($('input.resign').attr('checked') == 'checked') {
-                if ($('#nif').val() == '' && !confirm('<?php echo Text::get('invest-alert-renounce') ?>')) {
+                if ($('#nif').val() == '' && !confirm('<?php echo Text::_("Renuncias pero no has puesto tu NIF para desgravar el donativo, ¿es correcto?") ?>')) {
                     $('#nif').focus();
                     return false;
                 }
@@ -270,9 +270,9 @@ $action = '/invest/' . $project->id;
                 });
 
                 if (noreward) {
-                    if (confirm('<?php echo Text::get('invest-alert-noreward') ?>')) {
-                        if (confirm('<?php echo Text::get('invest-alert-noreward_renounce') ?>')) {
-                            $("#address-header").html('<?php echo Text::get('invest-donation-header') ?>');
+                    if (confirm('<?php echo Text::_("No has marcado ninguna recompensa, ¿es correcto?") ?>')) {
+                        if (confirm('<?php echo Text::_("¿Deseas renunciar a la recompensa y desgravar tu donativo?") ?>')) {
+                            $("#address-header").html('<?php echo Text::_("Introduce los datos fiscales para el donativo") ?>');
                             $("#donation-data").show();
                             $('input.resign').click();
                             $('#nif').focus();
@@ -284,13 +284,13 @@ $action = '/invest/' . $project->id;
                     }
                 } else {
                     /* Has elegido las siguientes recompensas */
-                    if (!confirm('<?php echo Text::get('invest-alert-rewards') ?> '+rewards+' ok?')) {
+                    if (!confirm('<?php echo Text::_("Has elegido las siguientes recompensas:") ?> '+rewards+' ok?')) {
                         return false;
                     }
                 }
             }
 
-            return confirm('<?php echo Text::get('invest-alert-investing') ?> '+amount+' EUR');
+            return confirm('<?php echo Text::_("Vas a aportar") ?> '+amount+' EUR');
         });
 
     });    

@@ -31,7 +31,7 @@ $reward = $this['data']['reward'] ?>
     </div>
 
     
-    <input type="submit" class="edit" name="<?php echo $reward->type ?>_reward-<?php echo $reward->id ?>-edit" value="<?php echo Text::get('regular-edit') ?>" />
+    <input type="submit" class="edit" name="<?php echo $reward->type ?>_reward-<?php echo $reward->id ?>-edit" value="<?php echo Text::_("Editar") ?>" />
 </div>
 
     

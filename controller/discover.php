@@ -36,11 +36,11 @@ namespace Goteo\Controller {
 
             $viewData = array();
             $viewData['title'] = array(
-                'popular' => Text::get('discover-group-popular-header'),
-                'outdate' => Text::get('discover-group-outdate-header'),
-                'recent'  => Text::get('discover-group-recent-header'),
-                'success' => Text::get('discover-group-success-header'),
-                'archive' => Text::get('discover-group-archive-header')
+                'popular' => Text::_("Más populares"),
+                'outdate' => Text::_("A punto de ser archivado"),
+                'recent'  => Text::_("Publicados recientemente"),
+                'success' => Text::_("Exitosos"),
+                'archive' => Text::_("Archivados")
             );
 
             $viewData['lists'] = array();
@@ -135,7 +135,7 @@ namespace Goteo\Controller {
             $viewData = array();
 
             // segun el tipo cargamos el título de la página
-            $viewData['title'] = Text::get('discover-group-'.$type.'-header');
+            $viewData['title'] = ;
 
             // segun el tipo cargamos la lista
             $viewData['list']  = Model\Project::published($type);

@@ -52,25 +52,25 @@ include 'view/header.html.php';
 
         <div class="widget contact-message">
 
-            <h3 class="title"><?php echo Text::get('contact-send_message-header'); ?></h3>
+            <h3 class="title"><?php echo Text::_("Envíanos un mensaje"); ?></h3>
 
             <form method="post" action="/contact">
                 <div class="field">
-                    <label for="email"><?php echo Text::get('contact-email-field'); ?></label><br />
+                    <label for="email"><?php echo Text::_("Email"); ?></label><br />
                     <input type="text" id="email" name="email" value="<?php echo $this['data']['email'] ?>"/>
                 </div>
 
                 <div class="field">
-                    <label for="subject"><?php echo Text::get('contact-subject-field'); ?></label><br />
+                    <label for="subject"><?php echo Text::_("Asunto"); ?></label><br />
                     <input type="text" id="subject" name="subject" value="<?php echo $this['data']['subject'] ?>"/>
                 </div>
 
                 <div class="field">
-                    <label for="message"><?php echo Text::get('contact-message-field'); ?></label><br />
+                    <label for="message"><?php echo Text::_("Mensaje"); ?></label><br />
                     <textarea id="message" name="message" cols="50" rows="5"><?php echo $this['data']['message'] ?></textarea>
                 </div>
 
-                <button class="green" type="submit" name="send"><?php echo Text::get('contact-send_message-button'); ?></button>
+                <button class="green" type="submit" name="send"><?php echo Text::_("Enviar"); ?></button>
             </form>
 
         </div>

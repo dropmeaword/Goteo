@@ -42,7 +42,7 @@ function displayCategories(categoryId1,categoryId2){
 </script>
 <div class="widget user-mates">
 	<!-- categorias -->
-    <h3 class="supertitle"><?php echo Text::get('profile-sharing_interests-header'); ?></h3>
+    <h3 class="supertitle"><?php echo Text::_("Compartiendo intereses"); ?></h3>
     <div class="categories">    
     <?php $keys = array_keys($categories);?>
     <ul>       
@@ -95,10 +95,10 @@ function displayCategories(categoryId1,categoryId2){
                         </a>
                     </h4>
                     <span class="projects">
-						<?php echo Text::get('regular-projects'); ?> (<?php echo $mate->projects ?>)
+						<?php echo Text::_("proyectos"); ?> (<?php echo $mate->projects ?>)
                     </span>
                     <span class="invests">
-						<?php echo Text::get('regular-investing'); ?> (<?php echo $mate->invests ?>)
+						<?php echo Text::_("Aportando"); ?> (<?php echo $mate->invests ?>)
                     </span>
                 </div>
             </li>
@@ -106,7 +106,7 @@ function displayCategories(categoryId1,categoryId2){
 		} ?>
         
         </ul>
-        <a class="more" href="/user/profile/<?php echo $this['user']->id ?>/sharemates/<?php echo $catId ?>"><?php echo Text::get('regular-see_more'); ?></a>
+        <a class="more" href="/user/profile/<?php echo $this['user']->id ?>/sharemates/<?php echo $catId ?>"><?php echo Text::_("Ver más"); ?></a>
     </div>
     <?php } ?>
     

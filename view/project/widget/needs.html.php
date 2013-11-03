@@ -45,7 +45,7 @@ foreach ($project->costs as $cost) {
 ?>
 <div class="widget project-needs">
         
-    <h<?php echo $level+1 ?> class="title"><?php echo Text::get('project-view-metter-investment'); ?></h<?php echo $level+1 ?>>
+    <h<?php echo $level+1 ?> class="title"><?php echo Text::_("Cofinanciación"); ?></h<?php echo $level+1 ?>>
     
     <script type="text/javascript">
 	$(document).ready(function() {
@@ -65,8 +65,8 @@ foreach ($project->costs as $cost) {
         <thead class="<?php echo htmlspecialchars($type)?>">
             <tr>
                 <th class="summary"><?php echo htmlspecialchars($types[$type]) ?></th>
-                <th class="min"><?php echo Text::get('project-view-metter-minimum'); ?></th>
-                <th class="max"><?php echo Text::get('project-view-metter-optimum'); ?></th>
+                <th class="min"><?php echo Text::_("Mínimo"); ?></th>
+                <th class="max"><?php echo Text::_("Óptimo"); ?></th>
             </tr>            
         </thead>
         
@@ -90,7 +90,7 @@ foreach ($project->costs as $cost) {
                                         
         <tfoot>
             <tr>
-                <th class="total"><?php echo Text::get('regular-total'); ?></th>
+                <th class="total"><?php echo Text::_("Total"); ?></th>
                 <th class="min"><?php echo $minimum ?></th>
                 <th class="max"><?php echo $optimum ?></th>
             </tr>
@@ -99,8 +99,8 @@ foreach ($project->costs as $cost) {
     </table>
     
     <div id="legend">
-    	<div class="min"><span>&nbsp;</span><?php echo Text::get('costs-field-required_cost-yes') ?></div>
-        <div class="max"><span>&nbsp;</span><?php echo Text::get('costs-field-required_cost-no') ?></div>
+    	<div class="min"><span>&nbsp;</span><?php echo Text::_("Imprescindible") ?></div>
+        <div class="max"><span>&nbsp;</span><?php echo Text::_("Adicional") ?></div>
     </div>
     
 </div>

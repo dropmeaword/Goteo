@@ -24,7 +24,7 @@
 
 $bodyClass = 'news';
 
-$read_more = Text::get('regular-read_more');
+$read_more = Text::_("Leer más");
 
 // noticias
 $news = $this['news'];
@@ -32,7 +32,7 @@ $news = $this['news'];
 // últimas entradas del blog goteo
 $list = array();
 
-$title = Text::get('blog-side-last_posts');
+$title = Text::_("Últimas entradas");
 $items = Post::getAll(1, 7);
 // enlace a la entrada
 foreach ($items as $item) {

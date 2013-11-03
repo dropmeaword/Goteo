@@ -115,7 +115,7 @@ namespace Goteo\Model {
         public function validate (&$errors = array()) { 
             if (empty($this->name))
                 $errors[] = Text::_('Falta nombre');
-                //Text::get('mandatory-license-name');
+                //;
 
             if (empty($errors))
                 return true;

@@ -28,7 +28,7 @@ $letters = array();
 
 $bodyClass = 'glossary';
 
-$go_up = Text::get('regular-go_up');
+$go_up = Text::_("Subir");
 
 // paginacion
 require_once 'library/pagination/pagination.php';
@@ -40,14 +40,14 @@ include 'view/header.html.php';
 ?>
 	<div id="sub-header-secondary">
 		<div class="clearfix">
-            <h2><a href="/glossary">GOTEO<span class="red"><?php echo Text::get('footer-resources-glossary');?></span></a></h2>
+            <h2><a href="/glossary">GOTEO<span class="red"><?php echo Text::_("Glosario");?></span></a></h2>
             <?php echo new View('view/header/share.html.php') ?>
 		</div>
 	</div>
 
 	<div id="main" class="threecols">
 		<div id="glossary-content">
-            <h3 class="title"><?php echo Text::get('regular-header-glossary'); ?></h3>
+            <h3 class="title"><?php echo Text::_("Principios para una economía abierta"); ?></h3>
             <?php if (!empty($posts)) : ?>
                 <div class="glossary-page">
                 <?php while ($post = $pagedResults->fetchPagedRow()) : ?>

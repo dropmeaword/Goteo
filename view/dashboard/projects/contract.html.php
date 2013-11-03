@@ -51,6 +51,6 @@ $accounts = Account::get($project->id);
     <input type="text" id="paypal-account" name="paypal" value="<?php echo $accounts->paypal; ?>" style="width:350px;" />
 </p>
 
-<input type="submit" name="save" value="<?php echo Text::get('form-apply-button') ?>" />
+<input type="submit" name="save" value="<?php echo Text::_("Aplicar") ?>" />
 </form>
 </div>

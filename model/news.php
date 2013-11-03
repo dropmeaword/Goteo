@@ -88,11 +88,11 @@ namespace Goteo\Model {
         public function validate (&$errors = array()) { 
             if (empty($this->title))
                 $errors[] = Text::_('Falta título');
-                //Text::get('mandatory-news-title');
+                //;
 
             if (empty($this->url))
                 $errors[] = Text::_('Falta url');
-                //Text::get('mandatory-news-url');
+                //;
 
             if (empty($errors))
                 return true;

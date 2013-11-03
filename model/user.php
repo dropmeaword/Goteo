@@ -144,7 +144,7 @@ namespace Goteo\Model {
 						$mail->html = false;
 						$mail->template = $template->id;
 						if ($mail->send($errors)) {
-							Message::Info(Text::get('register-confirm_mail-success'));
+							Message::Info(Text::_("Mensaje de activación de cuenta enviado. Si no está en tu buzón de correo, revisa la carpeta de /Spam"));
 						} else {
 							Message::Error(Text::get('register-confirm_mail-fail', GOTEO_MAIL));
 							Message::Error(implode('<br />', $errors));
@@ -351,29 +351,29 @@ namespace Goteo\Model {
             if(empty($this->id)) {
                 // Nombre de usuario (id)
                 if(empty($this->userid)) {
-                    $errors['userid'] = Text::get('error-register-userid');
+                    $errors['userid'] = Text::_("Es obligatorio escribir un nombre de acceso");
                 }
                 else {
                     $id = self::idealiza($this->userid);
                     $query = self::query('SELECT id FROM user WHERE id = ?', array($id));
                     if($query->fetchColumn()) {
-                        $errors['userid'] = Text::get('error-register-user-exists');
+                        $errors['userid'] = Text::_("Este nombre de usuario ya está registrado.");
                     }
                 }
 
                 if(empty($this->name)) {
-                    $errors['username'] = Text::get('error-register-username');
+                    $errors['username'] = Text::_("El nombre público es obligatorio.");
                 }
 
                 // E-mail
                 if (empty($this->email)) {
-                    $errors['email'] = Text::get('mandatory-register-field-email');
+                    $errors['email'] = Text::_("Tienes que indicar un email");
                 } elseif (!Check::mail($this->email)) {
-                    $errors['email'] = Text::get('validate-register-value-email');
+                    $errors['email'] = Text::_("El email introducido no es válido");
                 } else {
                     $query = self::query('SELECT email FROM user WHERE email = ?', array($this->email));
                     if($query->fetchObject()) {
-                        $errors['email'] = Text::get('error-register-email-exists');
+                        $errors['email'] = Text::_("La dirección de correo facilitada corresponde a un usuario ya registrado");
                     }
                 }
 
@@ -381,11 +381,11 @@ namespace Goteo\Model {
                 if(!in_array('password',$skip_validations))  {
 					if(!empty($this->password)) {
 						if(!Check::password($this->password)) {
-							$errors['password'] = Text::get('error-register-invalid-password');
+							$errors['password'] = Text::_("La contraseña no es válida");
 						}
 					}
 					else {
-						$errors['password'] = Text::get('error-register-pasword-empty');
+						$errors['password'] = Text::_("No has puesto contraseña");
 					}
 				}
                 return empty($errors);
@@ -395,24 +395,24 @@ namespace Goteo\Model {
                 if(!empty($this->email)) {
                     if(count($tmp = explode('¬', $this->email)) > 1) {
                         if($this->email !== $this->token) {
-                            $errors['email'] = Text::get('error-user-email-token-invalid');
+                            $errors['email'] = Text::_("El código no es correcto");
                         }
                     }
                     elseif(!Check::mail($this->email)) {
-                        $errors['email'] = Text::get('error-user-email-invalid');
+                        $errors['email'] = Text::_("El email que has puesto no es válido");
                     }
                     else {
                         $query = self::query('SELECT id FROM user WHERE email = ?', array($this->email));
                         if($found = $query->fetchColumn()) {
                             if($this->id !== $found) {
-                                $errors['email'] = Text::get('error-user-email-exists');
+                                $errors['email'] = Text::_("Ya hay un usuario registrado con este email");
                             }
                         }
                     }
                 }
                 if(!empty($this->password)) {
                     if(!Check::password($this->password)) {
-                        $errors['password'] = Text::get('error-user-password-invalid');
+                        $errors['password'] = Text::_("La contraseña es demasiado corta");
                     }
                 }
 
@@ -424,11 +424,11 @@ namespace Goteo\Model {
                 }
             }
 
-            if (\str_replace(Text::get('regular-facebook-url'), '', $this->facebook) == '') $this->facebook = '';
-            if (\str_replace(Text::get('regular-google-url'), '', $this->google) == '') $this->google = '';
-            if (\str_replace(Text::get('regular-twitter-url'), '', $this->twitter) == '') $this->twitter = '';
-            if (\str_replace(Text::get('regular-identica-url'), '', $this->identica) == '') $this->identica = '';
-            if (\str_replace(Text::get('regular-linkedin-url'), '', $this->linkedin) == '') $this->linkedin = '';
+            if (\str_replace(Text::_("http://www.facebook.com/"), '', $this->facebook) == '') $this->facebook = '';
+            if (\str_replace(Text::_("https://plus.google.com/"), '', $this->google) == '') $this->google = '';
+            if (\str_replace(Text::_("http://twitter.com/#!/"), '', $this->twitter) == '') $this->twitter = '';
+            if (\str_replace(Text::_("http://identi.ca/"), '', $this->identica) == '') $this->identica = '';
+            if (\str_replace(Text::_("http://es.linkedin.com/in/"), '', $this->linkedin) == '') $this->linkedin = '';
 
 
 
@@ -441,18 +441,18 @@ namespace Goteo\Model {
         public function update (&$errors = array()) {
             if(!empty($this->password)) {
                 if(!Check::password($this->password)) {
-                    $errors['password'] = Text::get('error-user-password-invalid');
+                    $errors['password'] = Text::_("La contraseña es demasiado corta");
                 }
             }
             if(!empty($this->email)) {
                 if(!Check::mail($this->email)) {
-                    $errors['email'] = Text::get('error-user-email-invalid');
+                    $errors['email'] = Text::_("El email que has puesto no es válido");
                 }
                 else {
                     $query = self::query('SELECT id FROM user WHERE email = ?', array($this->email));
                     if($found = $query->fetchColumn()) {
                         if($this->id !== $found) {
-                            $errors['email'] = Text::get('error-user-email-exists');
+                            $errors['email'] = Text::_("Ya hay un usuario registrado con este email");
                         }
                     }
                 }
@@ -763,7 +763,7 @@ namespace Goteo\Model {
 			    if($user->active) {
 			        return $user;
 			    } else {
-			        Message::Error(Text::get('user-account-inactive'));
+			        Message::Error(Text::_("La cuenta está desactivada. Debes recuperar la contraseña para activarla de nuevo"));
 			    }
 			}
 			return false;

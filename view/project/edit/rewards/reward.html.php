@@ -32,7 +32,7 @@ $types = $this['data']['types'];
         <p><?php echo htmlspecialchars($reward->description) ?></p>
         <?php if (!empty($reward->units)) : ?>
                 <?php echo "{$reward->units} u. x {$reward->amount} &euro; = " . ($reward->units * $reward->amount) ." &euro;<br />"; ?>
-                <strong><?php echo Text::get('project-rewards-individual_reward-limited'); ?></strong>
+                <strong><?php echo Text::_("Recompensa limitada"); ?></strong>
                 <?php $units = $reward->units;
                 echo Text::html('project-rewards-individual_reward-units_left', $units); ?><br />
             <?php endif; ?>
@@ -40,8 +40,8 @@ $types = $this['data']['types'];
     </div>
 
     
-    <input type="submit" class="edit" name="<?php echo $reward->type ?>_reward-<?php echo $reward->id ?>-edit" value="<?php echo Text::get('regular-edit') ?>" />
-    <input type="submit" class="remove weak" name="<?php echo $reward->type ?>_reward-<?php echo $reward->id ?>-remove" value="<?php echo Text::get('form-remove-button') ?>" />
+    <input type="submit" class="edit" name="<?php echo $reward->type ?>_reward-<?php echo $reward->id ?>-edit" value="<?php echo Text::_("Editar") ?>" />
+    <input type="submit" class="remove weak" name="<?php echo $reward->type ?>_reward-<?php echo $reward->id ?>-remove" value="<?php echo Text::_("Quitar") ?>" />
 </div>
 
     

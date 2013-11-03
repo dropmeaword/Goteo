@@ -33,14 +33,14 @@ $widget_code_investor = Text::widget($url.'/invested/'.$user->id.'/'.$lsuf);
 ?>
 <div class="widget project-spread">
     
-    <h<?php echo $level ?> class="title"><?php echo Text::get('project-spread-header'); ?></h<?php echo $level ?>>
+    <h<?php echo $level ?> class="title"><?php echo Text::_("Difunde este proyecto"); ?></h<?php echo $level ?>>
     
     <div class="widget projects">
    		 
           <div class="left">
               <div class="subtitle" id="s1">
-                <span class="primero"><?php echo Text::get('project-spread-pre_widget')?></span>
-                <span class="segundo"><?php echo Text::get('project-spread-widget')?></span>        
+                <span class="primero"><?php echo Text::_("Difunde este proyecto")?></span>
+                <span class="segundo"><?php echo Text::_("Widget del proyecto")?></span>        
               </div>
          	             
               <div>
@@ -53,7 +53,7 @@ $widget_code_investor = Text::widget($url.'/invested/'.$user->id.'/'.$lsuf);
               </div>
               
               <div id="widget-code">
-                <div class="wc-embed" onclick="$('#widget_code').focus();$('#widget_code').select()"><?php echo Text::get('project-spread-embed_code'); ?></div>
+                <div class="wc-embed" onclick="$('#widget_code').focus();$('#widget_code').select()"><?php echo Text::_("Código Embed"); ?></div>
                 <textarea id="widget_code" onclick="this.focus();this.select()" readonly="readonly"><?php echo htmlentities($widget_code); ?></textarea>
               </div>
         
@@ -61,8 +61,8 @@ $widget_code_investor = Text::widget($url.'/invested/'.$user->id.'/'.$lsuf);
             
           <div class="right">
              <div class="subtitle" id="s2">
-                 <span class="primero"><?php echo Text::get('project-share-pre_header')?></span>
-                 <span class="segundo"><?php echo Text::get('project-share-header')?></span>
+                 <span class="primero"><?php echo Text::_("Deja saber a tu red que")?></span>
+                 <span class="segundo"><?php echo Text::_("Comparte este proyecto")?></span>
 	        </div>
             
 	 
@@ -79,7 +79,7 @@ $widget_code_investor = Text::widget($url.'/invested/'.$user->id.'/'.$lsuf);
             
             <div>
                 <div id="widget-code">
-	                <div class="wc-embed" onclick="$('#investor_code').focus();$('#investor_code').select()"><?php echo Text::get('project-spread-embed_code'); ?></div>
+	                <div class="wc-embed" onclick="$('#investor_code').focus();$('#investor_code').select()"><?php echo Text::_("Código Embed"); ?></div>
               		<textarea id="investor_code" onclick="this.focus();this.select()" readonly="readonly"><?php echo htmlentities($widget_code_investor); ?></textarea>
     			</div>          
           

@@ -43,13 +43,13 @@ $level = (int) $this['level'] ?: 3;
 <?php if (!empty($_SESSION['user']->id) && $project->status >= 3) : ?>
 <div class="widget project-message">
     
-    <h<?php echo $level ?> class="title"><?php echo Text::get('project-messages-send_direct-header'); ?></h<?php echo $level ?>>
+    <h<?php echo $level ?> class="title"><?php echo Text::_("Envía un mensaje al impulsor/a del proyecto"); ?></h<?php echo $level ?>>
         
     <form method="post" action="/message/direct/<?php echo $project->id; ?>">    	
     	<div id="bocadillo"></div>
         <textarea id="message" name="message" cols="50" rows="5"></textarea>
         
-        <a target="_blank" id="a-preview" href="#preview" class="preview">&middot;<?php echo Text::get('regular-preview'); ?></a>
+        <a target="_blank" id="a-preview" href="#preview" class="preview">&middot;<?php echo Text::_("Previsualizar"); ?></a>
         <div style="display:none">
         	<div id="preview" style="width:400px;height:300px;overflow:auto;">
                     
@@ -58,7 +58,7 @@ $level = (int) $this['level'] ?: 3;
         
          
         
-        <button class="green" type="submit"><?php echo Text::get('project-messages-send_message-button'); ?></button>
+        <button class="green" type="submit"><?php echo Text::_("Enviar"); ?></button>
     </form>
 
 </div>

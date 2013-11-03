@@ -46,15 +46,15 @@ if ($this['action'] == 'none') return;
     <?php if (!empty($posts)) : ?>
     <?php foreach ($posts as $post) : ?>
         <div class="post">
-            <a class="button" href="<?php echo $url; ?>/edit/<?php echo $post->id; ?>"><?php echo Text::get('regular-edit') ?></a>&nbsp;&nbsp;&nbsp;
+            <a class="button" href="<?php echo $url; ?>/edit/<?php echo $post->id; ?>"><?php echo Text::_("Editar") ?></a>&nbsp;&nbsp;&nbsp;
 <a class="remove button weak" href="<?php echo $url; ?>/delete/<?php echo $post->id; ?>" onclick="return confirm('¿Seguro que deseas eliminar esta actualización?');"><?php echo Text::_("Eliminar");?></a>
-            <span><?php echo $post->publish ? Text::get('regular-published_yes') : Text::get('regular-published_no'); ?></span>
+            <span><?php echo $post->publish ? Text::_("Publicado") : Text::_("Borrador"); ?></span>
             <strong><?php echo $post->title; ?></strong>
             <span><?php echo $post->date; ?></span>
         </div>
     <?php endforeach; ?>
     <?php else : ?>
-        <p><?php echo Text::get('blog-no_posts') ?></p>
+        <p><?php echo Text::_("No se ha publicado ninguna entrada ") ?></p>
     <?php endif; ?>
 
 </div>
@@ -65,11 +65,11 @@ if ($this['action'] == 'none') return;
         $allow = array(
             array(
                 'value'     => 1,
-                'label'     => Text::get('regular-yes')
+                'label'     => Text::_("Sí")
                 ),
             array(
                 'value'     => 0,
-                'label'     => Text::get('regular-no')
+                'label'     => Text::_("No")
                 )
         );
 
@@ -88,7 +88,7 @@ if ($this['action'] == 'none') return;
         if (!empty($post->media->url)) {
             $media = array(
                     'type'  => 'media',
-                    'title' => Text::get('overview-field-media_preview'),
+                    'title' => Text::_("Vista previa"),
                     'class' => 'inline media',
                     'type'  => 'html',
                     'html'  => !empty($post->media) ? $post->media->getEmbedCode() : ''
@@ -111,13 +111,13 @@ if ($this['action'] == 'none') return;
         'level'         => $this['level'],
         'method'        => 'post',
         'title'         => '',
-        'hint'          => Text::get('guide-project-updates'),
+        'hint'          => Text::_("<b>Es muy importante que los proyectos mantengan informados a sus cofinanciadores y el resto de personas potencialmente interesadas sobre cómo avanza su campaña. Desde este apartado puedes publicar mensajes de actualización sobre el proyecto, como una especie de blog público.</b>\r\n\r\nEn Goteo además, una vez se han logrado los fondos mínimos, para la segunda ronda de cofinanciación es crítico explicar regularmente cómo ha arrancado la producción, avances, problemas, etc que permitan la mayor transparencia posible y saber cómo evoluciona el inicio del proyecto, para así tratar de generar más interés y comunidad en torno al mismo."),
         'class'         => 'aqua',
         'footer'        => array(
             'view-step-preview' => array(
                 'type'  => 'submit',
                 'name'  => 'save-post',
-                'label' => Text::get('regular-save'),
+                'label' => Text::_("Guardar"),
                 'class' => 'next'
             )
         ),
@@ -135,7 +135,7 @@ if ($this['action'] == 'none') return;
                 'required'  => true,
                 'size'      => 20,
                 'title'     => Text::_("Título"),
-                'hint'      => Text::get('tooltip-updates-title'),
+                'hint'      => Text::_("tooltip-updates-title"),
                 'errors'    => !empty($errors['title']) ? array($errors['title']) : array(),
                 'value'     => $post->title,
             ),
@@ -145,30 +145,30 @@ if ($this['action'] == 'none') return;
                 'cols'      => 40,
                 'rows'      => 4,
                             'title'     => Text::_("Texto de la entrada"),
-                'hint'      => Text::get('tooltip-updates-text'),
+                'hint'      => Text::_("tooltip-updates-text"),
                 'errors'    => !empty($errors['text']) ? array($errors['text']) : array(),
                 'value'     => $post->text
             ),
             'image' => array(
                 'title'     => 'Imagen',
                 'type'      => 'group',
-                'hint'      => Text::get('tooltip-updates-image'),
+                'hint'      => Text::_("tooltip-updates-image"),
                 'errors'    => !empty($errors['image']) ? array($errors['image']) : array(),
                 'class'     => 'image',
                 'children'  => array(
                     'image_upload'    => array(
                         'type'  => 'file',
-                        'label' => Text::get('form-image_upload-button'),
+                        'label' => Text::_("Subir imagen"),
                         'class' => 'inline image_upload',
-                        'title' => Text::get('profile-field-avatar_upload'),
-                        'hint'  => Text::get('tooltip-updates-image_upload'),
+                        'title' => Text::_("Subir una imagen"),
+                        'hint'  => Text::_("tooltip-updates-image_upload"),
                     )
                 )
             ),
 
             'gallery' => array(
                 'type'  => 'group',
-                'title' => Text::get('overview-field-image_gallery'),
+                'title' => Text::_("Imágenes actuales"),
                 'class' => 'inline',
                 'children'  => $images
             ),
@@ -177,7 +177,7 @@ if ($this['action'] == 'none') return;
                 'type'      => 'textbox',
                 'title'     => Text::_("Vídeo"),
                 'class'     => 'media',
-                'hint'      => Text::get('tooltip-updates-media'),
+                'hint'      => Text::_("tooltip-updates-media"),
                 'errors'    => !empty($errors['media']) ? array($errors['media']) : array(),
                 'value'     => (string) $post->media
             ),
@@ -185,7 +185,7 @@ if ($this['action'] == 'none') return;
             'media-upload' => array(
                 'name' => "upload",
                 'type'  => 'submit',
-                'label' => Text::get('form-upload-button'),
+                'label' => Text::_("Enviar"),
                 'class' => 'inline media-upload'
             ),
 
@@ -193,14 +193,14 @@ if ($this['action'] == 'none') return;
 
             'legend' => array(
                 'type'      => 'textarea',
-                'title'     => Text::get('regular-media_legend'),
+                'title'     => Text::_("Leyenda"),
                 'value'     => $post->legend,
             ),
             "date" => array(
                 'type'      => 'datebox',
                 'required'  => true,
                 'title'     => Text::_("Fecha de publicación"),
-                'hint'      => Text::get('tooltip-updates-date'),
+                'hint'      => Text::_("tooltip-updates-date"),
                 'size'      => 8,
                 'value'     => $post->date
             ),
@@ -209,7 +209,7 @@ if ($this['action'] == 'none') return;
                 'type'      => 'slider',
                 'options'   => $allow,
                 'class'     => 'currently cols_' . count($allow),
-                'hint'      => Text::get('tooltip-updates-allow_comments'),
+                'hint'      => Text::_("tooltip-updates-allow_comments"),
                 'errors'    => !empty($errors['allow']) ? array($errors['allow']) : array(),
                 'value'     => (int) $post->allow
             ),
@@ -218,7 +218,7 @@ if ($this['action'] == 'none') return;
                 'type'      => 'slider',
                 'options'   => $allow,
                 'class'     => 'currently cols_' . count($allow),
-                'hint'      => Text::get('tooltip-updates-publish'),
+                'hint'      => ,
                 'errors'    => !empty($errors['publish']) ? array($errors['publish']) : array(),
                 'value'     => (int) $post->publish
             )

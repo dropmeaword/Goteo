@@ -117,15 +117,15 @@ namespace Goteo\Model\Project {
             // Estos son errores que no permiten continuar
             if (empty($this->project))
                 $errors[] = Text::_('No hay proyecto al que asignar la recompensa/rettorno');
-                //Text::get('validate-reward-noproject');
+                //;
 /*
             if (empty($this->reward))
                 $errors[] = 'No hay nombre de recompensa/retorno';
-                //Text::get('validate-reward-name');
+                //;
 
             if (empty($this->type))
                 $errors[] = 'No hay tipo de recompensa/retorno';
-                //Text::get('validate-reward-description');
+                //;
 */
             //cualquiera de estos errores hace fallar la validación
             if (!empty($errors))
@@ -218,7 +218,7 @@ namespace Goteo\Model\Project {
 				return true;
 			} catch(\PDOException $e) {
 				$errors[] = Text::_('No se ha podido quitar el retorno '). $this->id. '. ' . $e->getMessage();
-                //Text::get('remove-reward-fail');
+                //;
                 return false;
 			}
 		}

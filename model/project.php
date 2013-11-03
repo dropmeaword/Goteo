@@ -515,7 +515,7 @@ namespace Goteo\Model {
             // Estos son errores que no permiten continuar
             if (empty($this->id))
                 $errors[] = Text::_('El proyecto no tiene id');
-                //Text::get('validate-project-noid');
+                //;
 
             if (empty($this->lang))
                 $this->lang = 'es';
@@ -528,7 +528,7 @@ namespace Goteo\Model {
 
             if (empty($this->owner))
                 $errors[] = Text::_('El proyecto no tiene usuario creador');
-                //Text::get('validate-project-noowner');
+                //;
 
             if (empty($this->node))
                 $this->node = 'goteo';
@@ -571,7 +571,7 @@ namespace Goteo\Model {
                             self::query("REPLACE project_image (project, image) VALUES (:project, :image)", array(':project' => $this->id, ':image' => $image->id));
                         }
                     } else {
-                        \Goteo\Library\Message::Error(Text::get('image-upload-fail') . implode(', ', $errors));
+                        \Goteo\Library\Message::Error(Text::_("Fallo al subir la imagen") . implode(', ', $errors));
                     }
                 }
 
@@ -781,7 +781,7 @@ namespace Goteo\Model {
                 return !$fail;
 			} catch(\PDOException $e) {
                 $errors[] = Text::_('Error sql al grabar el proyecto.') . $e->getMessage();
-                //Text::get('save-project-fail');
+                //;
                 return false;
 			}
 
@@ -825,7 +825,7 @@ namespace Goteo\Model {
                 }
 			} catch(\PDOException $e) {
                 $errors[] = Text::_('Error sql al grabar el proyecto.') . $e->getMessage();
-                //Text::get('save-project-fail');
+                //;
                 return false;
 			}
 
@@ -849,7 +849,7 @@ namespace Goteo\Model {
             $score = 0;
             // obligatorios: nombre, email, ciudad
             if (empty($this->user->name)) {
-                $errors['userProfile']['name'] = Text::get('validate-user-field-name');
+                $errors['userProfile']['name'] = Text::_("Pon tu nombre completo para mejorar la valoración del proyecto de cara a determinar si publicarlo en Goteo.");
             } else {
                 $okeys['userProfile']['name'] = 'ok';
                 ++$score;
@@ -861,7 +861,7 @@ namespace Goteo\Model {
             }
 
             if (empty($this->user->location)) {
-                $errors['userProfile']['location'] = Text::get('validate-user-field-location');
+                $errors['userProfile']['location'] = Text::_("El lugar de residencia del usuario no es válido");
             } else {
                 $okeys['userProfile']['location'] = 'ok';
                 ++$score;
@@ -881,7 +881,7 @@ namespace Goteo\Model {
                 }
                 // además error si tiene más de 2000
                 if (\strlen($this->user->about) > 2000) {
-                    $errors['userProfile']['about'] = Text::get('validate-user-field-about');
+                    $errors['userProfile']['about'] = Text::_("Cuenta algo sobre ti, para mejorar la valoración del proyecto de cara a determinar si publicarlo en Goteo.");
                     unset($okeys['userProfile']['about']);
                 }
             }
@@ -902,7 +902,7 @@ namespace Goteo\Model {
             }
 
             if (empty($this->user->webs)) {
-                $errors['userProfile']['webs'] = Text::get('validate-project-userProfile-web');
+                $errors['userProfile']['webs'] = Text::_("Es recomendable indicar alguna web");
             } else {
                 $okeys['userProfile']['webs'] = 'ok';
                 ++$score;
@@ -912,7 +912,7 @@ namespace Goteo\Model {
                 foreach ($this->user->webs as $web) {
                     if (trim(str_replace('http://','',$web->url)) == '') {
                         $anyerror = !$anyerror ?: true;
-                        $errors['userProfile']['web-'.$web->id.'-url'] = Text::get('validate-user-field-web');
+                        $errors['userProfile']['web-'.$web->id.'-url'] = Text::_("Debes poner la dirección (URL) de la web");
                     } else {
                         $okeys['userProfile']['web-'.$web->id.'-url'] = 'ok';
                     }
@@ -920,7 +920,7 @@ namespace Goteo\Model {
 
                 if ($anyerror) {
                     unset($okeys['userProfile']['webs']);
-                    $errors['userProfile']['webs'] = Text::get('validate-project-userProfile-any_error');
+                    $errors['userProfile']['webs'] = Text::_("Hay algún error en la dirección URL introducida");
                 }
             }
 
@@ -950,25 +950,25 @@ namespace Goteo\Model {
             $score = 0;
             // obligatorios: todos
             if (empty($this->contract_name)) {
-                $errors['userPersonal']['contract_name'] = Text::get('mandatory-project-field-contract_name');
+                $errors['userPersonal']['contract_name'] = Text::_("Es obligatorio poner el nombre de la/el responsable del proyecto");
             } else {
                  $okeys['userPersonal']['contract_name'] = 'ok';
                  ++$score;
             }
 
             if (empty($this->contract_nif)) {
-                $errors['userPersonal']['contract_nif'] = Text::get('mandatory-project-field-contract_nif');
+                $errors['userPersonal']['contract_nif'] = Text::_("Es obligatorio poner el documento de identificación de la/el responsable del proyecto");
             } elseif (!Check::nif($this->contract_nif) && !Check::vat($this->contract_nif)) {
-                $errors['userPersonal']['contract_nif'] = Text::get('validate-project-value-contract_nif');
+                $errors['userPersonal']['contract_nif'] = Text::_("El NIF no es correcto.");
             } else {
                  $okeys['userPersonal']['contract_nif'] = 'ok';
                  ++$score;
             }
 
             if (empty($this->contract_email)) {
-                $errors['userPersonal']['contract_email'] = Text::get('mandatory-project-field-contract_email');
+                $errors['userPersonal']['contract_email'] = Text::_("Es obligatorio poner el email de la/el responsable del proyecto.");
             } elseif (!Check::mail($this->contract_email)) {
-                $errors['userPersonal']['contract_email'] = Text::get('validate-project-value-contract_email');
+                $errors['userPersonal']['contract_email'] = Text::_("La dirección de email no es correcta");
             } else {
                  $okeys['userPersonal']['contract_email'] = 'ok';
             }
@@ -976,28 +976,28 @@ namespace Goteo\Model {
             // Segun persona física o jurídica
             if ($this->contract_entity) {  // JURIDICA
                 if (empty($this->entity_office)) {
-                    $errors['userPersonal']['entity_office'] = Text::get('mandatory-project-field-entity_office');
+                    $errors['userPersonal']['entity_office'] = Text::_("Es obligatorio poner el cargo que tienes dentro la organización que vas a representar");
                 } else {
                      $okeys['userPersonal']['entity_office'] = 'ok';
                 }
 
                 if (empty($this->entity_name)) {
-                    $errors['userPersonal']['entity_name'] = Text::get('mandatory-project-field-entity_name');
+                    $errors['userPersonal']['entity_name'] = Text::_("Es obligatorio poner el nombre de la organización");
                 } else {
                      $okeys['userPersonal']['entity_name'] = 'ok';
                 }
 
                 if (empty($this->entity_cif)) {
-                    $errors['userPersonal']['entity_cif'] = Text::get('mandatory-project-field-entity_cif');
+                    $errors['userPersonal']['entity_cif'] = Text::_("Es obligatorio poner el CIF de la entidad jurídica");
                 } elseif (!Check::nif($this->entity_cif)) {
-                    $errors['userPersonal']['entity_cif'] = Text::get('validate-project-value-entity_cif');
+                    $errors['userPersonal']['entity_cif'] = Text::_("El CIF no es válido");
                 } else {
                      $okeys['userPersonal']['entity_cif'] = 'ok';
                 }
 
             } else { // FISICA
                 if (empty($this->contract_birthdate)) {
-                    $errors['userPersonal']['contract_birthdate'] = Text::get('mandatory-project-field-contract_birthdate');
+                    $errors['userPersonal']['contract_birthdate'] = Text::_("Es obligatorio poner la fecha de nacimiento del responsable del proyecto");
                 } else {
                      $okeys['userPersonal']['contract_birthdate'] = 'ok';
                 }
@@ -1005,36 +1005,36 @@ namespace Goteo\Model {
 
 
             if (empty($this->phone)) {
-                $errors['userPersonal']['phone'] = Text::get('mandatory-project-field-phone');
+                $errors['userPersonal']['phone'] = Text::_("El teléfono de la/el responsable del proyecto es obligatorio");
             } elseif (!Check::phone($this->phone)) {
-                $errors['userPersonal']['phone'] = Text::get('validate-project-value-phone');
+                $errors['userPersonal']['phone'] = Text::_("El formato de número de teléfono no es correcto.");
             } else {
                  $okeys['userPersonal']['phone'] = 'ok';
                  ++$score;
             }
 
             if (empty($this->address)) {
-                $errors['userPersonal']['address'] = Text::get('mandatory-project-field-address');
+                $errors['userPersonal']['address'] = Text::_("La dirección de la/el responsable del proyecto es obligatoria");
             } else {
                  $okeys['userPersonal']['address'] = 'ok';
                  ++$score;
             }
 
             if (empty($this->zipcode)) {
-                $errors['userPersonal']['zipcode'] = Text::get('mandatory-project-field-zipcode');
+                $errors['userPersonal']['zipcode'] = Text::_("El código postal de la/el responsable del proyecto es obligatorio");
             } else {
                  $okeys['userPersonal']['zipcode'] = 'ok';
                  ++$score;
             }
 
             if (empty($this->location)) {
-                $errors['userPersonal']['location'] = Text::get('mandatory-project-field-residence');
+                $errors['userPersonal']['location'] = Text::_("Es obligatorio poner el lugar de residencia de la/el responsable del proyecto");
             } else {
                  $okeys['userPersonal']['location'] = 'ok';
             }
 
             if (empty($this->country)) {
-                $errors['userPersonal']['country'] = Text::get('mandatory-project-field-country');
+                $errors['userPersonal']['country'] = Text::_("El país de la/el responsable del proyecto es obligatorio");
             } else {
                  $okeys['userPersonal']['country'] = 'ok';
                  ++$score;
@@ -1047,7 +1047,7 @@ namespace Goteo\Model {
             $score = 0;
             // obligatorios: nombre, subtitulo, imagen, descripcion, about, motivation, categorias, video, localización
             if (empty($this->name)) {
-                $errors['overview']['name'] = Text::get('mandatory-project-field-name');
+                $errors['overview']['name'] = Text::_("Es obligatorio poner un nombre al proyecto");
             } else {
                  $okeys['overview']['name'] = 'ok';
                  ++$score;
@@ -1058,7 +1058,7 @@ namespace Goteo\Model {
             }
 
             if (empty($this->gallery)) {
-                $errors['overview']['image'] = Text::get('mandatory-project-field-image');
+                $errors['overview']['image'] = Text::_("Es obligatorio vincular una imagen como mínimo al proyecto. ");
             } else {
                  $okeys['overview']['image'] = 'ok';
                  ++$score;
@@ -1066,29 +1066,29 @@ namespace Goteo\Model {
             }
 
             if (empty($this->description)) {
-                $errors['overview']['description'] = Text::get('mandatory-project-field-description');
+                $errors['overview']['description'] = Text::_("Es obligatorio resumir el proyecto");
             } elseif (!Check::words($this->description, 80)) {
-                 $errors['overview']['description'] = Text::get('validate-project-field-description');
+                 $errors['overview']['description'] = Text::_("La descripción del proyecto es demasiado corta");
             } else {
                  $okeys['overview']['description'] = 'ok';
                  ++$score;
             }
 
             if (empty($this->about)) {
-                $errors['overview']['about'] = Text::get('mandatory-project-field-about');
+                $errors['overview']['about'] = Text::_("Es obligatorio explicar las características básicas del proyecto");
              } else {
                  $okeys['overview']['about'] = 'ok';
                  ++$score;
                  /*
                  if (\strlen($this->about) > 2000) {
-                     $errors['overview']['about'] = Text::get('validate-project-field-about');
+                     $errors['overview']['about'] = Text::_("La explicación del proyecto es demasiado corta");
                  }
                   * 
                   */
             }
 
             if (empty($this->motivation)) {
-                $errors['overview']['motivation'] = Text::get('mandatory-project-field-motivation');
+                $errors['overview']['motivation'] = Text::_("Es obligatorio explicar la motivación en la descripción del proyecto");
             } else {
                  $okeys['overview']['motivation'] = 'ok';
                  ++$score;
@@ -1105,7 +1105,7 @@ namespace Goteo\Model {
             }
 
             if (empty($this->categories)) {
-                $errors['overview']['categories'] = Text::get('mandatory-project-field-category');
+                $errors['overview']['categories'] = Text::_("Es obligatorio elegir al menos una categoria para el proyecto.");
             } else {
                  $okeys['overview']['categories'] = 'ok';
                  ++$score;
@@ -1117,7 +1117,7 @@ namespace Goteo\Model {
             }
 
             if (empty($this->media)) {
-                $errors['overview']['media'] = Text::get('mandatory-project-field-media');
+                $errors['overview']['media'] = Text::_("Recomendamos poner un vídeo para mejorar la valoración del proyecto a la hora de decidir si publicarlo o no en Goteo.");
             } else {
                  $okeys['overview']['media'] = 'ok';
                  $score+=3;
@@ -1130,7 +1130,7 @@ namespace Goteo\Model {
             }
 
             if (empty($this->project_location)) {
-                $errors['overview']['project_location'] = Text::get('mandatory-project-field-location');
+                $errors['overview']['project_location'] = Text::_("Es obligatorio poner el alcance potencial del proyecto");
             } else {
                  $okeys['overview']['project_location'] = 'ok';
                  ++$score;
@@ -1146,7 +1146,7 @@ namespace Goteo\Model {
             /***************** Revisión de campos del paso 4, COSTES *****************/
             $score = 0; $scoreName = $scoreDesc = $scoreAmount = $scoreDate = 0;
             if (count($this->costs) < 2) {
-                $errors['costs']['costs'] = Text::get('mandatory-project-costs');
+                $errors['costs']['costs'] = Text::_("Debe desglosarse en al menos dos costes.");
             } else {
                  $okeys['costs']['costs'] = 'ok';
                 ++$score;
@@ -1155,7 +1155,7 @@ namespace Goteo\Model {
             $anyerror = false;
             foreach($this->costs as $cost) {
                 if (empty($cost->cost)) {
-                    $errors['costs']['cost-'.$cost->id.'-cost'] = Text::get('mandatory-cost-field-name');
+                    $errors['costs']['cost-'.$cost->id.'-cost'] = Text::_("Es obligatorio ponerle un nombre al coste");
                     $anyerror = !$anyerror ?: true;
                 } else {
                      $okeys['costs']['cost-'.$cost->id.'-cost'] = 'ok';
@@ -1163,14 +1163,14 @@ namespace Goteo\Model {
                 }
 
                 if (empty($cost->type)) {
-                    $errors['costs']['cost-'.$cost->id.'-type'] = Text::get('mandatory-cost-field-type');
+                    $errors['costs']['cost-'.$cost->id.'-type'] = Text::_("Es obligatorio seleccionar el tipo de coste");
                     $anyerror = !$anyerror ?: true;
                 } else {
                      $okeys['costs']['cost-'.$cost->id.'-type'] = 'ok';
                 }
 
                 if (empty($cost->description)) {
-                    $errors['costs']['cost-'.$cost->id.'-description'] = Text::get('mandatory-cost-field-description');
+                    $errors['costs']['cost-'.$cost->id.'-description'] = Text::_("Es obligatorio poner alguna descripción a los costes");
                     $anyerror = !$anyerror ?: true;
                 } else {
                      $okeys['costs']['cost-'.$cost->id.'-description'] = 'ok';
@@ -1178,7 +1178,7 @@ namespace Goteo\Model {
                 }
 
                 if (empty($cost->amount)) {
-                    $errors['costs']['cost-'.$cost->id.'-amount'] = Text::get('mandatory-cost-field-amount');
+                    $errors['costs']['cost-'.$cost->id.'-amount'] = Text::_("Es obligatorio asignar un importe a los costes");
                     $anyerror = !$anyerror ?: true;
                 } else {
                      $okeys['costs']['cost-'.$cost->id.'-amount'] = 'ok';
@@ -1186,7 +1186,7 @@ namespace Goteo\Model {
                 }
 
                 if ($cost->type == 'task' && (empty($cost->from) || empty($cost->until))) {
-                    $errors['costs']['cost-'.$cost->id.'-dates'] = Text::get('mandatory-cost-field-task_dates');
+                    $errors['costs']['cost-'.$cost->id.'-dates'] = Text::_("Es obligatorio especificar las fechas aproximadas de la tarea");
                     $anyerror = !$anyerror ?: true;
                 } elseif ($cost->type == 'task') {
                     $okeys['costs']['cost-'.$cost->id.'-dates'] = 'ok';
@@ -1196,7 +1196,7 @@ namespace Goteo\Model {
 
             if ($anyerror) {
                 unset($okeys['costs']['costs']);
-                $errors['costs']['costs'] = Text::get('validate-project-costs-any_error');
+                $errors['costs']['costs'] = Text::_("Falta alguna información en el desglose de costes");
             }
 
             $score = $score + $scoreName + $scoreDesc + $scoreAmount + $scoreDate;
@@ -1205,9 +1205,9 @@ namespace Goteo\Model {
             $maxdif = $this->mincost * 0.50;
             $scoredif = $this->mincost * 0.35;
             if ($this->mincost == 0) {
-                $errors['costs']['total-costs'] = Text::get('mandatory-project-total-costs');
+                $errors['costs']['total-costs'] = Text::_("Es obligatorio especificar algún coste");
             } elseif ($costdif > $maxdif ) {
-                $errors['costs']['total-costs'] = Text::get('validate-project-total-costs');
+                $errors['costs']['total-costs'] = Text::_("El coste óptimo no puede superar en más de un 50% al coste mínimo. O subes los costes imprescindibles o bajas los costes adicionales.\r\n");
             } else {
                 $okeys['costs']['total-costs'] = 'ok';
             }
@@ -1217,7 +1217,7 @@ namespace Goteo\Model {
 
             /*
             if (empty($this->resource)) {
-                $errors['costs']['resource'] = Text::get('mandatory-project-resource');
+                $errors['costs']['resource'] = Text::_("Es obligatorio especificar si cuentas con otros recursos o no");
             } else {
                  $okeys['costs']['resource'] = 'ok';
                  ++$score;
@@ -1231,7 +1231,7 @@ namespace Goteo\Model {
             /***************** Revisión de campos del paso 5, RETORNOS *****************/
             $score = 0; $scoreName = $scoreDesc = $scoreAmount = $scoreLicense = 0;
             if (empty($this->social_rewards)) {
-                $errors['rewards']['social_rewards'] = Text::get('validate-project-social_rewards');
+                $errors['rewards']['social_rewards'] = Text::_("Es obligatorio indicar como mínimo un retorno colectivo ");
             } else {
                  $okeys['rewards']['social_rewards'] = 'ok';
                  if (count($this->social_rewards) >= 2) {
@@ -1240,7 +1240,7 @@ namespace Goteo\Model {
             }
 
             if (empty($this->individual_rewards)) {
-                $errors['rewards']['individual_rewards'] = Text::get('validate-project-individual_rewards');
+                $errors['rewards']['individual_rewards'] = Text::_("Indica hasta 5 recompensas individuales para mejorar la puntuación.");
             } else {
                 $okeys['rewards']['individual_rewards'] = 'ok';
                 if (count($this->individual_rewards) >= 3) {
@@ -1251,7 +1251,7 @@ namespace Goteo\Model {
             $anyerror = false;
             foreach ($this->social_rewards as $social) {
                 if (empty($social->reward)) {
-                    $errors['rewards']['social_reward-'.$social->id.'reward'] = Text::get('mandatory-social_reward-field-name');
+                    $errors['rewards']['social_reward-'.$social->id.'reward'] = Text::_("Es obligatorio especificar el retorno");
                     $anyerror = !$anyerror ?: true;
                 } else {
                      $okeys['rewards']['social_reward-'.$social->id.'reward'] = 'ok';
@@ -1259,7 +1259,7 @@ namespace Goteo\Model {
                 }
 
                 if (empty($social->description)) {
-                    $errors['rewards']['social_reward-'.$social->id.'-description'] = Text::get('mandatory-social_reward-field-description');
+                    $errors['rewards']['social_reward-'.$social->id.'-description'] = Text::_("Es obligatorio poner alguna descripción al retorno");
                     $anyerror = !$anyerror ?: true;
                 } else {
                      $okeys['rewards']['social_reward-'.$social->id.'-description'] = 'ok';
@@ -1267,7 +1267,7 @@ namespace Goteo\Model {
                 }
 
                 if (empty($social->icon)) {
-                    $errors['rewards']['social_reward-'.$social->id.'-icon'] = Text::get('mandatory-social_reward-field-icon');
+                    $errors['rewards']['social_reward-'.$social->id.'-icon'] = Text::_("Es obligatorio seleccionar el tipo de retorno");
                     $anyerror = !$anyerror ?: true;
                 } else {
                      $okeys['rewards']['social_reward-'.$social->id.'-icon'] = 'ok';
@@ -1287,7 +1287,7 @@ namespace Goteo\Model {
 
             if ($anyerror) {
                 unset($okeys['rewards']['social_rewards']);
-                $errors['rewards']['social_rewards'] = Text::get('validate-project-social_rewards-any_error');
+                $errors['rewards']['social_rewards'] = Text::_("Falta alguna información sobre retornos colectivos");
             }
 
             
@@ -1297,7 +1297,7 @@ namespace Goteo\Model {
             $anyerror = false;
             foreach ($this->individual_rewards as $individual) {
                 if (empty($individual->reward)) {
-                    $errors['rewards']['individual_reward-'.$individual->id.'-reward'] = Text::get('mandatory-individual_reward-field-name');
+                    $errors['rewards']['individual_reward-'.$individual->id.'-reward'] = Text::_("Es obligatorio poner la recompensa");
                     $anyerror = !$anyerror ?: true;
                 } else {
                      $okeys['rewards']['individual_reward-'.$individual->id.'-reward'] = 'ok';
@@ -1305,7 +1305,7 @@ namespace Goteo\Model {
                 }
 
                 if (empty($individual->description)) {
-                    $errors['rewards']['individual_reward-'.$individual->id.'-description'] = Text::get('mandatory-individual_reward-field-description');
+                    $errors['rewards']['individual_reward-'.$individual->id.'-description'] = Text::_("Es obligatorio poner alguna descripción");
                     $anyerror = !$anyerror ?: true;
                 } else {
                      $okeys['rewards']['individual_reward-'.$individual->id.'-description'] = 'ok';
@@ -1313,7 +1313,7 @@ namespace Goteo\Model {
                 }
 
                 if (empty($individual->amount)) {
-                    $errors['rewards']['individual_reward-'.$individual->id.'-amount'] = Text::get('mandatory-individual_reward-field-amount');
+                    $errors['rewards']['individual_reward-'.$individual->id.'-amount'] = Text::_("Es obligatorio indicar el importe que permite obtener la recompensa");
                     $anyerror = !$anyerror ?: true;
                 } else {
                      $okeys['rewards']['individual_reward-'.$individual->id.'-amount'] = 'ok';
@@ -1321,7 +1321,7 @@ namespace Goteo\Model {
                 }
 
                 if (empty($individual->icon)) {
-                    $errors['rewards']['individual_reward-'.$individual->id.'-icon'] = Text::get('mandatory-individual_reward-field-icon');
+                    $errors['rewards']['individual_reward-'.$individual->id.'-icon'] = Text::_("Es obligatorio seleccionar el tipo de recompensa");
                     $anyerror = !$anyerror ?: true;
                 } else {
                      $okeys['rewards']['individual_reward-'.$individual->id.'-icon'] = 'ok';
@@ -1331,7 +1331,7 @@ namespace Goteo\Model {
 
             if ($anyerror) {
                 unset($okeys['rewards']['individual_rewards']);
-                $errors['rewards']['individual_rewards'] = Text::get('validate-project-individual_rewards-any_error');
+                $errors['rewards']['individual_rewards'] = Text::_("Falta alguna información sobre recompensas individuales");
             }
 
             $score = $score + $scoreName + $scoreDesc + $scoreAmount;
@@ -1414,7 +1414,7 @@ namespace Goteo\Model {
                 
             } catch (\PDOException $e) {
                 $errors[] = Text::_('Fallo al habilitar para revisión. ') . $e->getMessage();
-                //Text::get('send-project-review-fail');
+                //;
                 return false;
             }
         }
@@ -1429,7 +1429,7 @@ namespace Goteo\Model {
                 return true;
             } catch (\PDOException $e) {
                 $errors[] = Text::_('Fallo al habilitar para edición. ') . $e->getMessage();
-                //Text::get('send-project-reedit-fail');
+                //;
                 return false;
             }
         }
@@ -1465,7 +1465,7 @@ namespace Goteo\Model {
                 return true;
             } catch (\PDOException $e) {
                 $errors[] = Text::_('Fallo al publicar el proyecto. ') . $e->getMessage();
-                //Text::get('send-project-publish-fail');
+                //;
                 return false;
             }
         }
@@ -1480,7 +1480,7 @@ namespace Goteo\Model {
                 return true;
             } catch (\PDOException $e) {
                 $errors[] = Text::_('Fallo al cerrar el proyecto. ') . $e->getMessage();
-                //Text::get('send-projecct-close-fail');
+                //;
                 return false;
             }
         }
@@ -1495,7 +1495,7 @@ namespace Goteo\Model {
                 return true;
             } catch (\PDOException $e) {
                 $errors[] = Text::_('Fallo al cerrar el proyecto. ') . $e->getMessage();
-                //Text::get('send-projecct-close-fail');
+                //;
                 return false;
             }
         }
@@ -1510,7 +1510,7 @@ namespace Goteo\Model {
                 return true;
             } catch (\PDOException $e) {
                 $errors[] = Text::_('Fallo al dar por financiado el proyecto. ') . $e->getMessage();
-                //Text::get('send-project-success-fail');
+                //;
                 return false;
             }
         }
@@ -1525,7 +1525,7 @@ namespace Goteo\Model {
                 return true;
             } catch (\PDOException $e) {
                 $errors[] = Text::_('Fallo SQL al marcar fecha de paso de ronda. ') . $e->getMessage();
-                //Text::get('send-project-success-fail');
+                //;
                 return false;
             }
         }
@@ -1540,7 +1540,7 @@ namespace Goteo\Model {
                 return true;
             } catch (\PDOException $e) {
                 $errors[] = Text::_('Fallo al dar el retorno por cunplido para el proyecto. ') . $e->getMessage();
-                //Text::get('send-project-fulfill-fail');
+                //;
                 return false;
             }
         }
@@ -1971,10 +1971,10 @@ namespace Goteo\Model {
          */
         public static function currentStatus () {
             return array(
-                1=>Text::get('overview-field-options-currently_inicial'),
-                2=>Text::get('overview-field-options-currently_medio'),
-                3=>Text::get('overview-field-options-currently_avanzado'),
-                4=>Text::get('overview-field-options-currently_finalizado'));
+                1=>Text::_("Inicial"),
+                2=>Text::_("Medio"),
+                3=>Text::_("Avanzado"),
+                4=>Text::_("Finalizado"));
         }
 
         /*
@@ -1982,10 +1982,10 @@ namespace Goteo\Model {
          */
         public static function scope () {
             return array(
-                1=>Text::get('overview-field-options-scope_local'),
-                2=>Text::get('overview-field-options-scope_regional'),
-                3=>Text::get('overview-field-options-scope_nacional'),
-                4=>Text::get('overview-field-options-scope_global'));
+                1=>Text::_("Local"),
+                2=>Text::_("Regional"),
+                3=>Text::_("Nacional"),
+                4=>Text::_("Global"));
         }
 
         /*
@@ -1993,13 +1993,13 @@ namespace Goteo\Model {
          */
         public static function status () {
             return array(
-                0=>Text::get('form-project_status-cancelled'),
-                1=>Text::get('form-project_status-edit'),
-                2=>Text::get('form-project_status-review'),
-                3=>Text::get('form-project_status-campaing'),
-                4=>Text::get('form-project_status-success'),
-                5=>Text::get('form-project_status-fulfilled'),
-                6=>Text::get('form-project_status-expired'));
+                0=>Text::_("Descartado"),
+                1=>Text::_("Editándose"),
+                2=>Text::_("Pendiente de valoración"),
+                3=>Text::_("En campaña"),
+                4=>Text::_("Financiado"),
+                5=>Text::_("Retorno cumplido"),
+                6=>Text::_("Archivado"));
         }
 
         /*
@@ -2007,13 +2007,13 @@ namespace Goteo\Model {
          */
         public static function waitfor () {
             return array(
-                0=>Text::get('form-project_waitfor-cancel'),
-                1=>Text::get('form-project_waitfor-edit'),
-                2=>Text::get('form-project_waitfor-review'),
-                3=>Text::get('form-project_waitfor-campaing'),
-                4=>Text::get('form-project_waitfor-success'),
-                5=>Text::get('form-project_waitfor-fulfilled'),
-                6=>Text::get('form-project_waitfor-expired'));
+                0=>Text::_("Finalmente hemos desestimado la propuesta para publicarla en Goteo, te invitamos a intentarlo con otra idea o concepto."),
+                1=>Text::_("Cuando lo tengas listo mándalo a revisión. Necesitas llegar a un mínimo de información sobre el proyecto en el formulario."),
+                2=>Text::_("En breve nos pondremos en contacto contigo respecto al proyecto, una vez se lleve a cabo el proceso de revisión. A continuación lo publicaremos o bien te sugeriremos cosas para mejorarlo."),
+                3=>Text::_("Difunde tu proyecto, ayuda a que consiga el máximo de aportaciones!"),
+                4=>Text::_("Has conseguido el mínimo o más en aportes de cofinanciación para el proyecto. Enseguida te contactaremos para hablar de dinero :)"),
+                5=>Text::_("Has cumplido con los retornos :) Gracias por tu participación!"),
+                6=>Text::_("No lo conseguiste :( Trata de mejorarlo e inténtalo de nuevo!"));
         }
 
 

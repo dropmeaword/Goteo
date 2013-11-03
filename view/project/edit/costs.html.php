@@ -62,7 +62,7 @@ if (!empty($project->costs)) {
                         'value' => '1'
                     ),
                     "cost-{$cost->id}-cost" => array(
-                        'title'     => Text::get('costs-field-cost'),
+                        'title'     => Text::_("Coste"),
                         'required'  => true,
                         'type'      => 'textbox',
                         'size'      => 100,
@@ -70,10 +70,10 @@ if (!empty($project->costs)) {
                         'value'     => $cost->cost,
                         'errors'    => !empty($errors["cost-{$cost->id}-cost"]) ? array($errors["cost-{$cost->id}-cost"]) : array(),
                         'ok'        => !empty($okeys["cost-{$cost->id}-cost"]) ? array($okeys["cost-{$cost->id}-cost"]) : array(),
-                        'hint'      => Text::get('tooltip-project-cost-cost'),
+                        'hint'      => Text::_("Introduce un título lo más descriptivo posible de este coste."),
                     ),
                     "cost-{$cost->id}-type" => array(
-                        'title'     => Text::get('costs-field-type'),
+                        'title'     => Text::_("Tipo"),
                         'required'  => true,
                         'class'     => 'inline',
                         'type'      => 'group',
@@ -81,16 +81,16 @@ if (!empty($project->costs)) {
                         'value'     => $cost->type,
                         'errors'    => !empty($errors["cost-{$cost->id}-type"]) ? array($errors["cost-{$cost->id}-type"]) : array(),
                         'ok'        => !empty($okeys["cost-{$cost->id}-type"]) ? array($okeys["cost-{$cost->id}-type"]) : array(),
-                        'hint'      => Text::get('tooltip-project-cost-type'),
+                        'hint'      => Text::_("Aquí debes especificar el tipo de coste: vinculado a una tarea (algo que requiere la habilidad o conocimientos de alguien), la obtención de material (consumibles, materias primas) o bien infraestructura (espacios, equipos, mobiliario)."),
                     ),
                     "cost-{$cost->id}-description" => array(
                         'type'      => 'textarea',
                         'required'  => true,
-                        'title'     => Text::get('costs-field-description'),
+                        'title'     => Text::_("Descripción"),
                         'cols'      => 100,
                         'rows'      => 4,
                         'class'     => 'inline cost-description',
-                        'hint'      => Text::get('tooltip-project-cost-description'),
+                        'hint'      => Text::_("Explica brevemente en qué consiste este coste."),
                         'errors'    => !empty($errors["cost-{$cost->id}-description"]) ? array($errors["cost-{$cost->id}-description"]) : array(),
                         'ok'        => !empty($okeys["cost-{$cost->id}-description"]) ? array($okeys["cost-{$cost->id}-description"]) : array(),
                         'value'     => $cost->description
@@ -98,57 +98,57 @@ if (!empty($project->costs)) {
                     "cost-{$cost->id}-amount" => array(
                         'type'      => 'textbox',
                         'required'  => true,
-                        'title'     => Text::get('costs-field-amount'),
+                        'title'     => Text::_("Valor"),
                         'size'      => 8,
                         'class'     => 'inline cost-amount',
-                        'hint'      => Text::get('tooltip-project-cost-amount'),
+                        'hint'      => Text::_("Especifica el importe en euros de lo que consideras que implica este coste. No utilices puntos para las cifras de miles ok?"),
                         'errors'    => !empty($errors["cost-{$cost->id}-amount"]) ? array($errors["cost-{$cost->id}-amount"]) : array(),
                         'ok'        => !empty($okeys["cost-{$cost->id}-amount"]) ? array($okeys["cost-{$cost->id}-amount"]) : array(),
                         'value'     => $cost->amount
                     ),
                     "cost-{$cost->id}-required"  => array(
                         'required'  => true,
-/*                        'title'     => Text::get('costs-field-required_cost'),  */
+/*                        'title'     => Text::_("Este coste es"),  */
                         'class'     => 'inline cost-required cols_2',
                         'type'      => 'radios',
                         'options'   => array (
                             array(
                                     'value'     => '1',
                                     'class'     => 'required_cost-yes',
-                                    'label'     => Text::get('costs-field-required_cost-yes')
+                                    'label'     => Text::_("Imprescindible")
                                 ),
                             array(
                                     'value'     => '0',
                                     'class'     => 'required_cost-no',
-                                    'label'     => Text::get('costs-field-required_cost-no')
+                                    'label'     => Text::_("Adicional")
                                 )
                         ),
                         'value'     => $cost->required,
                         'errors'    => !empty($errors["cost-{$cost->id}-required"]) ? array($errors["cost-{$cost->id}-required"]) : array(),
                         'ok'        => !empty($okeys["cost-{$cost->id}-required"]) ? array($okeys["cost-{$cost->id}-required"]) : array(),
-                        'hint'      => Text::get('tooltip-project-cost-required'),
+                        'hint'      => Text::_("Este punto es muy importante: en cada coste que introduzcas tienes que marcar si es imprescindible o bien adicional. Todos los costes marcados como imprescindibles se sumarán dando el valor del importe de financiación mínimo para el proyecto. La suma de los costes adicionales, en cambio, se podrá obtener durante la segunda ronda de financiación, después de haber obtenido los fondos imprescindibles."),
                     ),
                     "cost-{$cost->id}-dates" => array(
                         'type'      => 'group',
                         'required'  => $cost->type == 'task' ? true : false,
-                        'title'     => Text::get('costs-field-dates'),
+                        'title'     => Text::_("Fechas"),
                         'class'     => 'inline cost-dates',
                         'errors'    => !empty($errors["cost-{$cost->id}-dates"]) ? array($errors["cost-{$cost->id}-dates"]) : array(),
                         'ok'        => !empty($okeys["cost-{$cost->id}-dates"]) ? array($okeys["cost-{$cost->id}-dates"]) : array(),
-                        'hint'      => Text::get('tooltip-project-cost-dates'),
+                        'hint'      => Text::_("Indica entre qué fechas calculas que se va a llevar a cabo esa tarea o cubrir ese coste. Planifícalo empezando no antes de dos meses a partir de ahora, pues hay que considerar el plazo para revisar la propuesta, publicarla si es seleccionada y los 40 días de la primera financiación. No incluyas en este calendario la agenda de lo desarrollado anteriormente aunque es bueno que lo expliques en la descripción del proyecto. En la agenda sólo nos interesan las fases que quedan por hacer y buscan ser cofinanciadas."),
                         'children'  => array(
                             "cost-{$cost->id}-from"  => array(
                                 'class'     => 'inline cost-from',
                                 'type'      => 'datebox',
                                 'size'      => 8,
-                                'title'     => Text::get('costs-field-date_from'),
+                                'title'     => Text::_("Desde"),
                                 'value'     => $cost->from
                             ),
                             "cost-{$cost->id}-until"  => array(
                                 'class'     => 'inline cost-until',
                                 'type'      => 'datebox',
                                 'size'      => 8,
-                                'title'     => Text::get('costs-field-date_until'),
+                                'title'     => Text::_("Hasta"),
                                 'value'     => $cost->until
                             )
                         )
@@ -159,12 +159,12 @@ if (!empty($project->costs)) {
                         'children' => array(
                             "cost-{$cost->id}-ok" => array(
                                 'type'  => 'submit',
-                                'label' => Text::get('form-accept-button'),
+                                'label' => Text::_("Aceptar"),
                                 'class' => 'inline ok'
                             ),
                             "cost-{$cost->id}-remove" => array(
                                 'type'  => 'submit',
-                                'label' => Text::get('form-remove-button'),
+                                'label' => Text::_("Quitar"),
                                 'class' => 'inline remove weak'
                             )
                         )                        
@@ -194,8 +194,8 @@ echo new SuperForm(array(
     'action'        => '',
     'level'         => $this['level'],
     'method'        => 'post',
-    'title'         => Text::get('costs-main-header'),
-    'hint'          => Text::get('guide-project-costs'),    
+    'title'         => Text::_("Aspectos económicos"),
+    'hint'          => Text::_("<strong>En esta sección debes elaborar un pequeño presupuesto basado en los costes que calcules va a tener la realización del proyecto.</strong><br><br>\r\nDebes especificar según tareas, infraestructura o materiales. Intenta ser realista en los costes y explicar brevemente por qué necesitas cubrir cada uno de ellos. Ten en cuenta que por norma general, al menos un 80% del proyecto deberá ser realizado directamente por la persona o equipo que promueve el proyecto, y no subcontratado a terceros.<br><br>\r\n<strong>Muy importante</strong>: En Goteo diferenciamos entre costes imprescindibles y costes adicionales. Los primeros deben lograrse en su totalidad para poder obtener la financiación, mientras que los segundo se solicitan y obtienen directamente en una campaña posterior, una vez está en marcha el proyecto, para poder poder cubrir costes de optimización del mismo (difusión, diseño, alcance, más unidades, etc). Estos costes adicionales no pueden superar la mitad de los costes totales del proyecto."),    
     'class'         => 'aqua',      
     'elements'      => array(        
         'process_costs' => array (
@@ -206,21 +206,21 @@ echo new SuperForm(array(
         'costs' => array(
             'type'      => 'group',
             'required'  => true,
-            'title'     => Text::get('costs-fields-main-title'),
-            'hint'      => Text::get('tooltip-project-costs'),
+            'title'     => Text::_("Desglose de costes"),
+            'hint'      => Text::_("Cuanto más precisión en el desglose mejor valorará Goteo la información general del proyecto. "),
             'errors'    => !empty($errors["costs"]) ? array($errors["costs"]) : array(),
             'ok'        => !empty($okeys["costs"]) ? array($okeys["costs"]) : array(),
             'children'  => $costs  + array(
                 'cost-add' => array(
                     'type'  => 'submit',
-                    'label' => Text::get('form-add-button'),
+                    'label' => Text::_("Añadir"),
                     'class' => 'add red',
                 )                
             )
         ),
         
         'cost-meter' => array(
-            'title'     => Text::get('costs-fields-metter-title'),
+            'title'     => Text::_("Visualización de costes"),
             'required'  => true,
             'class'     => 'cost-meter',
             'errors'    => !empty($errors["total-costs"]) ? array($errors["total-costs"]) : array(),
@@ -228,15 +228,15 @@ echo new SuperForm(array(
             'view'      => new View('view/project/edit/costs/meter.html.php', array(
                 'project'   => $project
             )),
-            'hint'      => Text::get('tooltip-project-totals')
+            'hint'      => Text::_("Este gráfico muestra la suma de costes imprescindibles (mínimos para realizar el proyecto) y la suma de costes secundarios (importe óptimo) para las dos rondas de financiación. La primera ronda es de 40 días, para conseguir el importe mínimo imprescindible. Sólo si se consigue ese volumen de financiación se puede optar a la segunda ronda, de 40 días más, para llegar al presupuesto óptimo. A diferencia de la primera, en la segunda ronda se obtiene todo lo recaudado (aunque no se haya llegado al mínimo). ")
         ),
         
         'resource' => array(
             'type'      => 'textarea',
             'cols'      => 40,
             'rows'      => 4,
-            'title'     => Text::get('costs-field-resoure'),
-            'hint'      => Text::get('tooltip-project-resource'),
+            'title'     => Text::_("Otros recursos"),
+            'hint'      => Text::_("Indica aquí si cuentas con recursos adicionales, aparte de los que solicitas, para llevar a cabo el proyecto: fuentes de financiación, recursos propios o bien ya has hecho acopio de materiales. Puede suponer un aliciente para los potenciales cofinanciadores del proyecto."),
             'errors'    => !empty($errors["resource"]) ? array($errors["resource"]) : array(),
             'ok'        => !empty($okeys["resource"]) ? array($okeys["resource"]) : array(),
             'value'     => $project->resource
@@ -245,7 +245,7 @@ echo new SuperForm(array(
         'schedule' => array(
             'type'      => 'html',
             'class'     => 'schedule',
-            'hint'      => Text::get('tooltip-project-schedule'),
+            'hint'      => Text::_("Visualización de cómo queda la agenda de producción de tu proyecto. Recuerda que sólo debes señalar las nuevas tareas a realizar, no las que ya se hayan efectuado."),
             'html'      => new View('view/project/widget/schedule.html.php', array('project' => $project))
         ),
         
@@ -253,7 +253,7 @@ echo new SuperForm(array(
             'type'      => 'group',
             'children'  => array(
                 'errors' => array(
-                    'title' => Text::get('form-footer-errors_title'),
+                    'title' => Text::_("Errores"),
                     'view'  => new View('view/project/edit/errors.html.php', array(
                         'project'   => $project,
                         'step'      => $this['step']
@@ -265,7 +265,7 @@ echo new SuperForm(array(
                         'next' => array(
                             'type'  => 'submit',
                             'name'  => 'view-step-rewards',
-                            'label' => Text::get('form-next-button'),
+                            'label' => Text::_("Siguiente"),
                             'class' => 'next'
                         )
                     )

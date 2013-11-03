@@ -38,8 +38,8 @@ extract($oauth->user_data);
 
         <div class="register">
             <div>
-                <h2><?php echo Text::get('oauth-confirm-user'); ?></h2>
-                <p><?php echo Text::get('oauth-goteo-openid-sync-password'); ?></p>
+                <h2><?php echo Text::_("Vincular usuario existente"); ?></h2>
+                <p><?php echo ; ?></p>
                 <div>
 				<?php
 					echo '<img style="padding-right:12px;float:left;" src="/image/'.$user->avatar->id.'/56/56/1" alt="Profile image" />';
@@ -50,11 +50,11 @@ extract($oauth->user_data);
                 <form action="/user/oauth_register" method="post">
 
 					<div class="password">
-                        <label><?php echo Text::get('login-access-password-field'); ?>
+                        <label><?php echo Text::_("Contraseña"); ?>
                         <input type="password" name="password" value="<?php echo $username?>" /></label>
                     </div>
 
-                    <input type="submit" name="login" value="<?php echo Text::get('login-access-button'); ?>" />
+                    <input type="submit" name="login" value="<?php echo Text::_("Entrar"); ?>" />
 
 					<?php
 

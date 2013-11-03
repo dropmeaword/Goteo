@@ -123,7 +123,7 @@ namespace Goteo\Model\Blog\Post {
         public function validate (&$errors = array()) { 
             if (empty($this->name))
                 $errors[] = Text::_('Falta nombre');
-                //Text::get('validate-tag-name');
+                //;
 
             if (empty($errors))
                 return true;

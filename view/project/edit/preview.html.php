@@ -41,7 +41,7 @@ $buttons = array(
     'review' => array(
         'type'  => 'submit',
         'name'  => $goto,
-        'label' => Text::get('form-self_review-button'),
+        'label' => Text::_("Corregir"),
         'class' => 'retry'
     )
 );
@@ -51,14 +51,14 @@ if ($project->finishable) {
     $buttons['finish'] = array(
         'type'  => 'submit',
         'name'  => 'finish',
-        'label' => Text::get('form-send_review-button'),
+        'label' => Text::_("Enviar"),
         'class' => 'confirm red'
     );
 } else {
     $buttons['nofinish'] = array(
         'type'  => 'submit',
         'name'  => 'nofinish',
-        'label' => Text::get('form-send_review-button'),
+        'label' => Text::_("Enviar"),
         'class' => 'confirm disabled',
         'disabled' => 'disabled'
     );
@@ -95,10 +95,10 @@ $elements      = array(
 if ($project->finishable) {
     $elements['comment'] = array(
             'type'  =>'textarea',
-            'title' => Text::get('preview-send-comment'),
+            'title' => Text::_("Notas adicionales para el administrador"),
             'rows'  => 8,
             'cols'  => 100,
-            'hint'  => Text::get('tooltip-project-comment'),
+            'hint'  => Text::_("¿Tienes dudas o comentarios para que las lea el administrador de Goteo? Éste es lugar para explicar alguna parte de lo que has escrito de la que no estás seguro,  para proponer mejoras, etc."),
             'value' => $project->comment
         );
 }
@@ -108,7 +108,7 @@ $elements['footer'] = array(
     'type'      => 'group',
     'children'  => array(
         'errors' => array(
-            'title' => Text::get('form-footer-errors_title'),
+            'title' => Text::_("Errores"),
             'view'  => new View('view/project/edit/errors.html.php', array(
                 'project'   => $project,
                 'step'      => $this['step']
@@ -127,7 +127,7 @@ echo new SuperForm(array(
     'action'        => '',
     'level'         => $this['level'],
     'method'        => 'post',
-    'title'         => Text::get('preview-main-header'),
-    'hint'          => Text::get('guide-project-preview'),
+    'title'         => Text::_("Previsualización de datos"),
+    'hint'          => Text::_("<strong>Éste es un resumen de toda la información sobre el proyecto.</strong><br><br> Repasa los puntos de cada apartado para ver si puedes mejorar algo, o bien envía el proyecto para su valoración (mediante el botón "Enviar" de la parte de abajo) si ya están cumplimentados todos los campos obligatorios, para que así pueda ser valorado por el equipo y la comunidad de Goteo. Una vez lo envíes ya no se podrán introducir cambios. <br><br>Ten en cuenta que sólo podemos seleccionar unos cuantos proyectos al mes para garantizar la atención y la difusión de las propuestas que se hacen públicas. Próximamente recibirás un mensaje con toda la información, que te indicará los pasos a seguir y recomendaciones para que tu proyecto pueda alcanzar la meta propuesta. "),
     'elements'      => $elements
 ));

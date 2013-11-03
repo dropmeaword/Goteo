@@ -42,7 +42,7 @@ namespace Goteo\Controller {
                 $projectData = Model\Project::getMini($project);
 
                 if ($projectData->status < 3) {
-                    \Goteo\Library\Message::Error(Text::get('project-messages-closed'));
+                    \Goteo\Library\Message::Error(Text::_("Aun no se pueden enviar mensajes al proyecto"));
                     throw new Redirection("/project/{$project}");
                 }
 
@@ -68,7 +68,7 @@ namespace Goteo\Controller {
                         $log_text = Text::_('%s ha creado un tema en %s del proyecto %s');
                         $log_items = array(
                             Feed::item('user', $_SESSION['user']->name, $_SESSION['user']->id),
-                            Feed::item('message', Text::get('project-menu-messages'), $projectData->id.'/messages#message'.$message->id),
+                            Feed::item('message', Text::_("Mensajes"), $projectData->id.'/messages#message'.$message->id),
                             Feed::item('project', $projectData->name, $projectData->id)
                         );
                         $log->html = \vsprintf($log_text, $log_items);
@@ -77,7 +77,7 @@ namespace Goteo\Controller {
                         $log_text = Text::_('%s ha respondido en %s del proyecto %s');
                         $log_items = array(
                             Feed::item('user', $_SESSION['user']->name, $_SESSION['user']->id),
-                            Feed::item('message', Text::get('project-menu-messages'), $projectData->id.'/messages#message'.$message->id),
+                            Feed::item('message', Text::_("Mensajes"), $projectData->id.'/messages#message'.$message->id),
                             Feed::item('project', $projectData->name, $projectData->id)
                         );
                         $log->html = \vsprintf($log_text, $log_items);
@@ -94,12 +94,12 @@ namespace Goteo\Controller {
 
                     if (empty($_POST['thread'])) {
                         $log->html = Text::html('feed-messages-new_thread',
-                                            Feed::item('message', Text::get('project-menu-messages'), $projectData->id.'/messages#message'.$message->id),
+                                            Feed::item('message', Text::_("Mensajes"), $projectData->id.'/messages#message'.$message->id),
                                             Feed::item('project', $projectData->name, $projectData->id)
                                             );
                     } else {
                         $log->html = Text::html('feed-messages-response',
-                                            Feed::item('message', Text::get('project-menu-messages'), $projectData->id.'/messages#message'.$message->id),
+                                            Feed::item('message', Text::_("Mensajes"), $projectData->id.'/messages#message'.$message->id),
                                             Feed::item('project', $projectData->name, $projectData->id)
                                             );
                     }
@@ -247,9 +247,9 @@ namespace Goteo\Controller {
                 $mailHandler->template = $template->id;
                 if ($mailHandler->send($errors)) {
                     // ok
-                    \Goteo\Library\Message::Info(Text::get('regular-message_success'));
+                    \Goteo\Library\Message::Info(Text::_("Mensaje enviado correctamente"));
                 } else {
-                    \Goteo\Library\Message::Info(Text::get('regular-message_fail') . '<br />' . implode(', ', $errors));
+                    \Goteo\Library\Message::Info(Text::_("Ha habido algun error al enviar el mensaje") . '<br />' . implode(', ', $errors));
                 }
 
                 unset($mailHandler);
@@ -307,9 +307,9 @@ namespace Goteo\Controller {
                 $mailHandler->template = $template->id;
                 if ($mailHandler->send($errors)) {
                     // ok
-                    \Goteo\Library\Message::Info(Text::get('regular-message_success'));
+                    \Goteo\Library\Message::Info(Text::_("Mensaje enviado correctamente"));
                 } else {
-                    \Goteo\Library\Message::Info(Text::get('regular-message_fail') . '<br />' . implode(', ', $errors));
+                    \Goteo\Library\Message::Info(Text::_("Ha habido algun error al enviar el mensaje") . '<br />' . implode(', ', $errors));
                 }
 
                 unset($mailHandler);

@@ -55,7 +55,7 @@ if (empty($shares)) {
 ?>
 <div id="sub-header">
     <div>
-        <h2><a href="/user/<?php echo $user->id; ?>"><img src="<?php echo $user->avatar->getLink(75, 75, true); ?>" /></a> <?php echo Text::get('profile-name-header'); ?> <br /><em><?php echo $user->name; ?></em></h2>
+        <h2><a href="/user/<?php echo $user->id; ?>"><img src="<?php echo $user->avatar->getLink(75, 75, true); ?>" /></a> <?php echo Text::_("Perfil de "); ?> <br /><em><?php echo $user->name; ?></em></h2>
     </div>
 </div>
 
@@ -68,7 +68,7 @@ if (empty($shares)) {
        
        <!-- lista de categor�as -->
         <div class="widget categorylist">
-            <h3 class="title"><?php echo Text::get('profile-sharing_interests-header');?></h3>
+            <h3 class="title"><?php echo Text::_("Compartiendo intereses");?></h3>
 			<!--
             <div class="filters">
                 <span>Ver por:</span>
@@ -115,10 +115,10 @@ if (empty($shares)) {
                                 <a href="/user/<?php echo htmlspecialchars($mate->user) ?>" class="expand">&nbsp;</a>
                                 <div class="avatar"><a href="/user/<?php echo htmlspecialchars($mate->user) ?>"><img src="<?php echo $mate->avatar->getLink(43, 43, true) ?>" /></a></div>
                                 <h4><a href="/user/<?php echo htmlspecialchars($mate->user) ?>"><?php echo htmlspecialchars($mate->name) ?></a></h4>
-                                <span class="projects"><?php echo Text::get('regular-projects'); ?> (<?php echo $mate->projects ?>)</span>
-                                <span class="invests"><?php echo Text::get('regular-investing'); ?> (<?php echo $mate->invests ?>)</span><br/>
-                                <span class="profile"><a href="/user/profile/<?php echo htmlspecialchars($mate->user) ?>"><?php echo Text::get('profile-widget-button'); ?></a> </span>
-                                <span class="contact"><a href="/user/profile/<?php echo htmlspecialchars($mate->user) ?>/message"><?php echo Text::get('regular-send_message'); ?></a></span>
+                                <span class="projects"><?php echo Text::_("proyectos"); ?> (<?php echo $mate->projects ?>)</span>
+                                <span class="invests"><?php echo Text::_("Aportando"); ?> (<?php echo $mate->invests ?>)</span><br/>
+                                <span class="profile"><a href="/user/profile/<?php echo htmlspecialchars($mate->user) ?>"><?php echo Text::_("Ver perfil"); ?></a> </span>
+                                <span class="contact"><a href="/user/profile/<?php echo htmlspecialchars($mate->user) ?>/message"><?php echo Text::_("Enviar mensaje"); ?></a></span>
                             </div>
                         </li>
                     <?php 
@@ -127,9 +127,9 @@ if (empty($shares)) {
                     </ul>
                 </div>
         <?php if (empty($this['category'])) : ?>
-            <a class="more" href="/user/profile/<?php echo $this['user']->id ?>/sharemates/<?php echo $catId ?>"><?php echo Text::get('regular-see_more'); ?></a>
+            <a class="more" href="/user/profile/<?php echo $this['user']->id ?>/sharemates/<?php echo $catId ?>"><?php echo Text::_("Ver más"); ?></a>
         <?php else : ?>
-            <a class="more" href="/user/profile/<?php echo $this['user']->id ?>/sharemates"><?php echo Text::get('regular-see_all'); ?></a>
+            <a class="more" href="/user/profile/<?php echo $this['user']->id ?>/sharemates"><?php echo Text::_("Ver todos"); ?></a>
         <?php endif; ?>
         </div>
         <?php endforeach; ?>

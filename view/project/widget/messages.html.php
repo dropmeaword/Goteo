@@ -41,25 +41,25 @@ $level = (int) $this['level'] ?: 3;
 
     function answer(id) {
         $('#thread').val(id);
-        $('#message-text').val('<?php echo Text::get('project-messages-send_message-your_answer'); ?>').focus().select();
+        $('#message-text').val('<?php echo Text::_("Escribe aquí tu respuesta"); ?>').focus().select();
     }
 </script>
 <?php if (!empty($_SESSION['user']) && $project->status >= 3) : ?>
 <div class="widget project-message">
-    <h<?php echo $level ?> class="title"><?php echo Text::get('project-messages-send_message-header'); ?></h<?php echo $level ?>>
+    <h<?php echo $level ?> class="title"><?php echo Text::_("Escribe tu mensaje"); ?></h<?php echo $level ?>>
 
     <div>
         <form method="post" action="/message/<?php echo $project->id; ?>">
             <input type="hidden" id="thread" name="thread" value="" />
             <div id="bocadillo"></div>
             <textarea id="message-text" name="message" cols="50" rows="5"></textarea>
-            <a target="_blank" id="a-preview" href="#preview" class="preview">&middot;<?php echo Text::get('regular-preview'); ?></a>
+            <a target="_blank" id="a-preview" href="#preview" class="preview">&middot;<?php echo Text::_("Previsualizar"); ?></a>
             <div style="display:none">
                 <div id="preview" style="width:400px;height:300px;overflow:auto;">
                         
                     </div>
             </div>
-            <button class="green" type="submit"><?php echo Text::get('project-messages-send_message-button'); ?></button>
+            <button class="green" type="submit"><?php echo Text::_("Enviar"); ?></button>
         </form>
     </div>
 </div>
@@ -78,7 +78,7 @@ $level = (int) $this['level'] ?: 3;
                   </span>
                    <h<?php echo $level ?> class="user">
 				   <a href="/user/profile/<?php echo htmlspecialchars($message->user->id)?>" target="_blank">
-				   <?php echo htmlspecialchars($message->user->name); if ($message->blocked == 1) echo ' ' . Text::get('regular-looks_for'); ?>
+				   <?php echo htmlspecialchars($message->user->name); if ($message->blocked == 1) echo ' ' . Text::_("busca:"); ?>
                    </a>
                    </h<?php echo $level ?>>
                    <a name="message<?php echo $message->id; ?>"></a>
@@ -86,11 +86,11 @@ $level = (int) $this['level'] ?: 3;
                    <blockquote><?php echo $message->message; ?></blockquote>
                    <div class="actions">
                         <?php if (!empty($_SESSION['user'])) : ?>
-                        <a class="" href="#" onclick="answer('<?php echo $message->id; ?>')"><?php echo Text::get('project-messages-answer_it'); ?></a>
+                        <a class="" href="#" onclick="answer('<?php echo $message->id; ?>')"><?php echo Text::_("Responder"); ?></a>
                         <?php endif; ?>
                         <?php // si puede borrar este mensaje
                         if (\Goteo\Core\ACL::check("/message/delete/{$message->id}/{$project->id}")) : ?>
-                                <a href="/message/delete/<?php echo $message->id; ?>/<?php echo $project->id; ?>"><?php echo Text::get('regular-delete'); ?></a>
+                                <a href="/message/delete/<?php echo $message->id; ?>/<?php echo $project->id; ?>"><?php echo Text::_("Borrar"); ?></a>
                         <?php endif ?>
                    </div>
 
@@ -115,7 +115,7 @@ $level = (int) $this['level'] ?: 3;
                            <?php // si puede borrar este mensaje
                            if (\Goteo\Core\ACL::check("/message/delete/{$child->id}/{$project->id}")) : ?>
                            <div class="actions">
-                                <a href="/message/delete/<?php echo $child->id; ?>/<?php echo $project->id; ?>"><?php echo Text::get('regular-delete'); ?></a>
+                                <a href="/message/delete/<?php echo $child->id; ?>/<?php echo $project->id; ?>"><?php echo Text::_("Borrar"); ?></a>
                            </div>
                            <?php endif; ?>
                        </div>

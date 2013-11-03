@@ -101,13 +101,13 @@ $(document).ready(function(){
         'level'         => 3,
         'method'        => 'post',
         'title'         => '',
-        'hint'          => Text::get('guide-blog-posting'),
+        'hint'          => ,
         'class'         => 'aqua',
         'footer'        => array(
             'view-step-preview' => array(
                 'type'  => 'submit',
                 'name'  => 'save-post',
-                'label' => Text::get('regular-save'),
+                'label' => Text::_("Guardar"),
                 'class' => 'next'
             )
         ),
@@ -125,7 +125,7 @@ $(document).ready(function(){
                 'required'  => true,
                 'size'      => 20,
                 'title'     => Text::_("Título"),
-                'hint'      => Text::get('tooltip-updates-title'),
+                'hint'      => Text::_("tooltip-updates-title"),
                 'errors'    => !empty($errors['title']) ? array($errors['title']) : array(),
                 'value'     => $post->title,
             ),
@@ -135,29 +135,29 @@ $(document).ready(function(){
                 'cols'      => 40,
                 'rows'      => 4,
                 'title'     => Text::_("Texto de la entrada"),
-                'hint'      => Text::get('tooltip-updates-text'),
+                'hint'      => Text::_("tooltip-updates-text"),
                 'errors'    => !empty($errors['text']) ? array($errors['text']) : array(),
                 'value'     => $post->text
             ),
             'image' => array(
                 'title'     => Text::_("Imagen"),
                 'type'      => 'group',
-                'hint'      => Text::get('tooltip-updates-image'),
+                'hint'      => Text::_("tooltip-updates-image"),
                 'errors'    => !empty($errors['image']) ? array($errors['image']) : array(),
                 'class'     => 'image',
                 'children'  => array(
                     'image_upload'    => array(
                         'type'  => 'file',
                         'class' => 'inline image_upload',
-                        'label' => Text::get('form-image_upload-button'),
-                        'hint'  => Text::get('tooltip-updates-image_upload'),
+                        'label' => Text::_("Subir imagen"),
+                        'hint'  => Text::_("tooltip-updates-image_upload"),
                     )
                 )
             ),
 
             'gallery' => array(
                 'type'  => 'group',
-                'title' => Text::get('overview-field-image_gallery'),
+                'title' => Text::_("Imágenes actuales"),
                 'class' => 'inline',
                 'children'  => $images
             ),
@@ -166,7 +166,7 @@ $(document).ready(function(){
                 'type'      => 'textbox',
                 'title'     => Text::_("Vídeo"),
                 'class'     => 'media',
-                'hint'      => Text::get('tooltip-updates-media'),
+                'hint'      => Text::_("tooltip-updates-media"),
                 'errors'    => !empty($errors['media']) ? array($errors['media']) : array(),
                 'value'     => (string) $post->media,
                 'children'  => array(
@@ -180,7 +180,7 @@ $(document).ready(function(){
             ),
             'legend' => array(
                 'type'      => 'textarea',
-                'title'     => Text::get('regular-media_legend'),
+                'title'     => Text::_("Leyenda"),
                 'value'     => $post->legend,
             ),
             
@@ -189,7 +189,7 @@ $(document).ready(function(){
                 'name'      => 'tags[]',
                 'title'     => Text::_("Tags"),
                 'options'   => $tags,
-                'hint'      => Text::get('tooltip-updates-tags'),
+                'hint'      => Text::_("Texto tooltip-updates-tags"),
                 'errors'    => !empty($errors['tags']) ? array($errors['tags']) : array(),
             ),
 
@@ -197,7 +197,7 @@ $(document).ready(function(){
                 'type'      => 'datebox',
                 'required'  => true,
                 'title'     => Text::_("Fecha de publicación"),
-                'hint'      => Text::get('tooltip-updates-date'),
+                'hint'      => Text::_("tooltip-updates-date"),
                 'size'      => 8,
                 'value'     => $post->date
             ),
@@ -206,7 +206,7 @@ $(document).ready(function(){
                 'type'      => 'slider',
                 'options'   => $allow,
                 'class'     => 'currently cols_' . count($allow),
-                'hint'      => Text::get('tooltip-updates-allow_comments'),
+                'hint'      => Text::_("tooltip-updates-allow_comments"),
                 'errors'    => !empty($errors['allow']) ? array($errors['allow']) : array(),
                 'value'     => (int) $post->allow
             ),
@@ -215,7 +215,7 @@ $(document).ready(function(){
                 'type'      => 'slider',
                 'options'   => $allow,
                 'class'     => 'currently cols_' . count($allow),
-                'hint'      => Text::get('tooltip-updates-publish'),
+                'hint'      => ,
                 'errors'    => !empty($errors['publish']) ? array($errors['publish']) : array(),
                 'value'     => (int) $post->publish
             ),
@@ -224,7 +224,7 @@ $(document).ready(function(){
                 'type'      => Text::_("slider"),
                 'options'   => $allow,
                 'class'     => 'currently cols_' . count($allow),
-                'hint'      => Text::get('tooltip-updates-home'),
+                'hint'      => Text::_("Texto tooltip-updates-home"),
                 'errors'    => !empty($errors['home']) ? array($errors['home']) : array(),
                 'value'     => (int) $post->home
             ),
@@ -233,7 +233,7 @@ $(document).ready(function(){
                 'type'      => 'slider',
                 'options'   => $allow,
                 'class'     => 'currently cols_' . count($allow),
-                'hint'      => Text::get('tooltip-updates-footer'),
+                'hint'      => ,
                 'errors'    => !empty($errors['footer']) ? array($errors['footer']) : array(),
                 'value'     => (int) $post->footer
             )

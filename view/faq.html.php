@@ -27,7 +27,7 @@ include 'view/prologue.html.php';
 
 include 'view/header.html.php';
 
-$go_up = Text::get('regular-go_up');
+$go_up = Text::_("Subir");
 
 ?>
 		<div id="sub-header-secondary">
@@ -38,7 +38,7 @@ $go_up = Text::get('regular-go_up');
         </div>
         <div id="main" class="threecols">
 			<div id="faq-content">
-				<h2><?php echo Text::get('regular-faq') ?></h2>
+				<h2><?php echo Text::_("Preguntas frecuentes") ?></h2>
 				<?php foreach ($this['sections'] as $sectionId=>$sectionName) :
                     if (empty($this['faqs'][$sectionId])) continue;
                     ?>
@@ -71,9 +71,9 @@ $go_up = Text::get('regular-go_up');
 					</div>
 				<?php endforeach; ?>
 				<div class="widget faq-sidebar-module">
-					<h3 class="supertitle ask"><?php echo Text::get('regular-faq') ?></h3>
-					<p class="ask-content"><?php echo Text::get('faq-ask-question'); ?></p>
-					<a class="button green btn-ask" href="/contact"><?php echo Text::get('regular-ask'); ?></a>
+					<h3 class="supertitle ask"><?php echo Text::_("Preguntas frecuentes") ?></h3>
+					<p class="ask-content"><?php echo Text::_("¿No has podido resolver tu duda?\r\n Envía un mensaje con tu pregunta."); ?></p>
+					<a class="button green btn-ask" href="/contact"><?php echo Text::_("Preguntar"); ?></a>
 				</div>
 			</div>
         </div>        

@@ -27,7 +27,7 @@ $list = array();
 
 switch ($this['type']) {
     case 'posts':
-        $title = Text::get('blog-side-last_posts');
+        $title = Text::_("Últimas entradas");
         $items = Post::getAll($blog->id, 7);
         // enlace a la entrada
         foreach ($items as $item) {
@@ -35,7 +35,7 @@ switch ($this['type']) {
         }
         break;
     case 'tags':
-        $title = Text::get('blog-side-tags');
+        $title = Text::_("Categorías");
         $items = Post\Tag::getList($blog->id);
         // enlace a la lista de entradas con filtro tag
         foreach ($items as $item) {
@@ -45,7 +45,7 @@ switch ($this['type']) {
         }
         break;
     case 'comments':
-        $title = Text::get('blog-side-last_comments');
+        $title = Text::_("Últimos comentarios");
         $items = Post\Comment::getList($blog->id);
         // enlace a la entrada en la que ha comentado
         foreach ($items as $item) {

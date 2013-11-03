@@ -168,7 +168,7 @@ switch ($order) {
                     
                     <div class="left" style="width:120px;">
 						<span class="username"><a href="/user/<?php echo $investData->user->id; ?>"><?php echo $investData->user->name; ?></a></span>
-<label class="amount"><?php echo Text::_("Aporte");?><?php if ($investData->anonymous) echo ' <strong>'.  Text::get('regular-anonymous').'</strong>'; ?></label>
+<label class="amount"><?php echo Text::_("Aporte");?><?php if ($investData->anonymous) echo ' <strong>'.  Text::_("Anónimo").'</strong>'; ?></label>
 						<span class="amount"><?php echo $investData->amount; ?> &euro;</span>
                         <span class="date"><?php echo date('d-m-Y', strtotime($investData->invested)); ?></span>
                     </div>
@@ -193,8 +193,8 @@ switch ($order) {
                     
                     <div class="left">
 	                    <span class="status"><?php echo $cumplida ? '<span class="cumplida">Cumplida</span>' : '<span class="pendiente">Pendiente</span>'; ?></span>
-                        <span class="profile"><a href="/user/profile/<?php echo $investData->user->id ?>" target="_blank"><?php echo Text::get('profile-widget-button'); ?></a> </span>
-                        <span class="contact"><a href="/user/profile/<?php echo $investData->user->id ?>/message" target="_blank"><?php echo Text::get('regular-send_message'); ?></a></span>
+                        <span class="profile"><a href="/user/profile/<?php echo $investData->user->id ?>" target="_blank"><?php echo Text::_("Ver perfil"); ?></a> </span>
+                        <span class="contact"><a href="/user/profile/<?php echo $investData->user->id ?>/message" target="_blank"><?php echo Text::_("Enviar mensaje"); ?></a></span>
                     </div>
                     
                     
@@ -253,11 +253,11 @@ switch ($order) {
             </script>
             <div id="bocadillo"></div>
             <textarea rows="5" cols="50" name="message" id="message"></textarea>
-            <a class="preview" href="#preview" id="a-preview" target="_blank">&middot;<?php echo Text::get('regular-preview'); ?></a>
+            <a class="preview" href="#preview" id="a-preview" target="_blank">&middot;<?php echo Text::_("Previsualizar"); ?></a>
             <div style="display:none">
                 <div style="width:400px;height:300px;overflow:auto;" id="preview"></div>
             </div>
-            <button type="submit" class="green"><?php echo Text::get('project-messages-send_message-button'); ?></button>
+            <button type="submit" class="green"><?php echo Text::_("Enviar"); ?></button>
             </div>
         </form>
 

@@ -65,7 +65,7 @@ namespace Goteo\Controller {
                     }
                 }
                 else {
-                    Message::Error(Text::get('login-fail'));
+                    Message::Error(Text::_("Error de acceso"));
                 }
             }
 
@@ -97,10 +97,10 @@ namespace Goteo\Controller {
             	$errors = array();
 
 				if (strcmp($_POST['email'], $_POST['remail']) !== 0) {
-					$errors['remail'] = Text::get('error-register-email-confirm');
+					$errors['remail'] = Text::_("La comprobación de email no coincide");
 				}
 				if(strcmp($_POST['password'], $_POST['rpassword']) !== 0) {
-					$errors['rpassword'] = Text::get('error-register-password-confirm');
+					$errors['rpassword'] = Text::_("La comprobación de contraseña no coincide");
 				}
 
 				$user = new Model\User();
@@ -113,7 +113,7 @@ namespace Goteo\Controller {
 				$user->save($errors);
 
 				if(empty($errors)) {
-				  Message::Info(Text::get('user-register-success'));
+				  Message::Info(Text::_("El usuario se ha registrado correctamente. A continuación recibirás un mensaje de correo para activarlo."));
 				  Message::Info(Text::_('Tus datos de acceso son Usuario:').' <strong>'.$user->id.'</strong> Contraseña: <strong>'.$_POST['password'].'</strong>');
                   
                   throw new Redirection('/user/login');
@@ -160,16 +160,16 @@ namespace Goteo\Controller {
                 // E-mail
                 if($_POST['change_email']) {
                     if(empty($_POST['user_nemail'])) {
-                        $errors['email'] = Text::get('error-user-email-empty');
+                        $errors['email'] = Text::_("No puedes dejar el campo de email vacío");
                     }
                     elseif(!\Goteo\Library\Check::mail($_POST['user_nemail'])) {
-                        $errors['email'] = Text::get('error-user-email-invalid');
+                        $errors['email'] = Text::_("El email que has puesto no es válido");
                     }
                     elseif(empty($_POST['user_remail'])) {
-                        $errors['email']['retry'] = Text::get('error-user-email-empty');
+                        $errors['email']['retry'] = Text::_("No puedes dejar el campo de email vacío");
                     }
                     elseif (strcmp($_POST['user_nemail'], $_POST['user_remail']) !== 0) {
-                        $errors['email']['retry'] = Text::get('error-user-email-confirm');
+                        $errors['email']['retry'] = Text::_("La confirmación de correo electrónico no coincide");
                     }
                     else {
                         $user->email = $_POST['user_nemail'];
@@ -181,24 +181,24 @@ namespace Goteo\Controller {
                      * Quitamos esta verificacion porque los usuarios que acceden mediante servicio no tienen contraseña
                      *
                     if(empty($_POST['user_password'])) {
-                        $errors['password'] = Text::get('error-user-password-empty');
+                        $errors['password'] = Text::_("No has puesto la contraseña");
                     }
                     else
                     */
                     if(!Model\User::login($user->id, $_POST['user_password'])) {
-                        $errors['password'] = Text::get('error-user-wrong-password');
+                        $errors['password'] = Text::_("La contraseña no es correcta");
                     }
                     elseif(empty($_POST['user_npassword'])) {
-                        $errors['password']['new'] = Text::get('error-user-password-empty');
+                        $errors['password']['new'] = Text::_("No has puesto la contraseña");
                     }
                     elseif(!\Goteo\Library\Check::password($_POST['user_npassword'])) {
-                        $errors['password']['new'] = Text::get('error-user-password-invalid');
+                        $errors['password']['new'] = Text::_("La contraseña es demasiado corta");
                     }
                     elseif(empty($_POST['user_rpassword'])) {
-                        $errors['password']['retry'] = Text::get('error-user-password-empty');
+                        $errors['password']['retry'] = Text::_("No has puesto la contraseña");
                     }
                     elseif(strcmp($_POST['user_npassword'], $_POST['user_rpassword']) !== 0) {
-                        $errors['password']['retry'] = Text::get('error-user-password-confirm');
+                        $errors['password']['retry'] = Text::_("La confirmación de contraseña no coincide");
                     }
                     else {
                         $user->password = $_POST['user_npassword'];
@@ -277,7 +277,7 @@ namespace Goteo\Controller {
                 // la subpágina de mensaje también está restringida
                 if ($show == 'message') {
                     $_SESSION['jumpto'] = '/user/profile/' .  $id . '/message';
-                    Message::Info(Text::get('user-login-required-to_message'));
+                    Message::Info(Text::_("Debes iniciar sesión para enviar mensajes"));
                     throw new Redirection("/user/login");
                 }
 
@@ -286,14 +286,14 @@ namespace Goteo\Controller {
 //                $owners = Model\User::getOwners() ;
 //                if (!isset($owners[$id])) {
                     $_SESSION['jumpto'] = '/user/profile/' .  $id . '/' . $show;
-                    Message::Info(Text::get('user-login-required-to_see'));
+                    Message::Info(Text::_("Debes iniciar sesión para ver esta página"));
                     throw new Redirection("/user/login");
 //                }
 
                 /*
                 // subpágina de cofinanciadores
                 if ($show == 'investors') {
-                    Message::Info(Text::get('user-login-required-to_see-supporters'));
+                    Message::Info(Text::_("Debes iniciar sesión para ver los cofinanciadores"));
                     throw new Redirection('/user/profile/' .  $id);
                 }
                 */
@@ -379,7 +379,7 @@ namespace Goteo\Controller {
                     $user->confirmed = true;
                     $user->active = true;
                     if($user->save($errors)) {
-                        Message::Info(Text::get('user-activate-success'));
+                        Message::Info(Text::_("La cuenta de usuario se ha activado correctamente"));
                         $_SESSION['user'] = $user;
 
                         /*
@@ -407,11 +407,11 @@ namespace Goteo\Controller {
                     }
                 }
                 else {
-                    Message::Info(Text::get('user-activate-already-active'));
+                    Message::Info(Text::_("La cuenta de usuario ya está activada"));
                 }
             }
             else {
-                Message::Error(Text::get('user-activate-fail'));
+                Message::Error(Text::_("Error al activar la cuenta de usuario"));
             }
             throw new Redirection('/dashboard');
         }
@@ -430,7 +430,7 @@ namespace Goteo\Controller {
                     $user->email = $token;
                     $errors = array();
                     if($user->save($errors)) {
-                        Message::Info(Text::get('user-changeemail-success'));
+                        Message::Info(Text::_("El email se ha cambiado con éxito ;)"));
 
                         // Refresca la sesión.
                         Model\User::flush();
@@ -440,11 +440,11 @@ namespace Goteo\Controller {
                     }
                 }
                 else {
-                    Message::Error(Text::get('user-changeemail-fail'));
+                    Message::Error(Text::_("Error al cambiar el email"));
                 }
             }
             else {
-                Message::Error(Text::get('user-changeemail-fail'));
+                Message::Error(Text::_("Error al cambiar el email"));
             }
             throw new Redirection('/dashboard');
         }
@@ -480,19 +480,19 @@ namespace Goteo\Controller {
                     }
                 }
 
-                $error = Text::get('recover-token-incorrect');
+                $error = Text::_("El código de recuperación de contraseña no es válido");
             }
 
             if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST['recover'])) {
                 $username = $_POST['username'];
                 $email    = $_POST['email'];
                 if ((!empty($username) || !empty($email)) && Model\User::recover($username, $email)) {
-                    $message = Text::get('recover-email-sended');
+                    $message = Text::_("Te hemos enviado un email para reestablecer la contraseña de tu cuenta. Verifica también la carpeta de correo no deseado o spam.");
                     unset($_POST['username']);
                     unset($_POST['email']);
                 }
                 else {
-                    $error = Text::get('recover-request-fail');
+                    $error = Text::_("No se puede recuperar la contraseña de ninguna cuenta con estos datos");
                 }
             }
 
@@ -529,27 +529,27 @@ namespace Goteo\Controller {
                         if(!empty($id)) {
                             // el token coincide con el email y he obtenido una id
                             if (Model\User::cancel($id)) {
-                                Message::Info(Text::get('leave-process-completed'));
+                                Message::Info(Text::_("La cuenta se ha dado de baja correctamente"));
                                 throw new Redirection('/user/login');
                             } else {
-                                Message::Error(Text::get('leave-process-fail'));
+                                Message::Error(Text::_("No hemos podido completar el proceso para darte de baja. Por favor, contáctanos a hola@goteo.org"));
                                 throw new Redirection('/user/login');
                             }
                         }
                     }
                 }
 
-                $error = Text::get('leave-token-incorrect');
+                $error = Text::_("El código para completar el proceso de baja no es válido");
             }
 
             if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST['leaving'])) {
                 if (Model\User::leaving($_POST['email'], $_POST['reason'])) {
-                    $message = Text::get('leave-email-sended');
+                    $message = Text::_("Te hemos enviado un email para completar el proceso de baja. Verifica también la carpeta de correo no deseado o spam.");
                     unset($_POST['email']);
                     unset($_POST['reason']);
                 }
                 else {
-                    $error = Text::get('leave-request-fail');
+                    $error = Text::_("No hemos encontrado ninguna cuenta con este email en nuestra base de datos para darla de baja");
                 }
             }
 

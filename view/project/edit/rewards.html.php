@@ -30,7 +30,7 @@ $okeys  = $project->okeys[$this['step']] ?: array();
 $social_rewards = array();
 $individual_rewards = array();
 
-$txt_details = Text::get('regular-see_details');
+$txt_details = Text::_("Ver detalles");
 
 foreach ($project->social_rewards as $social_reward) {
        
@@ -72,10 +72,10 @@ foreach ($project->social_rewards as $social_reward) {
                     "social_reward-{$social_reward->id}-other" => array(
                         'type'      => 'textbox',
                         'class'     => 'inline other',
-                        'title'     => Text::get('rewards-field-social_reward-other'),
+                        'title'     => Text::_("Especificar el tipo de retorno"),
                         'value'     => $social_reward->other,
                         'name'      => "social_reward-{$social_reward->id}-{$type->id}",
-                        'hint'      => Text::get('tooltip-project-social_reward-icon-other')
+                        'hint'      => Text::_("Especifica brevemente en qué consistirá este otro tipo de retorno colectivo.")
                     )
                 );
             } elseif (!empty($licenses)) {
@@ -83,7 +83,7 @@ foreach ($project->social_rewards as $social_reward) {
                     "social_reward-{$social_reward->id}-license" => array(
                         'type'      => 'group',
                         'class'     => 'license',
-                        'title'     => Text::get('rewards-field-social_reward-license'),
+                        'title'     => Text::_("Opciones de licencia"),
                         'children'  => $licenses,
                         'value'     => $social_reward->license,
                         'name'      => "social_reward-{$social_reward->id}-{$type->id}-license"
@@ -123,29 +123,29 @@ foreach ($project->social_rewards as $social_reward) {
                         'value'     => '1'
                     ),
                     "social_reward-{$social_reward->id}-reward" => array(
-                        'title'     => Text::get('rewards-field-social_reward-reward'),
+                        'title'     => Text::_("Retorno"),
                         'type'      => 'textbox',
                         'required'  => true,
                         'class'     => 'inline',
                         'value'     => $social_reward->reward,
                         'errors'    => !empty($errors["social_reward-{$social_reward->id}-reward"]) ? array($errors["social_reward-{$social_reward->id}-reward"]) : array(),
                         'ok'        => !empty($okeys["social_reward-{$social_reward->id}-reward"]) ? array($okeys["social_reward-{$social_reward->id}-reward"]) : array(),
-                        'hint'      => Text::get('tooltip-project-social_reward-reward')
+                        'hint'      => Text::_("Intenta que el título sea lo más descriptivo posible. Recuerda que puedes añadir más recompensas a continuación.")
                     ),
                     "social_reward-{$social_reward->id}-description" => array(
                         'type'      => 'textarea',
                         'required'  => true,
-                        'title'     => Text::get('rewards-field-social_reward-description'),
+                        'title'     => Text::_("Descripción"),
                         'cols'      => 100,
                         'rows'      => 4,
                         'class'     => 'inline reward-description',
                         'value'     => $social_reward->description,
                         'errors'    => !empty($errors["social_reward-{$social_reward->id}-description"]) ? array($errors["social_reward-{$social_reward->id}-description"]) : array(),
                         'ok'        => !empty($okeys["social_reward-{$social_reward->id}-description"]) ? array($okeys["social_reward-{$social_reward->id}-description"]) : array(),
-                        'hint'      => Text::get('tooltip-project-social_reward-description')
+                        'hint'      => Text::_("Explica brevemente el tipo de retorno colectivo que ofrecerá o permitirá el proyecto.")
                     ),
                     "social_reward-{$social_reward->id}-icon" => array(
-                        'title'     => Text::get('rewards-field-social_reward-type'),
+                        'title'     => Text::_("Tipo de retorno"),
                         'class'     => 'inline',
                         'type'      => 'group',
                         'required'  => true,
@@ -153,7 +153,7 @@ foreach ($project->social_rewards as $social_reward) {
                         'value'     => $social_reward->icon,
                         'errors'    => !empty($errors["social_reward-{$social_reward->id}-icon"]) ? array($errors["social_reward-{$social_reward->id}-icon"]) : array(),
                         'ok'        => !empty($okeys["social_reward-{$social_reward->id}-icon"]) ? array($okeys["social_reward-{$social_reward->id}-icon"]) : array(),
-                        'hint'      => Text::get('tooltip-project-social_reward-type')
+                        'hint'      => Text::_("Especifica el tipo de retorno: ARCHIVOS DIGITALES como música, vídeo, documentos de texto, etc. CÓDIGO FUENTE de software informático. DISEÑOS de  planos o patrones. MANUALES en forma de kits, business plans, “how tos” o recetas. SERVICIOS como talleres, cursos, asesorías, acceso a websites, bases de datos online. ")
                     ),                    
                     "social_reward-{$social_reward->id}-buttons" => array(
                         'type' => 'group',
@@ -161,12 +161,12 @@ foreach ($project->social_rewards as $social_reward) {
                         'children' => array(
                             "social_reward-{$social_reward->id}-ok" => array(
                                 'type'  => 'submit',
-                                'label' => Text::get('form-accept-button'),
+                                'label' => Text::_("Aceptar"),
                                 'class' => 'inline ok'
                             ),
                             "social_reward-{$social_reward->id}-remove" => array(
                                 'type'  => 'submit',
-                                'label' => Text::get('form-remove-button'),
+                                'label' => Text::_("Quitar"),
                                 'class' => 'inline remove weak'
                             )
                         )
@@ -201,10 +201,10 @@ foreach ($project->individual_rewards as $individual_reward) {
                         "individual_reward-{$individual_reward->id}-other" => array(
                             'type'      => 'textbox',
                             'class'     => 'inline other',
-                            'title'     => Text::get('rewards-field-individual_reward-other'),
+                            'title'     => Text::_("Especificar el tipo de recompensa"),
                             'value'     => $individual_reward->other,
                             'name'      => "individual_reward-{$individual_reward->id}-{$type->id}",
-                            'hint'     => Text::get('tooltip-project-individual_reward-icon-other')
+                            'hint'     => Text::_("Especifica brevemente en qué consistirá este otro tipo de recompensa individual.")
                         )
                     );
             } else {
@@ -240,7 +240,7 @@ foreach ($project->individual_rewards as $individual_reward) {
                         'value'     => '1'
                     ),
                     "individual_reward-{$individual_reward->id}-reward" => array(
-                        'title'     => Text::get('rewards-field-individual_reward-reward'),
+                        'title'     => Text::_("Recompensa"),
                         'required'  => true,
                         'type'      => 'textbox',
                         'size'      => 100,
@@ -248,22 +248,22 @@ foreach ($project->individual_rewards as $individual_reward) {
                         'value'     => $individual_reward->reward,
                         'errors'    => !empty($errors["individual_reward-{$individual_reward->id}-reward"]) ? array($errors["individual_reward-{$individual_reward->id}-reward"]) : array(),
                         'ok'        => !empty($okeys["individual_reward-{$individual_reward->id}-reward"]) ? array($okeys["individual_reward-{$individual_reward->id}-reward"]) : array(),
-                        'hint'      => Text::get('tooltip-project-individual_reward-reward')
+                        'hint'      => Text::_("Intenta que el título sea lo más descriptivo posible. Recuerda que puedes añadir más recompensas a continuación.")
                     ),
                     "individual_reward-{$individual_reward->id}-description" => array(
                         'type'      => 'textarea',
                         'required'  => true,
-                        'title'     => Text::get('rewards-field-individual_reward-description'),
+                        'title'     => Text::_("Descripción"),
                         'cols'      => 100,
                         'rows'      => 4,
                         'class'     => 'inline reward-description',
                         'value'     => $individual_reward->description,
                         'errors'    => !empty($errors["individual_reward-{$individual_reward->id}-description"]) ? array($errors["individual_reward-{$individual_reward->id}-description"]) : array(),
                         'ok'        => !empty($okeys["individual_reward-{$individual_reward->id}-description"]) ? array($okeys["individual_reward-{$individual_reward->id}-description"]) : array(),
-                        'hint'      => Text::get('tooltip-project-individual_reward-description')
+                        'hint'      => Text::_("Explica brevemente en qué consistirá la recompensa para quienes cofinancien con este importe el proyecto.")
                     ),
                     "individual_reward-{$individual_reward->id}-icon" => array(
-                        'title'     => Text::get('rewards-field-individual_reward-type'),
+                        'title'     => Text::_("Tipo de recompensa"),
                         'required'  => true,
                         'class'     => 'inline',
                         'type'      => 'group',
@@ -271,10 +271,10 @@ foreach ($project->individual_rewards as $individual_reward) {
                         'value'     => $individual_reward->icon,
                         'errors'    => !empty($errors["individual_reward-{$individual_reward->id}-icon"]) ? array($errors["individual_reward-{$individual_reward->id}-icon"]) : array(),
                         'ok'        => !empty($okeys["individual_reward-{$individual_reward->id}-icon"]) ? array($okeys["individual_reward-{$individual_reward->id}-icon"]) : array(),
-                        'hint'      => Text::get('tooltip-project-individual_reward-type')
+                        'hint'      => Text::_("Selecciona el tipo de recompensa que el proyecto puede ofrecer a la gente que aporta esta cantidad.")
                     ),
                     "individual_reward-{$individual_reward->id}-amount" => array(
-                        'title'     => Text::get('rewards-field-individual_reward-amount'),
+                        'title'     => Text::_("Importe financiado"),
                         'required'  => true,
                         'type'      => 'textbox',
                         'size'      => 5,
@@ -282,15 +282,15 @@ foreach ($project->individual_rewards as $individual_reward) {
                         'value'     => $individual_reward->amount,
                         'errors'    => !empty($errors["individual_reward-{$individual_reward->id}-amount"]) ? array($errors["individual_reward-{$individual_reward->id}-amount"]) : array(),
                         'ok'        => !empty($okeys["individual_reward-{$individual_reward->id}-amount"]) ? array($okeys["individual_reward-{$individual_reward->id}-amount"]) : array(),
-                        'hint'      => Text::get('tooltip-project-individual_reward-amount')
+                        'hint'      => Text::_("Importe a cambio del cual se puede obtener este tipo de recompensa. ")
                     ),
                     "individual_reward-{$individual_reward->id}-units" => array(
-                        'title'     => Text::get('rewards-field-individual_reward-units'),
+                        'title'     => Text::_("Unidades"),
                         'type'      => 'textbox',
                         'size'      => 5,
                         'class'     => 'inline reward-units',
                         'value'     => $individual_reward->units,
-                        'hint'      => Text::get('tooltip-project-individual_reward-units'),
+                        'hint'      => Text::_("Cantidad limitada de ítems que se pueden ofrecer individualizadamente a cambio de ese importe. Calcula que la suma total de todas las recompensas individuales del proyecto se acerquen al presupuesto mínimo de financiación que has establecido. También la posibilidad de incorporar las recompensas previas a medida que suba el importe, puedes empezar diciendo "Todo lo anterior más..."  "),
                     ),
                     "individual_reward-{$individual_reward->id}-buttons" => array(
                         'type' => 'group',
@@ -298,12 +298,12 @@ foreach ($project->individual_rewards as $individual_reward) {
                         'children' => array(
                             "individual_reward-{$individual_reward->id}-ok" => array(
                                 'type'  => 'submit',
-                                'label' => Text::get('form-accept-button'),
+                                'label' => Text::_("Aceptar"),
                                 'class' => 'inline ok'
                             ),
                             "individual_reward-{$individual_reward->id}-remove" => array(
                                 'type'  => 'submit',
-                                'label' => Text::get('form-remove-button'),
+                                'label' => Text::_("Quitar"),
                                 'class' => 'inline remove weak'
                             )
                         )
@@ -330,8 +330,8 @@ echo new SuperForm(array(
     'action'        => '',
     'level'         => $this['level'],
     'method'        => 'post',
-    'title'         => Text::get('rewards-main-header'),
-    'hint'          => Text::get('guide-project-rewards'),    
+    'title'         => Text::_("Retornos y recompensas"),
+    'hint'          => Text::_("<strong>En este apartado debes establecer qué ofrece el proyecto a cambio a sus cofinanciadores, y también sus retornos colectivos.</strong><br><br>\r\nAdemás de las recompensas individuales para cada importe de cofinanciación, aquí debes definir qué tipo de licencia asignar al proyecto, en función de su formato y/o del grado de abertura del mismo (o de alguna de sus partes). Esta parte es muy importante, ya que Goteo es una plataforma de crowdfunding para proyectos basados en la filosofía del código abierto y que fortalezcan el procomún.<br><br>\r\nEn caso de que además de una de las licencias aquí especificadas te interese adicionalmente registrar la propiedad intelectual de tu obra o idea, manteniendo su compatibilidad con los retornos colectivos, te recomendamos obtener una protección legal específica mediante el servicio <a href="http://www.safecreative.org/" target="new">Safe Creative</a>."),    
     'class'         => 'aqua',    
     'elements'      => array(
         'process_rewards' => array (
@@ -342,15 +342,15 @@ echo new SuperForm(array(
         'social_rewards' => array(
             'type'      => 'group',
             'required'  => true,
-            'title'     => Text::get('rewards-fields-social_reward-title'),
-            'hint'      => Text::get('tooltip-project-social_rewards'),
+            'title'     => Text::_("Retornos colectivos"),
+            'hint'      => Text::_("Define el tipo de retorno o retornos del proyecto a los que se podrá acceder abiertamente, y la licencia que los debe regular. Si tienes dudas sobre qué opción escoger o lo que se adaptaría mejor a tu caso, <a href="http://www.goteo.org/contact" target="new">contáctanos</a> y te asesoraremos en este punto."),
             'class'     => 'rewards',
             'errors'    => !empty($errors["social_rewards"]) ? array($errors["social_rewards"]) : array(),
             'ok'        => !empty($okeys["social_rewards"]) ? array($okeys["social_rewards"]) : array(),
             'children'  => $social_rewards + array(
                 'social_reward-add' => array(
                     'type'  => 'submit',
-                    'label' => Text::get('form-add-button'),
+                    'label' => Text::_("Añadir"),
                     'class' => 'add reward-add red',
                 )
             )
@@ -359,15 +359,15 @@ echo new SuperForm(array(
         'individual_rewards' => array(
             'type'      => 'group',
             'required'  => true,
-            'title'     => Text::get('rewards-fields-individual_reward-title'),
-            'hint'      => Text::get('tooltip-project-individual_rewards'),
+            'title'     => Text::_("Recompensas individuales"),
+            'hint'      => Text::_("Aquí debes especificar la recompensa para quien apoye el proyecto, vinculada a una cantidad de dinero concreta. Elige bien lo que ofreces, intenta que sean productos/servicios atractivos o ingeniosos pero que no generen gastos extra de producción. Si no hay más remedio que tener esos gastos extra, calcula lo que cuesta producir esa recompensa (tiempo, materiales, envíos, etc) y oferta un número limitado. Piensa que tendrás que cumplir con todos esos compromisos al final de la producción del proyecto. "),
             'class'     => 'rewards',
             'errors'    => !empty($errors["individual_rewards"]) ? array($errors["individual_rewards"]) : array(),
             'ok'        => !empty($okeys["individual_rewards"]) ? array($okeys["individual_rewards"]) : array(),
             'children'  => $individual_rewards + array(
                 'individual_reward-add' => array(
                     'type'  => 'submit',
-                    'label' => Text::get('form-add-button'),
+                    'label' => Text::_("Añadir"),
                     'class' => 'add reward-add red',
                 )
             )
@@ -377,7 +377,7 @@ echo new SuperForm(array(
             'type'      => 'group',
             'children'  => array(
                 'errors' => array(
-                    'title' => Text::get('form-footer-errors_title'),
+                    'title' => Text::_("Errores"),
                     'view'  => new View('view/project/edit/errors.html.php', array(
                         'project'   => $project,
                         'step'      => $this['step']
@@ -389,7 +389,7 @@ echo new SuperForm(array(
                         'next' => array(
                             'type'  => 'submit',
                             'name'  => 'view-step-supports',
-                            'label' => Text::get('form-next-button'),
+                            'label' => Text::_("Siguiente"),
                             'class' => 'next'
                         )
                     )

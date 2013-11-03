@@ -30,17 +30,17 @@ if (!$project instanceof  Goteo\Model\Project) {
 ?>
 <div class="widget">
     <p><strong><?php echo $project->name ?></strong></p>
-    <a class="button red" href="/project/edit/<?php echo $project->id ?>"><?php echo Text::get('regular-edit') ?></a>
-    <a class="button" href="/project/<?php echo $project->id ?>" target="_blank"><?php echo Text::get('dashboard-menu-projects-preview') ?></a>
+    <a class="button red" href="/project/edit/<?php echo $project->id ?>"><?php echo Text::_("Editar") ?></a>
+    <a class="button" href="/project/<?php echo $project->id ?>" target="_blank"><?php echo Text::_("Página pública") ?></a>
     <?php if ($project->status == 1) : ?>
-    <a class="button weak" href="/project/delete/<?php echo $project->id ?>" onclick="return confirm('<?php echo Text::get('dashboard-project-delete_alert') ?>')"><?php echo Text::get('regular-delete') ?></a>
+    <a class="button weak" href="/project/delete/<?php echo $project->id ?>" onclick="return confirm('<?php echo Text::_("¿Seguro que deseas eliminar absoluta y definitivamente este proyecto?") ?>')"><?php echo Text::_("Borrar") ?></a>
     <?php endif ?>
 </div>
 
 <div class="status">
 
     <div id="project-status">
-        <h3><?php echo Text::get('form-project-status-title'); ?></h3>
+        <h3><?php echo Text::_("Estado del proyecto"); ?></h3>
         <ul>
             <?php foreach (Project::status() as $i => $s): ?>
             <li><?php if ($i == $project->status) echo '<strong>' ?><?php echo htmlspecialchars($s) ?><?php if ($i == $project->status) echo '</strong>' ?></li>

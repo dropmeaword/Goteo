@@ -48,6 +48,6 @@
     ?>
 </div>
 <div id="widget-code">
-    <div class="wc-embed" onclick="$('#code').focus();$('#code').select()"><?php echo Text::get('project-spread-embed_code'); ?></div>
+    <div class="wc-embed" onclick="$('#code').focus();$('#code').select()"><?php echo Text::_("Código Embed"); ?></div>
     <textarea id="code" onclick="this.focus();this.select()" readonly="readonly"><?php echo htmlentities($widget_code); ?></textarea>
 </div>

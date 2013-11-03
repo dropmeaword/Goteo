@@ -86,8 +86,8 @@ namespace Goteo\Controller {
                 
                 $steps = array(
                     'preview' => array(
-                        'name' => Text::get('step-7'),
-                        'title' => Text::get('step-preview'),
+                        'name' => Text::_("Previsualización"),
+                        'title' => Text::_("Proyecto / Previsualización"),
                         'offtopic' => true
                     )
                 );
@@ -99,34 +99,34 @@ namespace Goteo\Controller {
 
                 $steps = array(
                     'userProfile' => array(
-                        'name' => Text::get('step-1'),
-                        'title' => Text::get('step-userProfile'),
+                        'name' => Text::_("Perfil"),
+                        'title' => Text::_("Paso 1: Usuario / Perfil"),
                         'offtopic' => true
                     ),
                     'userPersonal' => array(
-                        'name' => Text::get('step-2'),
-                        'title' => Text::get('step-userPersonal'),
+                        'name' => Text::_("Promotor/a"),
+                        'title' => Text::_("Paso 2: Datos personales"),
                         'offtopic' => true
                     ),
                     'overview' => array(
-                        'name' => Text::get('step-3'),
-                        'title' => Text::get('step-overview')
+                        'name' => Text::_("Descripción"),
+                        'title' => Text::_("Paso 3: Descripción del proyecto")
                     ),
                     'costs'=> array(
-                        'name' => Text::get('step-4'),
-                        'title' => Text::get('step-costs')
+                        'name' => Text::_("Costes"),
+                        'title' => Text::_("Paso 4: Proyecto / Costes")
                     ),
                     'rewards' => array(
-                        'name' => Text::get('step-5'),
-                        'title' => Text::get('step-rewards')
+                        'name' => Text::_("Retorno"),
+                        'title' => Text::_("Paso 5: Proyecto / Retornos")
                     ),
                     'supports' => array(
-                        'name' => Text::get('step-6'),
-                        'title' => Text::get('step-supports')
+                        'name' => Text::_("Colaboraciones"),
+                        'title' => Text::_("Paso 6: Proyecto / Colaboraciones")
                     ),
                     'preview' => array(
-                        'name' => Text::get('step-7'),
-                        'title' => Text::get('step-preview'),
+                        'name' => Text::_("Previsualización"),
+                        'title' => Text::_("Proyecto / Previsualización"),
                         'offtopic' => true
                     )
                 );
@@ -173,9 +173,9 @@ namespace Goteo\Controller {
                         $mailHandler->html = true;
                         $mailHandler->template = 0;
                         if ($mailHandler->send($errors)) {
-                            Message::Info(Text::get('project-review-request_mail-success'));
+                            Message::Info(Text::_("Mensaje de solicitud de revisión enviado correctamente"));
                         } else {
-                            Message::Error(Text::get('project-review-request_mail-fail'));
+                            Message::Error(Text::_("Ha habido algún error al enviar la solicitud de revisión"));
                             Message::Error(implode('<br />', $errors));
                         }
 
@@ -203,9 +203,9 @@ namespace Goteo\Controller {
                         $mailHandler->html = true;
                         $mailHandler->template = $template->id;
                         if ($mailHandler->send($errors)) {
-                            Message::Info(Text::get('project-review-confirm_mail-success'));
+                            Message::Info(Text::_("Mensaje de confirmación de recepción para revisión enviado correctamente"));
                         } else {
-                            Message::Error(Text::get('project-review-confirm_mail-fail'));
+                            Message::Error(Text::_("Ha habido algún error al enviar el mensaje de confirmación de recepción"));
                             Message::Error(implode('<br />', $errors));
                         }
 
@@ -382,11 +382,11 @@ namespace Goteo\Controller {
                 case 'preview':
                     $success = array();
                     if (empty($project->errors)) {
-                        $success[] = Text::get('guide-project-success-noerrors');
+                        $success[] = Text::_("Todos los campos obligatorios se han cumplimentado");
                     }
                     if ($project->finishable) {
-                        $success[] = Text::get('guide-project-success-minprogress');
-                        $success[] = Text::get('guide-project-success-okfinish');
+                        $success[] = Text::_("Ha llegado al porcentaje mínimo");
+                        $success[] = Text::_("Puede enviarse para revisión");
                     }
                     $viewData['success'] = $success;
                     $viewData['types'] = Model\Project\Cost::types();
@@ -407,7 +407,7 @@ namespace Goteo\Controller {
 
             if (empty($_SESSION['user'])) {
                 $_SESSION['jumpto'] = '/project/create';
-                Message::Info(Text::get('user-login-required-to_create'));
+                Message::Info(Text::_("Debes iniciar sesión para crear un proyecto"));
                 throw new Redirection("/user/login");
             }
 
@@ -487,7 +487,7 @@ namespace Goteo\Controller {
                     // Ya no ocultamos los cofinanciadores a los usuarios públicos.
                     /*
                     if ($show == 'supporters') {
-                        Message::Info(Text::get('user-login-required-to_see-supporters'));
+                        Message::Info(Text::_("Debes iniciar sesión para ver los cofinanciadores"));
                         throw new Redirection('/project/' .  $id);
                     }
                      *
@@ -499,14 +499,14 @@ namespace Goteo\Controller {
                         if (isset($_GET['amount'])) {
                             $_SESSION['jumpto'] .= '?amount='.$_GET['amount'];
                         }
-                        Message::Info(Text::get('user-login-required-to_invest'));
+                        Message::Info(Text::_("Debes iniciar sesión para cofinanciar un proyecto"));
                         throw new Redirection("/user/login");
                     }
 
                     // -- Mensaje azul molesto para usuarios no registrados
                     if ($show == 'messages' || $show == 'updates') {
                         $_SESSION['jumpto'] = '/project/' .  $id . '/'.$show;
-                        Message::Info(Text::get('user-login-required'));
+                        Message::Info(Text::_("Debes iniciar sesión para interactuar con la comunidad de Goteo"));
                     }
                 }
 
@@ -515,7 +515,7 @@ namespace Goteo\Controller {
 
                     // si no está en campaña no pueden estar aqui ni de coña
                     if ($project->status != 3) {
-                        Message::Info(Text::get('project-invest-closed'));
+                        Message::Info(Text::_("El proyecto ya no está en campaña"));
                         throw new Redirection('/project/'.$id, Redirection::TEMPORARY);
                     }
 
@@ -539,7 +539,7 @@ namespace Goteo\Controller {
 
 
                 if ($show == 'messages' && $project->status < 3) {
-                    Message::Info(Text::get('project-messages-closed'));
+                    Message::Info(Text::_("Aun no se pueden enviar mensajes al proyecto"));
                 }
 
                 return new View('view/project/public.html.php', $viewData);

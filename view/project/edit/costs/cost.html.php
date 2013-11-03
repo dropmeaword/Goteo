@@ -26,13 +26,13 @@ $cost = $this['data']['cost'] ?>
     
     
     <div class="title"><strong><?php echo htmlspecialchars($cost->cost) ?></strong></div>
-    <input type="submit" class="edit" name="cost-<?php echo $cost->id ?>-edit" value="<?php echo Text::get('regular-edit') ?>" />
-    <input type="submit" class="remove weak" name="cost-<?php echo $cost->id ?>-remove" value="<?php echo Text::get('form-remove-button') ?>" />
+    <input type="submit" class="edit" name="cost-<?php echo $cost->id ?>-edit" value="<?php echo Text::_("Editar") ?>" />
+    <input type="submit" class="remove weak" name="cost-<?php echo $cost->id ?>-remove" value="<?php echo Text::_("Quitar") ?>" />
     
     <div class="description">
         <?php echo htmlspecialchars($cost->description) ?>
         <p><?php echo (int) $cost->amount ?> &euro;
-            <strong><?php echo $cost->required ? Text::get('costs-field-required_cost-yes') : Text::get('costs-field-required_cost-no') ?></strong>
+            <strong><?php echo $cost->required ? Text::_("Imprescindible") : Text::_("Adicional") ?></strong>
         </p>
 
     </div>

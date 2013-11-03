@@ -38,8 +38,8 @@ if ($_SESSION['recovering'] == $_SESSION['user']->id) {
     $old_pass = array(
                     'type'  => 'password',
                     'class' => 'inline',
-                    'title' => Text::get('user-changepass-old'),
-                    'hint'  => Text::get('tooltip-dashboard-user-user_password'),
+                    'title' => Text::_("Contraseña actual"),
+                    'hint'  => Text::_("Escribe la contraseña actual con que accedes a Goteo."),
                     'errors'=> !empty($errors['password']) ? array($errors['password']) : array(),
                     'value' => $user_password
                 );
@@ -55,7 +55,7 @@ echo new SuperForm(array(
 
     'level'         => $this['level'],
     'method'        => 'post',
-    'hint'          => Text::get('guide-dashboard-user-access'),
+    'hint'          => Text::_("Desde aquí puedes modificar los datos con que accedes a tu cuenta de Goteo."),
     'elements'      => array(
 
         'action' => array(
@@ -65,35 +65,35 @@ echo new SuperForm(array(
 
         'data' => array(
             'type'  => 'html',
-            'title' => Text::get('dashboard-menu-profile-access'),
-            'hint'  => Text::get('tooltip-dashboard-user-access_data'),
-            'html'  => '<strong>'.Text::get('login-access-username-field').': </strong>'.$user->id.'<br /><strong>'.Text::get('login-register-email-field').': </strong>'.$user->email
+            'title' => Text::_("Datos de acceso"),
+            'hint'  => Text::_("Estos son tus datos actuales de acceso. Lo único que no se puede cambiar es el login de usuario."),
+            'html'  => '<strong>'.Text::_("Nombre de acceso").': </strong>'.$user->id.'<br /><strong>'.Text::_("Email").': </strong>'.$user->email
         ),
 
         'change_email' => array(
             'type'      => 'group',
-            'title'     => Text::get('user-changeemail-title'),
-            'hint'      => Text::get('tooltip-dashboard-user-change_email'),
+            'title'     => Text::_("Cambiar email"),
+            'hint'      => Text::_("Desde aquí puedes cambiar la dirección de correo electrónico en que recibes los mensajes de Goteo."),
             'children'  => array(
                 'user_nemail' => array(
                     'type'  => 'textbox',
                     'class' => 'inline',
-                    'title' => Text::get('login-register-email-field'),
-                    'hint'  => Text::get('tooltip-dashboard-user-new_email'),
+                    'title' => Text::_("Email"),
+                    'hint'  => Text::_("Indica la nueva dirección de correo electrónico en que quieres recibir los mensajes de Goteo."),
                     'errors'=> !empty($errors['email']) ? array($errors['email']) : array(),
                     'value' => $user_nemail
                 ),
                 'user_remail' => array(
                     'type'  => 'textbox',
                     'class' => 'inline',
-                    'title' => Text::get('login-register-confirm-field'),
-                    'hint'  => Text::get('tooltip-dashboard-user-confirm_email'),
+                    'title' => Text::_("Confirmar email"),
+                    'hint'  => Text::_("Confirma la nueva dirección de correo electrónico en que quieres recibir los mensajes de Goteo."),
                     'errors'=> !empty($errors['email_retry']) ? array($errors['email_retry']) : array(),
                     'value' => $user_remail
                 ),
                 'change_email' => array(
                     'type'      => 'submit',
-                    'label'     => Text::get('form-apply-button'),
+                    'label'     => Text::_("Aplicar"),
                     'class'     => 'save'
                 )
 
@@ -102,8 +102,8 @@ echo new SuperForm(array(
 
         'change_password' => array(
             'type'      => 'group',
-            'title'     => Text::get('user-changepass-title'),
-            'hint'      => Text::get('tooltip-dashboard-user-change_password'),
+            'title'     => Text::_("Cambiar contraseña"),
+            'hint'      => Text::_("Desde aquí puedes cambiar la contraseña con que accedes a Goteo."),
             'children'  => array(
                 /* Ya no requerimos la pasword actual.
                 'user_password' => $old_pass ,
@@ -116,22 +116,22 @@ echo new SuperForm(array(
                 'user_npassword' => array(
                     'type'  => 'password',
                     'class' => 'inline',
-                    'title' => Text::get('user-changepass-new'),
-                    'hint'  => Text::get('tooltip-dashboard-user-new_password'),
+                    'title' => Text::_("Nueva contraseña"),
+                    'hint'  => Text::_("Escribe la nueva contraseña con que quieres acceder a Goteo."),
                     'errors'=> !empty($errors['password_new']) ? array($errors['password_new']) : array(),
                     'value' => $user_npassword
                 ),
                 'user_rpassword' => array(
                     'type'  => 'password',
                     'class' => 'inline',
-                    'title' => Text::get('user-changepass-confirm'),
-                    'hint'  => Text::get('tooltip-dashboard-user-confirm_password'),
+                    'title' => Text::_("Confirmar nueva contraseña"),
+                    'hint'  => Text::_("Confirma la nueva contraseña con que quieres acceder a Goteo."),
                     'errors'=> !empty($errors['password_retry']) ? array($errors['password_retry']) : array(),
                     'value' => $user_rpassword
                 ),
                 'change_password' => array(
                     'type'      => 'submit',
-                    'label'     => Text::get('form-apply-button'),
+                    'label'     => Text::_("Aplicar"),
                     'class'     => 'save'
                 )
 
@@ -149,4 +149,4 @@ echo new SuperForm(array(
 
 </form>
 <hr />
-<a class="button red" href="<?php echo SITE_URL ?>/user/leave?email=<?php echo $user->email ?>"><?php echo Text::get('login-leave-header'); ?></a>
+<a class="button red" href="<?php echo SITE_URL ?>/user/leave?email=<?php echo $user->email ?>"><?php echo Text::_("Cancelar la cuenta"); ?></a>
