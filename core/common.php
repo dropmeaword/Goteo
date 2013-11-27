@@ -109,4 +109,9 @@ namespace {
         return number_format($amount, $decs, ',', '.');
     }
 
+    function get_option($name) {
+        global $config;
+        return $config['options'][$name];
+    }
+
 }
