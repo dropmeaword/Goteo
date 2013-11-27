@@ -49,11 +49,11 @@ if (!defined('PHPMAILER_POP3')) {
 }
 
 // Metadata
-define('GOTEO_META_TITLE', Text::_('Goteo.org  Crowdfunding the commons'));
-define('GOTEO_META_DESCRIPTION', Text::_('Red social de financiacion colectiva'));
-define('GOTEO_META_KEYWORDS', Text::_('crowdfunding, procomun, commons, social, network, financiacion colectiva, cultural, creative commons, proyectos abiertos, open source, free software, licencias libres'));
-define('GOTEO_META_AUTHOR', Text::_('Onliners Web Development'));
-define('GOTEO_META_COPYRIGHT', Text::_('Fundación Fuentes Abiertas'));
+define('GOTEO_META_TITLE', 'Goteo.org  Crowdfunding the commons');
+define('GOTEO_META_DESCRIPTION', 'Red social de financiacion colectiva');
+define('GOTEO_META_KEYWORDS', 'crowdfunding, procomun, commons, social, network, financiacion colectiva, cultural, creative commons, proyectos abiertos, open source, free software, licencias libres');
+define('GOTEO_META_AUTHOR', 'Onliners Web Development');
+define('GOTEO_META_COPYRIGHT', 'Fundación Fuentes Abiertas');
 
 // Database
 define('GOTEO_DB_DRIVER', 'mysql');
@@ -81,21 +81,29 @@ define('GOTEO_MAIL_SMTP_PASSWORD', '');
 define('GOTEO_MAIL', 'hola@goteo.org');
 
 $config['locale'] = array(
-	// default interface language
-	'default_language' => 'en',
-	// root directory of language files (relative to root of Goteo install)
-	'gettext_root' => 'locale',
-	// name of the gettext .po file (used for admin only texts at the moment)
-	'gettext_domain' => 'messages',
-	// gettext files are cached, to reload a new one requires to restart Apache which is stupid (and annoying while
-	//	developing) this setting tells the langueage code to bypass caching by using a clever file-renaming
-	// mechanism described in http://blog.ghost3k.net/articles/php/11/gettext-caching-in-php
-	'gettext_bypass_caching' => false,
-	// use php implementation (true) or apache module (false)?
-	// See this blogpost to understand why using the apache module is not a good idea
-	// unles you really know what you are doing
-	// http://blog.spinningkid.info/?p=2025
-	'gettext_use_php_implementation' => true
+    // default interface language
+    'default_language' => 'en',
+    // root directory of language files (relative to root of Goteo install)
+    'gettext_root' => 'locale',
+    // name of the gettext .po file (used for admin only texts at the moment)
+    'gettext_domain' => 'messages',
+    // gettext files are cached, to reload a new one requires to restart Apache which is stupid (and annoying while
+    //        developing) this setting tells the langueage code to bypass caching by using a clever file-renaming
+    // mechanism described in http://blog.ghost3k.net/articles/php/11/gettext-caching-in-php
+    'gettext_bypass_caching' => false,
+    // use php implementation (true) or apache module (false)?
+    // See this blogpost to understand why using the apache module is not a good idea
+    // unles you really know what you are doing
+    // http://blog.spinningkid.info/?p=2025
+    'gettext_use_php_implementation' => true,
+    
+    // Social Security Number (or personal iscal number depending on country)
+    'social_number_required' => false, // is this an absolute must?
+    'function_validate_social_number' => 'Check::nif', // if it is, which function should we call to validate it? This may take into account local variations
+    
+    // VAT validation configuration
+    'vat_required' => false, // is it an absolute must?
+    'function_validate_vat' => 'Check::vat', // if it is, which function should we call to validate it? This may take into account local variations
 );
 
 // Language
