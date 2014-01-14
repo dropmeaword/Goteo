@@ -117,7 +117,7 @@ namespace Goteo\Model\Blog\Post {
                     ON  user.id = comment.user
                     AND (user.hide = 0 OR user.hide IS NULL)
                 WHERE comment.post IN (SELECT id FROM post WHERE blog = ?)
-                ORDER BY `date` DESC, comment.id DESC
+                ORDER BY comment.date DESC, comment.id DESC
                 ";
             if (!empty($limit)) {
                 $sql .= "LIMIT $limit";
@@ -160,7 +160,6 @@ namespace Goteo\Model\Blog\Post {
         public function validate (&$errors = array()) { 
             if (empty($this->text))
                 $errors[] = Text::_('Falta texto');
-                //Text::get('mandatory-comment-text');
 
             if (empty($errors))
                 return true;

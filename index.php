@@ -20,26 +20,23 @@
 
 use Goteo\Core\Resource,
     Goteo\Core\Error,
-	Goteo\Core\Registry,
     Goteo\Core\Redirection,
     Goteo\Core\ACL,
     Goteo\Library\Text,
     Goteo\Library\Message,
-	Goteo\Library\i18n\Locale,
     Goteo\Library\i18n\Lang;
-
-
-if( !file_exists("config.php") ) {
-	$msg = "This instance of Goteo doesn't seem to be configured, please read the deployment guide, configure and try again.";
-	error_log($msg);
-	echo "<div id='failure'><h1>{$msg}</h1></div>";
-	die;
-}
 
 require_once 'config.php';
 require_once 'core/common.php';
-require_once 'library/i18n/Locale.php';
-require_once 'library/i18n/Lang.php';
+
+/*
+ * Pagina de en mantenimiento
+ */
+if (GOTEO_MAINTENANCE === true && $_SERVER['REQUEST_URI'] != '/about/maintenance' 
+     && !isset($_POST['Num_operacion'])
+    ) {
+    header('Location: /about/maintenance');
+}
 
 // Include path
 //set_include_path(GOTEO_PATH . PATH_SEPARATOR . '.');
@@ -48,7 +45,7 @@ require_once 'library/i18n/Lang.php';
 spl_autoload_register(
 
     function ($cls) {
-		//echo "Trying to autoload {$cls}...";
+
         $file = __DIR__ . '/' . implode('/', explode('\\', strtolower(substr($cls, 6)))) . '.php';
         $file = realpath($file);
 
@@ -61,7 +58,6 @@ spl_autoload_register(
         }
 
         if ($file !== false) {
-			//echo "Autoloading {$file}...";
             include $file;
         }
 
@@ -80,6 +76,7 @@ set_error_handler (
 
 );
 
+    define('NODE_ID', GOTEO_NODE);
 /**
  * Sesión.
  */
@@ -89,11 +86,8 @@ session_start();
 // set Lang
 Lang::set();
 // change current locale
-$locale_name = Lang::locale();
-$locale = new Locale($config['locale']);
-$locale->set($locale_name);
-Registry::set('locale', $locale);
-
+$locale = Lang::locale();
+Lang::gettext( $locale, \GOTEO_GETTEXT_DOMAIN );
 
 // Get URI without query string
 $uri = strtok($_SERVER['REQUEST_URI'], '?');
@@ -105,14 +99,13 @@ $segments = preg_split('!\s*/+\s*!', $uri, -1, \PREG_SPLIT_NO_EMPTY);
 $uri = '/' . implode('/', $segments);
 
 try {
-
     // Check permissions on requested URI
     if (!ACL::check($uri)) {
         Message::Info(Text::get('user-login-required-access'));
 
         //si es un cron (ejecutandose) con los parámetros adecuados, no redireccionamos
         if (strpos($uri, 'cron') !== false && strcmp($_GET[md5(CRON_PARAM)], md5(CRON_VALUE)) === 0) {
-            // proceed
+            define('CRON_EXEC', true);
         } else {
             throw new Redirection("/user/login/?return=".rawurlencode($uri));
         }

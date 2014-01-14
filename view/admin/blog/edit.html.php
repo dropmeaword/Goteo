@@ -46,7 +46,7 @@ if (!$post instanceof Model\Blog\Post) {
     $allow = array(
         array(
             'value'     => 1,
-            'label'     => Text::_("Sí: ")
+            'label'     => Text::_("Sí")
             ),
         array(
             'value'     => 0,
@@ -221,7 +221,7 @@ $(document).ready(function(){
             ),
             'home' => array(
                 'title'     => Text::_("En portada"),
-                'type'      => Text::_("slider"),
+                'type'      => 'slider',
                 'options'   => $allow,
                 'class'     => 'currently cols_' . count($allow),
                 'hint'      => Text::get('tooltip-updates-home'),

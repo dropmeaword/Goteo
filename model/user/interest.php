@@ -97,11 +97,9 @@ namespace Goteo\Model\User {
             // Estos son errores que no permiten continuar
             if (empty($this->id))
                 $errors[] = Text::_('No hay ningun interes para guardar');
-                //Text::get('validate-interest-noid');
 
             if (empty($this->user))
                 $errors[] = Text::_('No hay ningun usuario al que asignar');
-                //Text::get('validate-interest-nouser');
 
             //cualquiera de estos errores hace fallar la validación
             if (!empty($errors))
@@ -120,7 +118,7 @@ namespace Goteo\Model\User {
 				self::query($sql, $values);
 				return true;
 			} catch(\PDOException $e) {
-				$errors[] = Text::_("El interés {$this->id} no se ha asignado correctamente. Por favor, revise los datos.") . $e->getMessage();
+				$errors[] = Text::_("No se ha guardado correctamente. ") . $e->getMessage();
 				return false;
 			}
 
@@ -144,7 +142,7 @@ namespace Goteo\Model\User {
                 self::query("DELETE FROM user_interest WHERE interest = :interest AND user = :user", $values);
 				return true;
 			} catch(\PDOException $e) {
-                $errors[] = Text::_('No se ha podido quitar el interes ') . $this->id . ' del usuario ' . $this->user . ' ' . $e->getMessage();
+                $errors[] = 'No se ha podido quitar el interes ' . $this->id . ' del usuario ' . $this->user . ' ' . $e->getMessage();
                 //Text::get('remove-interest-fail');
                 return false;
 			}
@@ -156,13 +154,16 @@ namespace Goteo\Model\User {
          * Si recibimos una categoría de interés, solamente los que comparten esa categoría
          *
          */
-        public static function share ($user, $category = null) {
+        public static function share ($user, $category = null, $limit = null) {
              $array = array ();
             try {
 
                 $values = array(':me'=>$user);
 
-               $sql = "SELECT DISTINCT(user_interest.user) as id
+               $sql = "SELECT 
+                            DISTINCT(user_interest.user) as id, 
+                            user.name as name,
+                            user.avatar as avatar
                         FROM user_interest
                         INNER JOIN user_interest as mine
                             ON user_interest.interest = mine.interest
@@ -173,30 +174,30 @@ namespace Goteo\Model\User {
                         WHERE user_interest.user != :me
                         ";
                if (!empty($category)) {
-                   $sql .= "AND user_interest.interest = :interest";
+                   $sql .= "AND user_interest.interest = :interest
+                       ";
                    $values[':interest'] = $category;
                }
-
+               $sql .= " ORDER BY RAND()";
+               if (!empty($limit)) {
+                   $sql .= " LIMIT $limit";
+               }
                 $query = static::query($sql, $values);
                 $shares = $query->fetchAll(\PDO::FETCH_ASSOC);
                 foreach ($shares as $share) {
 
-                    // nombre i avatar
-                    $user = \Goteo\Model\User::get($share['id']);
-                    if (empty($user->avatar)) $user->avatar = Image::get(1);
-                    // meritocracia
-                    $support = (object) $user->support;
-                    // proyectos publicados
-                    $query = self::query('SELECT COUNT(id) FROM project WHERE owner = ? AND status > 2', array($share['id']));
-                    $projects = $query->fetchColumn(0);
-
-                    $array[] = (object) array(
-                        'user' => $share['id'],
-                        'avatar' => $user->avatar,
-                        'name' => $user->name,
-                        'projects' => $projects,
-                        'invests' => $support->invests
-                    );
+                    // nombre i avatar vienen en la sentencia, hay que sacar la imagen
+                    $share['user'] = $share['id'];
+                    $queryI = static::query("SELECT COUNT(DISTINCT(project)) FROM invest WHERE user = ? AND status IN ('0', '1', '3')", array($share['id']));
+                    $share['invests'] = $queryI->fetchColumn(0);
+                    $queryP = static::query('SELECT COUNT(id) FROM project WHERE owner = ? AND status > 2', array($share['id']));
+                    $share['projects'] = $queryP->fetchColumn(0);
+                    $share['avatar'] = (empty($share['avatar'])) ? Image::get(1) : Image::get($share['avatar']);
+                    if (!$share['avatar'] instanceof Image) {
+                        $share['avatar'] = Image::get(1);
+                    }
+                    
+                    $array[] = (object) $share;
                 }
 
                 return $array;

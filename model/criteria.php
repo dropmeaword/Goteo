@@ -80,12 +80,10 @@ namespace Goteo\Model {
 
         public function validate (&$errors = array()) { 
             if (empty($this->section))
-                $errors[] = 'Falta seccion';
-                //Text::get('mandatory-criteria-section');
+                $errors[] = Text::_('Falta seccion');
 
             if (empty($this->title))
-                $errors[] = 'Falta título';
-                //Text::get('mandatory-criteria-title');
+                $errors[] = Text::_('Falta título');
 
             if (empty($errors))
                 return true;

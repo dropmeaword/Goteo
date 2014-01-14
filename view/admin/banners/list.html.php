@@ -45,8 +45,8 @@ use Goteo\Library\Text;
                 <td><a href="/project/<?php echo $banner->project; ?>" target="_blank" title="Preview"><?php echo $banner->name; ?></a></td>
                 <td><?php echo $banner->status; ?></td>
                 <td><?php echo $banner->order; ?></td>
-                <td><a href="/admin/banners/up/<?php echo $banner->project; ?>">[<?php echo Text::_("&uarr;"); ?>]</a></td>
-                <td><a href="/admin/banners/down/<?php echo $banner->project; ?>">[<?php echo Text::_("&darr;"); ?>]</a></td>
+                <td><a href="/admin/banners/up/<?php echo $banner->project; ?>">[&uarr;]</a></td>
+                <td><a href="/admin/banners/down/<?php echo $banner->project; ?>">[&darr;]</a></td>
                 <td><a href="/admin/banners/edit/<?php echo $banner->project; ?>">[<?php echo Text::_("Editar"); ?>]</a></td>
                 <td><a href="/admin/banners/remove/<?php echo $banner->project; ?>">[<?php echo Text::_("Quitar"); ?>]</a></td>
             </tr>
@@ -55,6 +55,6 @@ use Goteo\Library\Text;
 
     </table>
     <?php else : ?>
-    <p><?php echo Text::_("No se han encontrado registros"); ?></p>
+    <p>No se han encontrado registros</p>
     <?php endif; ?>
 </div>

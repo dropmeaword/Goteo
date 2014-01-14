@@ -44,9 +44,6 @@ $filters = $this['filters'];
         'label' => Text::_("Para revisión"),
         'first' => Text::_("Todos")),
 ); ?>
-<a href="http://ppcalc.com/es" target="_blank" class="button"><?php echo Text::_("alculadora PayPal"); ?>C</a>&nbsp;&nbsp;&nbsp;
-<!-- <a href="/cron/execute" target="_blank" class="button red"><?php echo Text::_("Ejecutar cargos"); ?></a>&nbsp;&nbsp;&nbsp; -->
-<!-- <a href="/cron/verify" target="_blank" class="button red"><?php echo Text::_("Verificar preapprovals"); ?></a>&nbsp;&nbsp;&nbsp; -->
 <a href="/admin/accounts/viewer" class="button"><?php echo Text::_("Visor de logs"); ?></a>&nbsp;&nbsp;&nbsp;
 <div class="widget board">
     <h3 class="title"><?php echo Text::_("Filtros"); ?></h3>
@@ -128,6 +125,6 @@ $filters = $this['filters'];
 
     </table>
 <?php else : ?>
-    <p><?php echo Text::_("No hay transacciones que cumplan con los filtros."); ?></p>
+    <p>No hay transacciones que cumplan con los filtros.</p>
 <?php endif;?>
 </div>

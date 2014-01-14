@@ -827,8 +827,10 @@ INSERT INTO `lang` VALUES('eu', 'Euskara', 0, 'EUSK', 'eu_ES');
 INSERT INTO `lang` VALUES('fr', 'Français', 0, NULL, NULL);
 INSERT INTO `lang` VALUES('gl', 'Galego', 0, NULL, NULL);
 INSERT INTO `lang` VALUES('it', 'Italiano', 0, 'ITA', 'it_IT');
-INSERT INTO `lang` VALUES('nl', 'Nederlands', 1, 'NL', 'nl_NL');
 INSERT INTO `lang` VALUES('pt', 'Português', 0, NULL, NULL);
+INSERT INTO `lang` VALUES('nl', 'Dutch', 1, 'NL', 'nl_NL');
+INSERT INTO `lang` VALUES('el', 'Greek', 0, 'ελληνικά', 'el_GR');
+
 
 -- --------------------------------------------------------
 
@@ -2853,6 +2855,7 @@ INSERT INTO `text` VALUES('dashboard-project-updates-nopost', 'nl', 'Post not fo
 INSERT INTO `text` VALUES('dashboard-project-updates-nopost', 'en', 'Post not found');
 INSERT INTO `text` VALUES('dashboard-project-updates-postcorrupt', 'ca', 'L''entrada s''ha corromput, contacta amb nosaltres');
 INSERT INTO `text` VALUES('dashboard-project-updates-postcorrupt', 'nl', 'There is a problem with the post. Please contact us.');
+INSERT INTO `text` VALUES('dashboard-project-updates-postcorrupt', 'en', 'There is a problem with the post. Please contact us.');
 INSERT INTO `text` VALUES('dashboard-project-updates-saved', 'ca', 'L''entrada s''ha actualitzat correctament');
 INSERT INTO `text` VALUES('dashboard-project-updates-saved', 'nl', 'Post updated correctly');
 INSERT INTO `text` VALUES('dashboard-project-updates-saved', 'en', 'Post updated correctly');
@@ -3268,6 +3271,7 @@ INSERT INTO `text` VALUES('guide-project-error-mandatories', 'nl', 'Some require
 INSERT INTO `text` VALUES('guide-project-error-mandatories', 'en', 'Some required fields are missing');
 INSERT INTO `text` VALUES('guide-project-preview', 'ca', '<strong>Aquest és un resum de tota la informació sobre el projecte.</strong><br><br>Repassa els punts de cada apartat per veure si pots millorar alguna cosa, o bé envia el projecte per a la seva valoració (amb el botó "Enviar" de la part inferior) si ja estan emplenats tots els camps obligatoris, per a que així pugui ser valorat per l''equip i la comunitat de Goteo. Una vegada ho enviïs ja no es podran introduir canvis.<br><br>Tingues en compte que només podem seleccionar uns quants projectes al mes per garantir-ne l''atenció i la difusió de les propostes que es fan públiques. Pròximament rebràs un missatge amb tota la informació, que t''indicarà els passos a seguir i recomanacions per a que el teu projecte pugui aconseguir la meta proposada. ');
 INSERT INTO `text` VALUES('guide-project-preview', 'nl', '<strong>This is a summary of all of the information about the project.</strong><br><br>Review the information given in each field to see if any improvements can be made, and when you''re ready, send us the project (by clicking the Send button below) so we can evaluate it. Once the proposal is sent, no further changes are permitted.<br><br>Keep in mind that we can only choose a few projects per month in order to guarantee a certain amount of attention and promotion for those that are published. You will receive a message with all of this information shortly, which will indicate the next steps, as well as some recommendations that will help your project reach its proposed objectives.');
+INSERT INTO `text` VALUES('guide-project-preview', 'en', '<strong>This is a summary of all of the information about the project.</strong><br><br>Review the information given in each field to see if any improvements can be made, and when you''re ready, send us the project (by clicking the Send button below) so we can evaluate it. Once the proposal is sent, no further changes are permitted.<br><br>Keep in mind that we can only choose a few projects per month in order to guarantee a certain amount of attention and promotion for those that are published. You will receive a message with all of this information shortly, which will indicate the next steps, as well as some recommendations that will help your project reach its proposed objectives.');
 INSERT INTO `text` VALUES('guide-project-rewards', 'ca', '<strong>En aquest apartat has d''establir què ofereix el projecte a canvi als seus cofinançadors, i també els seur retorns col·lectius.</strong><br><br>A més de les recompenses individuals per a cada import de cofinançament, aquí has de definir quin tipus de llicència assignar al projecte, en funció del seu format i/o del grau d''obertura que té (o d''alguna de les seves parts). Aquesta part és molt important, ja que Goteo és una plataforma de crowdfunding per a projectes basats en la filosofia del codi obert i que enforteixin els béns comuns.<br><br>En cas que a més d''una de les llicències aquí especificades t''interessi addicionalment registrar la propietat intel·lectual de la teva obra o idea, tot mantenint la seva compatibilitat amb els retorns col·lectius, et recomanem obtenir una protecció legal específica mitjançant el servei <a href="http://www.safecreative.org/" target="new">Safe Creative</a>.');
 INSERT INTO `text` VALUES('guide-project-rewards', 'en', '<strong>In this section, you should establish what the project is offering to its co-financiers and also what the collective benefits will be.</strong><br><br>In addition to the individual rewards for each level of co-financing, you should define the kind of license that you will assign to the project, according to its format and/or level of openness (or that of its parts). This is very important, since Goteo is a crowdfunding platform for projects based on a philosophy of open source software and promotion of the common good.<br><br>In the event that in addition to one of the licenses specified here you would also like to register the intellectual property rights of your work or ideas, while maintaining its compatibility with collective benefits, you can get specific legal protection with <a href="http://www.safecreative.org/" target="new">Safe Creative</a>.');
 INSERT INTO `text` VALUES('guide-project-success-minprogress', 'ca', 'Ha arribat al percentatge mínim');
@@ -4339,17 +4343,20 @@ INSERT INTO `text` VALUES('regular-success_mark', 'nl', 'Successful!');
 INSERT INTO `text` VALUES('regular-success_mark', 'en', 'Successful!');
 INSERT INTO `text` VALUES('regular-thanks', 'ca', 'Gràcies');
 INSERT INTO `text` VALUES('regular-thanks', 'nl', 'Thank you');
+INSERT INTO `text` VALUES('regular-thanks', 'en', 'Thank you');
 INSERT INTO `text` VALUES('regular-total', 'ca', 'Total');
 INSERT INTO `text` VALUES('regular-total', 'nl', 'Total');
+INSERT INTO `text` VALUES('regular-translate_board', 'nl', 'Translation panel');
+INSERT INTO `text` VALUES('regular-twitter', 'nl', 'Twitter');
 INSERT INTO `text` VALUES('regular-total', 'en', 'Total');
 INSERT INTO `text` VALUES('regular-translate_board', 'ca', 'Panell traductor');
 INSERT INTO `text` VALUES('regular-translate_board', 'nl', 'Translation panel');
 INSERT INTO `text` VALUES('regular-translate_board', 'en', 'Translation panel');
 INSERT INTO `text` VALUES('regular-twitter', 'ca', 'Twitter');
-INSERT INTO `text` VALUES('regular-twitter', 'nl', 'Twitter');
+INSERT INTO `text` VALUES('regular-twitter-url', 'nl', 'http://twitter.com/#!/');
 INSERT INTO `text` VALUES('regular-twitter', 'en', 'Twitter');
 INSERT INTO `text` VALUES('regular-twitter-url', 'ca', 'http://twitter.com/#!/');
-INSERT INTO `text` VALUES('regular-twitter-url', 'nl', 'http://twitter.com/#!/');
+INSERT INTO `text` VALUES('regular-twitter-url', 'en', 'http://twitter.com/#!/');
 INSERT INTO `text` VALUES('regular-view_project', 'ca', 'Projecte');
 INSERT INTO `text` VALUES('regular-view_project', 'nl', 'See project');
 INSERT INTO `text` VALUES('regular-view_project', 'en', 'See project');
@@ -4495,6 +4502,7 @@ INSERT INTO `text` VALUES('tooltip-dashboard-user-confirm_password', 'nl', 'Conf
 INSERT INTO `text` VALUES('tooltip-dashboard-user-confirm_password', 'en', 'Confirm the new password with which you want to log in to Goteo.');
 INSERT INTO `text` VALUES('tooltip-dashboard-user-new_email', 'ca', 'Indica la nova adreça de correu electrònic on vols rebre els missatges de Goteo.');
 INSERT INTO `text` VALUES('tooltip-dashboard-user-new_email', 'nl', 'Specify the new email address at which you wish to receive messages from Goteo.');
+INSERT INTO `text` VALUES('tooltip-dashboard-user-new_email', 'en', 'Specify the new email address at which you wish to receive messages from Goteo.');
 INSERT INTO `text` VALUES('tooltip-dashboard-user-new_password', 'ca', 'Escriu la nova contrasenya amb que vols accedir a Goteo.');
 INSERT INTO `text` VALUES('tooltip-dashboard-user-new_password', 'nl', 'Write the new password that you want to use to log in to Goteo');
 INSERT INTO `text` VALUES('tooltip-dashboard-user-new_password', 'en', 'Write the new password that you want to use to log in to Goteo');
@@ -4503,6 +4511,7 @@ INSERT INTO `text` VALUES('tooltip-dashboard-user-user_password', 'nl', 'Write t
 INSERT INTO `text` VALUES('tooltip-dashboard-user-user_password', 'en', 'Write the current password that you use to log in to Goteo');
 INSERT INTO `text` VALUES('tooltip-project-about', 'ca', 'Descriu breument el projecte de manera conceptual, tècnica o pràctica. Per exemple detallant les seves característiques de funcionament, o en quines parts consistirà. Pensa com serà una vegada acabat i tot el que la gent podrà fer amb ell.');
 INSERT INTO `text` VALUES('tooltip-project-about', 'nl', 'Briefly describe the project in conceptual, technical, or practical terms. For example, by detailing how it works or what it is made up of. Think about what it will be like when it''s done, and what people will be able to do with it.');
+INSERT INTO `text` VALUES('tooltip-project-about', 'en', 'Briefly describe the project in conceptual, technical, or practical terms. For example, by detailing how it works or what it is made up of. Think about what it will be like when it''s done, and what people will be able to do with it.');
 INSERT INTO `text` VALUES('tooltip-project-category', 'ca', 'Selecciona tantes categories com creguis necessari per descriure el projecte, basant-te en tot el que has descrit amunt. Mitjançant aquestes paraules clau ho podrem fer arribar a diferents usuaris de Goteo.');
 INSERT INTO `text` VALUES('tooltip-project-category', 'nl', 'Choose as many categories as you deem necessary in order to describe the project, based on everything you''ve written above. Your choices will help us get your project out to interested Goteo users.');
 INSERT INTO `text` VALUES('tooltip-project-category', 'en', 'Choose as many categories as you deem necessary in order to describe the project, based on everything you''ve written above. Your choices will help us get your project out to interested Goteo users.');
@@ -4574,8 +4583,10 @@ INSERT INTO `text` VALUES('tooltip-project-entity_office', 'nl', 'Enter the posi
 INSERT INTO `text` VALUES('tooltip-project-entity_office', 'en', 'Enter the position with which you represent the organization (secretary, president, ...)');
 INSERT INTO `text` VALUES('tooltip-project-goal', 'ca', 'Enumera les metes principals del projecte, a curt i llarg termini, en tots els aspectes que consideris important destacar. Es tracta d''una altra oportunitat per contactar i aconseguir el suport de gent que simpatitzi amb aquests objectius.');
 INSERT INTO `text` VALUES('tooltip-project-goal', 'nl', 'List the project''s principal goals, in the long and short term, in all aspects that you consider important. This is another opportunity to contact with and get support from the people who sympathize with those objectives.');
-INSERT INTO `text` VALUES('tooltip-project-image', 'ca', 'Poden ser esquemes, captures de pantalla, fotografies, il·lustracions, storyboards, etc. (la seva llicència d''autoria ha de ser compatible amb la que seleccions a l''apartat 5). Et recomanem que siguin diverses i de bona resolució. Pots pujar tantes com vulguis!');
 INSERT INTO `text` VALUES('tooltip-project-image', 'nl', 'These might be outlines, screenshots, photographs, illustrations, storyboards, etc. (their authoring license should be compatible with what you choose in section 5). Use a variety, and at a decent resolution. You can upload as many as you like.');
+INSERT INTO `text` VALUES('tooltip-project-goal', 'en', 'List the project''s principal goals, in the long and short term, in all aspects that you consider important. This is another opportunity to contact with and get support from the people who sympathize with those objectives.');
+INSERT INTO `text` VALUES('tooltip-project-image', 'ca', 'Poden ser esquemes, captures de pantalla, fotografies, il·lustracions, storyboards, etc. (la seva llicència d''autoria ha de ser compatible amb la que seleccions a l''apartat 5). Et recomanem que siguin diverses i de bona resolució. Pots pujar tantes com vulguis!');
+INSERT INTO `text` VALUES('tooltip-project-image', 'en', 'These might be outlines, screenshots, photographs, illustrations, storyboards, etc. (their authoring license should be compatible with what you choose in section 5). Use a variety, and at a decent resolution. You can upload as many as you like.');
 INSERT INTO `text` VALUES('tooltip-project-image_upload', 'ca', 'ESBORRAR');
 INSERT INTO `text` VALUES('tooltip-project-image_upload', 'nl', 'ERASE');
 INSERT INTO `text` VALUES('tooltip-project-image_upload', 'en', 'ERASE');

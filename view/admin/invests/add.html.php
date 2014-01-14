@@ -46,15 +46,6 @@ use Goteo\Library\Text;
             <?php endforeach; ?>
             </select>
         </p>
-        <p>
-            <label for="invest-campaign"><?php echo Text::_("Campaña:"); ?></label><br />
-            <select id="invest-campaign" name="campaign">
-                <option value=""><?php echo Text::_("Seleccionar la campaña a la que se asigna este aporte"); ?></option>
-            <?php foreach ($this['campaigns'] as $campaignId=>$campaignName) : ?>
-                <option value="<?php echo $campaignId; ?>"><?php echo $campaignName; ?></option>
-            <?php endforeach; ?>
-            </select>
-        </p>
 
         <p>
             <label for="invest-anonymous"><?php echo Text::_("Aporte anónimo:"); ?></label><br />

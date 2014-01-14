@@ -18,18 +18,19 @@
  *
  */
 
-use Goteo\Library\Text;
+namespace Goteo\Controller\Dashboard {
 
-$items = $this['items'];
+    use Goteo\Model,
+        Goteo\Core\Redirection,
+        Goteo\Core\Error,
+		Goteo\Library\Text;
 
-?>
-<div class="scroll-pane">
-    <?php foreach ($items as $item) :
-        $odd = !$odd ? true : false;
-        ?>
-    <div class="subitem<?php if ($odd) echo ' odd';?>">
-       <span class="datepub"><?php echo Text::get('feed-timeago', $item->timeago); ?></span>
-       <div class="content-pub"><?php echo $item->html; ?></div>
-    </div>
-    <?php endforeach; ?>
-</div>
+    class Translates {
+
+        public static function process () {
+
+        }
+
+    }
+
+}

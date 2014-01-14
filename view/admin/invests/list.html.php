@@ -108,8 +108,8 @@ $filters = $this['filters'];
                 <td><?php echo $invest->charged ?></td>
                 <td><?php echo $invest->returned ?></td>
                 <td>
-                    <?php if ($invest->anonymous == 1)  echo Text::_("Anónimo ") ?>
-                    <?php if ($invest->resign == 1)  echo Text::_("Donativo ") ?>
+                    <?php if ($invest->anonymous == 1)  echo Text::_("Anónimo").' ' ?>
+                    <?php if ($invest->resign == 1)  echo Text::_("Donativo").' ' ?>
                     <?php if (!empty($invest->admin)) echo Text::_("Manual") ?>
                 </td>
             </tr>

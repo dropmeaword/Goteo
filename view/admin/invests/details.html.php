@@ -56,7 +56,7 @@ $user = $this['user'];
         <dd><?php echo $invest->amount ?> &euro;
             <?php
                 if (!empty($invest->campaign))
-                    echo Text::_("Campaña: ") . $campaign->name;
+                    echo Text::_("Campaña") .': '. $campaign->name;
             ?>
         </dd>
     </dl>
@@ -87,7 +87,7 @@ $user = $this['user'];
                     echo '<br />'.Text::_("Aporte anónimo");
 
                 if (!empty($invest->resign))
-                    echo "<br />" .Text::_("Donativo de:") . " {$invest->address->name} [{$invest->address->nif}]";
+                    echo "<br />" .Text::_("Donativo de") . " :{$invest->address->name} [{$invest->address->nif}]";
 
                 if (!empty($invest->admin))
                     echo '<br />'.Text::_("Manual generado por admin: ").$invest->admin;

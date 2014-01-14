@@ -18,7 +18,6 @@
  *
  */
 
-
 namespace Goteo\Controller {
 
     use Goteo\Core\ACL,
@@ -48,7 +47,7 @@ namespace Goteo\Controller {
             $reviews = Model\Review::assigned($user->id);
             // si no hay proyectos asignados no tendria que estar aqui
             if (count($reviews) == 0) {
-                $message = Text::_('No tienes asignada ninguna revisión de proyectos');
+                $message = 'No tienes asignada ninguna revisión de proyectos';
             }
             
             return new View (
@@ -77,7 +76,7 @@ namespace Goteo\Controller {
             $reviews = Model\Review::assigned($user->id);
             // si no hay proyectos asignados no tendria que estar aqui
             if (count($reviews) == 0) {
-                $message = Text::_('No tienes asignada ninguna revisión de proyectos');
+                $message = 'No tienes asignada ninguna revisión de proyectos';
             }
 
             // resumen de los proyectos que tengo actualmente asignados
@@ -127,25 +126,20 @@ namespace Goteo\Controller {
                                     'id'   => $id
                                 ));
                 if ($ready->ready($errors)) {
-                    $message = Text::_('Se ha dado por terminada tu revisión');
+                    $message = 'Se ha dado por terminada tu revisión';
                     $review = Model\Review::getData($review->id);
 
-                    /*
-                     * Evento Feed
-                     */
+                    // Evento Feed
                     $log = new Feed();
-                    $log->title = Text::_('revisión cerrada (revisor)');
-                    $log->url = '/review/reviews';
-                    $log->type = 'admin';
-                    $log_text = Text::_('El revisor %s ha %s la revisión de %s');
-                    $log_items = array(
-                        Feed::item('user', $_SESSION['user']->name, $_SESSION['user']->id),
-                        Feed::item('relevant', Text::_('Finalizado')),
-                        Feed::item('project', $review->name, $review->project)
+                    $log->setTarget($review->project, 'project');
+                    $log->populate('revisión cerrada (revisor)', '/review/reviews',
+                        \vsprintf('El revisor %s ha %s la revisión de %s', array(
+                            Feed::item('user', $_SESSION['user']->name, $_SESSION['user']->id),
+                            Feed::item('relevant', 'Finalizado'),
+                            Feed::item('project', $review->name, $review->project)
+                        ))
                     );
-                    $log->html = \vsprintf($log_text, $log_items);
-                    $log->add($errors);
-
+                    $log->doAdmin('admin');
                     unset($log);
 
                 }
@@ -211,7 +205,7 @@ namespace Goteo\Controller {
             $reviews = Model\Review::history($user->id);
             // si no hay proyectos asignados no tendria que estar aqui
             if (count($reviews) == 0) {
-                $message = Text::_('No hay revisiones anteriores');
+                $message = 'No hay revisiones anteriores';
             }
 
             $viewData = array(
